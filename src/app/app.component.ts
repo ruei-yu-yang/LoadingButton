@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Observable, Subscription, interval, take } from 'rxjs';
 
 @Component({
@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'loading Button';
   countdown$!: Observable<number>;
   countdownValue = 0;
+  resetButtonEmitter = new EventEmitter<boolean>(true);
 
   private countdownSubscription!: Subscription;
 
@@ -25,6 +26,7 @@ export class AppComponent {
         if (this.countdownValue > 0) {
           this.countdownValue--;
         } else {
+          this.resetButtonEmitter.emit(true);
           this.countdownSubscription.unsubscribe();
         }
       });

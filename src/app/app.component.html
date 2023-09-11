@@ -354,7 +354,7 @@
   <p>Click to simulate button loading behavior:</p>
 
   <div class="card-container">
-    <a class="btn btn-primary btn-xlg" (click)="submit()">
+    <a class="btn btn-primary btn-xlg" (click)="submit()" loading-btn [appButtonReset]="resetButtonEmitter" >
       <i class="mdi mdi-send"> </i><span>送出</span>
     </a>
   </div>

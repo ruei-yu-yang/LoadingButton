@@ -22,7 +22,8 @@
             "styles": ["src/styles.css", "src/assets/css/UI.css"],
             "scripts": [
               "src/assets/js/plugin/jquery-3.6.3.min.js",
-              "src/assets/js/UI.js"
+              "src/assets/js/UI.js",
+              "src/assets/js/UI-LoadingButton.js
             ]
           },
           "configurations": {
