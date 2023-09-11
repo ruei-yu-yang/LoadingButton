@@ -1,0 +1,54 @@
+//- Table
+.e-grid{
+  .e-gridheader .e-headercontent{
+    .e-headercell{
+      font-size: $table-th-f-size;
+      font-weight: $table-th-f-weight;
+      vertical-align: middle;
+      background-color: $table-th-bg;
+      .e-headertext{
+        font-size: $table-th-f-size;
+        font-weight: $table-th-f-weight;
+      }
+    }
+  }
+  .e-gridcontent .e-content{
+    .e-table{
+      tr.e-row{
+        background-color: #fff;
+        &.e-altrow{
+          background-color: $table-striped-bg;
+        }
+        &:hover .e-rowcell,
+        &.e-frozenhover .e-rowcell,
+        .e-active,
+        .e-editedrow .e-rowcell{
+            box-shadow: inset 0 0 0 9999px rgba($table-custom-bg-color-hover,100%);
+        }
+      }
+      
+      
+    }
+  }
+  .file-icon{
+    text-align: center;
+  }
+  .file-upload-list{
+    background-color: #fff;
+    .file-main {overflow: hidden;}
+  }
+  .e-filter-popup .e-dlg-content{
+    .e-dlg-content{
+      padding:$modal-padding-y $modal-padding-x;
+    }
+    .e-footer-content{
+      padding:$modal-padding-y $modal-padding-x;
+    }
+    .e-flmenu-valuediv{
+      padding-top:$modal-padding-x;
+    }
+  }
+  &.sf-grid .e-gridcontent > .e-content {
+    max-height: 90vh;
+  }
+}

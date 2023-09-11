@@ -1,0 +1,110 @@
+[data-focus-trig]{
+  cursor: pointer;
+}
+//- CSS 參照_form-check.scss
+.radio-icon,
+.checkbox-icon{
+  padding:0 0 0 0.25rem;
+  text-align: center;
+  vertical-align: middle;
+  &:after{
+    // @include IconMdi(1.125rem);
+    // color: $gray-400;
+    content:"";
+    display: block;
+    width: $form-check-input-width;
+    height: $form-check-input-width;
+    margin: 0 auto;
+    background-color: $form-check-input-bg;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: $form-check-input-border;
+    appearance: none;
+    &:active {
+      filter: $form-check-input-active-filter;
+    }
+  }
+  &.radio-icon-lg,
+  &.checkbox-icon-lg{
+    &:after{
+      width: $form-check-input-width * 1.5;
+      height: $form-check-input-width * 1.5;
+      background-size: 75% ;
+    }
+  }
+}
+.radio-icon:after{
+  border-radius: $form-check-radio-border-radius;
+}
+.checkbox-icon:after{
+  @include border-radius($form-check-input-border-radius);
+}
+td,th {
+  .radio-icon,
+  .checkbox-icon{
+    width: 3rem;
+  }
+}
+
+// Checked
+.focus,
+.focus-border{
+  .checkbox-icon{
+    &:after{
+      background-color: $form-check-input-checked-bg-color;
+      border-color: $form-check-input-checked-border-color;
+    }
+  }
+  .radio-icon{
+    &:after{
+      background-color: transparent;
+      border-color: $form-check-input-checked-border-color;
+    }
+  }
+  .radio-icon:after{
+    // content:"\F05E0";
+    @if $enable-gradients {
+      background-image: escape-svg($form-check-radio-checked-bg-image), var(--#{$variable-prefix}gradient);
+    } @else {
+      background-image: escape-svg($form-check-radio-checked-bg-image);
+    }
+  }
+  .checkbox-icon:after{
+    // content:"\F0132";
+    @if $enable-gradients {
+      background-image: escape-svg($form-check-input-checked-bg-image), var(--#{$variable-prefix}gradient);
+    } @else {
+      background-image: escape-svg($form-check-input-checked-bg-image);
+    }
+  }
+
+}
+.focus-border{
+  outline:2px solid $primary;
+  outline-offset: -1px;
+}
+
+//Hover
+$table-custom-bg-color-hover:shift-color($primary, $alert-bg-scale) !default;
+[cell-index] {
+  &.hover {
+      position: relative;
+      // $hover-color:shift-color($primary, -80%);
+      // background-color: $table-custom-bg-color-hover;
+      // mix-blend-mode: multiply;
+      &:after{
+        content:"";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-color: $table-custom-bg-color-hover;
+        mix-blend-mode: multiply;
+        
+      }
+  }
+}

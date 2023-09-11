@@ -1,0 +1,80 @@
+// has tag/badge
+.select-badge {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  @extend .form-control;
+  padding: 0 0 0 0;
+  min-height: $input-height;
+  &:not([badg-type='separate']) > input[type='text'],
+  .dropdown > input[type='text'] {
+    border: none;
+    background-color: transparent;
+    margin-top: -1px;
+    width: 100%;
+    flex: 1 1 3rem;
+  }
+  .dropdown{
+    position: static;
+    width: 100%;
+    flex: 1 1 3rem;
+  }
+  .badge-group {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-left:$input-padding-y;
+    margin-top:0.15rem;
+    margin-bottom: -0.15rem;
+    .badge{
+      // margin:0.125rem;
+      margin:0 0.2rem 0.2rem 0
+    }
+  }
+  &:read-only{
+    background-color: #fff; // 覆蓋 Bootstrap style
+  }
+  &.form-control-lg {
+    @extend .form-control-lg;
+    padding-left: $input-padding-y-lg;
+    height: auto;
+    // min-height: calc($line-height-lg * 1rem + $input-btn-padding-y-lg * 2 - 2px);
+    min-height: $input-height-lg;
+    > .form-select-lg{
+      padding:0;
+      min-height: $font-size-lg;
+    }
+  }
+  &.form-control-xlg {
+    @extend .form-control-xlg;
+    padding-left: $input-padding-y-xlg;
+    height: auto;
+    min-height: $input-height-xlg;
+    > .form-select-xlg{
+      padding:0;
+      min-height: $font-size-xlg;
+    }
+  }
+  &.validation-warning[data-required="true"]{
+    // @extend .validation-warning-invalid;
+    background-color: shift-color($warning, $alert-bg-scale);
+    border-color: shift-color($warning, $alert-border-scale);
+    > input.form-control::placeholder,
+    .dropdown > input.form-control::placeholder{
+      color: shift-color($warning, $alert-color-scale);
+    }
+  }
+  &.validation-danger[data-required="true"]{
+    // @extend .validation-danger-invalid;
+    background-color: shift-color($danger, $alert-bg-scale);
+    border-color: shift-color($danger, $alert-border-scale);
+    > input.form-control::placeholder,
+    .dropdown > input.form-control::placeholder{
+      color: shift-color($danger, $alert-color-scale);
+    }
+  } 
+}
+
+
+

@@ -1,0 +1,30 @@
+
+#filedrag{
+	padding:1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
+	border:2px dashed $primary;
+	border-radius: $border-radius;
+	cursor: default;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	h5{
+			color: $primary;
+			margin-bottom: 0;
+			pointer-events: none;
+	}
+	span{
+			margin:0 0.75rem;
+			color:$gray-500;
+			pointer-events: none;
+	}
+	&.hover{
+			border-style: solid;
+			background-color: lighten($primary,45);
+	}
+	.btn-primary span{
+		color: #fff;
+	}
+}

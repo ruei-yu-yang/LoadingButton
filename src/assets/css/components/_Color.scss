@@ -1,0 +1,221 @@
+@each $colorTins, $value in $primarys{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $blues{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $secondarys{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+
+@each $colorTins, $value in $indigos{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $purples{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $pinks{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $dangers{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $reds{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $oranges{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $warnings{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $yellows{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $successs{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $greens{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $teals{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $cyans{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $browns{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $corals{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $celerys{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $fushsias{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $magentas{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $chartreuses{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+@each $colorTins, $value in $seafoams{
+  .bg-#{$colorTins} {
+    background-color:$value !important;
+  }
+  .text-#{$colorTins} {
+    color:$value !important;
+  }
+}
+
+
+//- Before & After
+@each $color, $value in $theme-colors {
+  .before-bg-#{$color}::before {
+    background-color: $value !important;
+  }
+  .after-bg-#{$color}::after {
+    background-color: $value !important;
+  }
+  .dot.border-#{$color}{
+    border-color: $value !important;
+    border-style: solid;
+    border-width: 2px;
+  }
+  .dot.before-border-#{$color}::before {
+    border-color: $value !important;
+    border-style: solid;
+    border-width: 2px;
+  }
+  .dot.after-border-#{$color}::after {
+    border-color: $value !important;
+    border-style: solid;
+    border-width: 2px;
+  }
+  .pattern-#{$color},
+  .before-pattern-#{$color}::before,
+  .after-pattern-#{$color}::after {
+    background-color: $value;
+    background-size: 3px 3px;
+    background-image: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 0.8px, #{$value} 0, #{$value} 50%);
+    ;
+  }
+}
+
+// Semanyic light
+// $light-bg-scale : $alert-bg-scale; // $table-bg-scale 的值也相同 (-80%)
+// @each $state, $value in $theme-colors {
+//   $light-background: shift-color($value, $light-bg-scale);
+//   .bg-#{$state}-light {
+//     background-color: $light-background;
+//   }
+// }
+

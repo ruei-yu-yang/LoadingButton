@@ -1,0 +1,52 @@
+$statistic-title-f-size:0.875rem !default;
+$statistic-amount-f-size:1.75rem !default;
+$statistic-padding:0.5rem !default;
+$statistic-padding:0.5rem !default;
+
+
+.statistic-card{
+  display: flex;
+  height: 100%;
+  border:$border;
+  border-radius: $border-radius;
+  overflow: hidden;
+  a{
+    text-decoration: none;
+    flex: 1 1;
+    &:hover{
+      background-color: $gray-200;
+    }
+  }
+  .btn-lg{
+    i{
+      font-size: 1.25rem;
+    }
+  }
+}
+dl.statistic{
+  margin: 0;
+  padding:$statistic-padding;
+  dt {
+    line-height: 100%;
+    font-size: $statistic-title-f-size;
+    font-weight: 400;
+    color: $gray-500; 
+    text-decoration: none;
+    transform-origin: top left;
+  }
+  dd {
+    margin: 0;
+    line-height: 100%;
+    font-size: $statistic-amount-f-size;
+    font-weight: 600;
+    color: $gray-800;
+    text-decoration: none;
+  }
+}
+dl.statistic-label{
+  @extend .statistic;
+  dt{
+    font-weight: 600;
+    transform:scale(0.84);
+  }
+}

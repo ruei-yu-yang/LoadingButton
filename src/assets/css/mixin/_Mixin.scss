@@ -1,0 +1,23 @@
+@mixin IconMdi($font-size: inherit, $display: inline-block, $line-height:inherit,$font-weight:normal) {
+  
+  // font: normal normal normal #{$mdi-font-size-base}/ 1 "#{$mdi-font-name}"; // shortening font declaration
+  display: $display;
+  font-weight:$font-weight;
+  font-size:$font-size;
+  font-family:"Material Design Icons";
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  line-height: $line-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+//--多行文字限制
+@mixin multi_ellipsis($Line) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $Line;
+  -webkit-box-orient: vertical;
+}
+
+

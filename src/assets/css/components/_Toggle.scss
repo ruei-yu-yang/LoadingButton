@@ -1,0 +1,151 @@
+// trig
+[toggle-btn] {
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+// Toggle class
+[toggle-class="off"] {
+  transition: all 0.3s linear;
+  .mdi:before {
+    transition: all 0.3s linear;
+  }
+  .mdi-minus:before {
+    content: "\F0415";
+  }
+  .mdi-folder-open:before {
+    content: "\F024B";
+  }
+  .mdi-chevron-up:before,
+  .mdi-chevron-double-left:before,
+  .mdi-chevron-double-right:before {
+    transform: rotate(180deg);  
+  }
+  .mdi-chevron-down:before {
+    transform: rotate(-90deg);
+  }
+  .mdi-menu-down:before {
+    transform: rotate(-90deg) scale(1.5, 1.5);
+  }
+  &.mdi-eye:before{
+    content:"\F0209";
+  }
+}
+
+
+
+[toggle-class="on"] {
+  transition: all 0.3s linear;
+  .mdi:before {
+    transition: all 0.3s linear;
+  }
+  .mdi-menu-down:before {
+    transform: scale(1.5, 1.5);
+  }
+  .mdi-star-outline:before {
+    content:"\F04CE";
+    color:$primary;
+  }
+  .mdi-checkbox-blank-outline:before{
+    content:"\F0132";
+  }
+  &.text-white{
+    .mdi-star-outline:before {
+      color:$yellow;
+    }
+  }
+
+}
+// [toggle-class="off"],
+// [toggle-class="on"] {
+//   .mdi-menu-down:before{
+//     transform: scale(1.5, 1.5);
+//     perspective-origin: 0 0;
+//     text-align: center;
+//   }
+// }
+// Toggle off
+.off,
+[toggle-element="off"] {
+  display: none;
+}
+
+// Toggle Icon
+[toggle-class] {
+  .i-toggle {
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($gray-500, 0.25);
+    }
+  }
+}
+
+// Toggle Btn
+.btn-toggle {
+  &[toggle-class="off"] {
+    @extend .btn-gray-dark;
+  }
+  &[toggle-class="on"] {
+    background-color: #fff;
+    border-color: #fff;
+    color: $gray-800;
+  }
+}
+
+//Collapse 線條版本
+[toggle-parent="border"] {
+  position: relative;
+  [toggle-element] {
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid $caption-bg-color;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: $border-radius;
+    }
+  }
+  .caption.rounded:not([toggle-class="off"]) {
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0 !important; 
+  }
+}
+
+//Collapse 禁止版本
+[toggle-parent="disabled"] {
+  [toggle-btn] {
+      pointer-events: none;
+  }
+  .i-toggle {
+      opacity: 0;
+  }
+}
+
+//Toggle All 
+.btn-toggle-all,
+.btn-toggle-all-data {
+  display: inline-flex;
+  align-items: center;
+  &:after {
+      content: attr(data-collapse-text);
+      display: inline-block;
+      margin-left: 4px;
+  }
+  &:before {
+      content: "\F0615";
+      @include IconMdi();
+  }
+  &[toggle-class="off"] {
+      &:after {
+          content: attr(data-expend-text);
+      }
+      &:before {
+          content: "\F0616";
+      }
+  }
+}

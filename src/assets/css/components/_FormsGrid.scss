@@ -1,0 +1,88 @@
+@mixin FormGrid {
+  .form-control,
+  .form-select {
+      padding: 2px;
+      border-color: transparent;
+      border-radius: 0;
+      background-color: transparent;
+      background-image: none;
+      &::-webkit-inner-spin-button,
+      &::-webkit-calendar-picker-indicator,
+      &::-webkit-clear-button  {
+        display: none;
+        -webkit-appearance: none;
+      }
+      &::placeholder{
+        opacity: 0;
+        color: transparent;
+      }
+      &.bs-placeholder {
+        opacity: 0;
+      } 
+      &:invalid{
+        color: $gray-500;
+        opacity: 0;
+      } 
+      // &::-webkit-datetime-edit,
+      // &::-webkit-datetime-edit-year-field,
+      // &::-webkit-datetime-edit-month-field,
+      // &::-webkit-datetime-edit-day-field{
+      // }
+      //- Hover
+      &:hover{
+        &::-webkit-inner-spin-button,
+        &::-webkit-calendar-picker-indicator,
+        &::-webkit-clear-button {
+          display: inline-block;
+        }
+        &::placeholder {
+          opacity: 1;
+          color: $input-placeholder-color;
+        }
+        &.form-select,
+        .dropdown-toggle.btn{
+          background-image: escape-svg($form-select-indicator);
+        }
+        &.bs-placeholder,
+        &:invalid {
+          opacity: 1;
+        }
+      }
+
+
+  }
+}
+
+[form-control-status="grid"] {
+  @include FormGrid;
+  tr:hover{
+    .form-control,
+    .form-select{
+      &::-webkit-inner-spin-button,
+      &::-webkit-calendar-picker-indicator,
+      &::-webkit-clear-button {
+        display: inline-block;
+      }
+      &::placeholder {
+        opacity: 1;
+        color: $input-placeholder-color;
+      }
+      &.form-select,
+      .dropdown-toggle.btn{
+        background-image: escape-svg($form-select-indicator);
+      }
+      &.bs-placeholder,
+      &:invalid {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+[form-grid-border="true"] {
+  .grid-cell{
+    border:$border;
+    margin-left: -1px;
+    margin-top: -1px;
+  }
+}

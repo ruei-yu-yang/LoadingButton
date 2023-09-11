@@ -1,0 +1,134 @@
+
+$folder-path-h:2.25rem !default;
+
+//- Folder Path  ===============================
+.folder-path-container{
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin:0;
+	padding:0;
+	height: 100%;
+	&.rounded{
+		li:first-child{
+			border-radius: $border-radius 0 0 $border-radius;
+		}
+	}
+	li{
+		display: flex;
+		align-items: center;
+		height: 100%;
+		&:hover{
+			background-color: $gray-200;
+		}
+		&.folder-path{
+			flex:1 1 100%;
+			input{
+				width: 100%;
+				height: $folder-path-h;
+				line-height: $folder-path-h;	
+				border:none;
+				opacity: 0;
+				&:focus{
+					opacity: 1;
+				}
+			}
+			&:focus-within{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;	
+			}
+			
+		}
+	}
+	.folder{
+		display: flex;
+		align-items: center;
+		padding:0 0.5rem;
+		height: $folder-path-h;
+		line-height: $folder-path-h;
+		font-size: 1rem;
+		font-weight: 600;
+		color: $gray-900;
+		vertical-align: middle;
+	}
+	&:not([data-type="nofolder"]){
+		.folder{
+			&:before{
+				@include IconMdi($font-size: 1.25rem, $display: inline-block, $line-height:$folder-path-h);
+				content:"\F024B";
+				margin-right: 0.5rem;
+				color:darken($warning,5);
+			}
+		}
+	}
+	.folder-arrow{
+		height: $folder-path-h;
+		line-height: $folder-path-h;
+		border:none;
+		border-left:1px solid #fff;
+		background-color: transparent;
+		&:hover{
+			background-color: $gray-300;
+			&.dropdown-toggle::after {
+				transform: rotate(0deg);
+			}
+		}
+		&.dropdown-toggle::after {
+			transform: rotate(-90deg);
+			border-top: 4px solid $gray-500;
+			border-right: 4px solid transparent;
+			border-bottom: 0;
+			border-left: 4px solid transparent;
+			transition:$transition;
+		}
+		
+	}
+	.dropdown-menu.folder-list{
+		border:none;
+		li{
+			a{
+				&:before{
+					@include IconMdi(1rem);
+					content:"\F024B";
+					margin-right:0.25rem;
+					color:darken($warning,5);
+					// line-height: $folder-path-h;
+				}
+			}
+		}
+	}
+}
+
+//-Folder List Table ===============================
+.table-folder-list{
+	tbody{
+		tr {
+			td{
+				vertical-align: middle;
+				&.folder-name{
+					cursor: pointer;
+					&:before{
+						@include IconMdi(1.25rem);
+						content:"\F024B";
+						margin-right: 0.5rem;
+						color:darken($warning,5);
+					}
+				}
+				&.file-name{
+					&:before{
+						@include IconMdi(1.25rem);
+						content:"\F0219";
+						margin-right: 0.5rem;
+						color:$gray-500;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+
+

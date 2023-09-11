@@ -1,0 +1,166 @@
+.w-auto{
+  width: auto;
+}
+.max-w-98{
+  max-width: 98%;
+}
+.w-98{
+  width: 98%;
+}
+
+$space-w: 1;
+@function space($n) {
+  @return $n * $space-w;
+}
+
+$i: 1;
+@while $i <= 39 {
+  //-1~30rem
+  .min-w-#{$i * 1}rem {
+    min-width: space($i) * 1rem !important;
+  }
+  .max-w-#{$i * 1}rem {
+    max-width: space($i) * 1rem !important;
+  }
+  .min-h-#{$i * 1}rem {
+    min-height: space($i) * 1rem !important;
+  }
+  .max-h-#{$i * 1}rem {
+    max-height: space($i) * 1rem !important;
+  }
+  .h-#{$i * 1}rem {
+    height: space($i) * 1rem !important;
+  }
+  .w-#{$i * 1}rem {
+    width: space($i) * 1rem !important;
+  }
+  //-1~30%
+  .min-w-#{$i * 1} {
+    min-width: space($i) * 1% !important;
+  }
+  .max-w-#{$i * 1} {
+    max-width: space($i) * 1% !important;
+  }
+  .min-h-#{$i * 1} {
+    min-height: space($i) * 1% !important;
+  }
+  .max-h-#{$i * 1} {
+    max-height: space($i) * 1% !important;
+  }
+  .h-#{$i * 1} {
+    height: space($i) * 1% !important;
+  }
+  .w-#{$i * 1} {
+    width: space($i) * 1% !important;
+  }
+  $i: $i + 1;
+}
+
+// ------------------------------------------------
+$space-w10: 10;
+@function space-10($n) {
+  @return $n * $space-w10;
+}
+
+$i: 4;
+@while $i <= 15 {
+  //-40~150rem
+  .w-#{$i * 10}rem {
+    width: space-10($i) * 1rem !important;
+  }
+  .min-w-#{$i * 10}rem {
+    min-width: space-10($i) * 1rem !important;
+  }
+  .max-w-#{$i * 10}rem {
+    max-width: space-10($i) * 1rem !important;
+  }
+  .h-#{$i * 10}rem {
+    height: space-10($i) * 1rem !important;
+  }
+  .min-h-#{$i * 10}rem {
+    min-height: space-10($i) * 1rem !important;
+  }
+  .max-h-#{$i * 10}rem {
+    max-height: space-10($i) * 1rem !important;
+  }
+  
+  //-40~150vw vh
+  .w-#{$i * 10}vw {
+    width: space-10($i)  * 1vw !important;
+  }
+  .min-w-#{$i * 10}vw {
+    min-width: space-10($i) * 1vw !important;
+  }
+  .max-w-#{$i * 10}vw {
+    max-width: space-10($i) * 1vw !important;
+  }
+  .h-#{$i * 10}vh {
+    height: space-10($i)  * 1vh !important;
+  }
+  .min-h-#{$i * 10}vh {
+    min-height: space-10($i)  * 1vh !important;
+  }
+  .max-h-#{$i * 10}vh {
+    max-height: space-10($i)  * 1vh !important;
+  }
+
+  //-40~150%
+  .w-#{$i * 10} {
+    width: space-10($i)  * 1% !important;
+  }
+  .min-w-#{$i * 10} {
+    min-width: space-10($i) * 1% !important;
+  }
+  .max-w-#{$i * 10} {
+    max-width: space-10($i) * 1% !important;
+  }
+  .h-#{$i * 10} {
+    height: space-10($i)  * 1% !important;
+  }
+  .min-h-#{$i * 10} {
+    min-height: space-10($i)  * 1% !important;
+  }
+  .max-h-#{$i * 10} {
+    max-height: space-10($i)  * 1% !important;
+  }
+  
+  
+  //
+  $i: $i + 1;
+}
+
+//
+.min-h-auto{
+  min-height: inherit !important;
+}
+.max-h-auto{
+  max-height: inherit !important;
+}
+.min-w-auto{
+  min-width: inherit !important;
+}
+.max-w-auto{
+  max-width: inherit !important;
+}
+
+//-以下為Bootstrap CSS
+// // stylelint-disable declaration-no-important
+
+// // Width and height
+
+// @each $prop, $abbrev in (width: w, height: h) {
+//   @each $size, $length in $sizes {
+//     .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+//   }
+// }
+
+// .mw-100 { max-width: 100% !important; }
+// .mh-100 { max-height: 100% !important; }
+
+// // Viewport additional helpers
+
+// .min-vw-100 { min-width: 100vw !important; }
+// .min-vh-100 { min-height: 100vh !important; }
+
+// .vw-100 { width: 100vw !important; }
+// .vh-100 { height: 100vh !important; }

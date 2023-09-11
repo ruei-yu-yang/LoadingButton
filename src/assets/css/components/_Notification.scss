@@ -1,0 +1,129 @@
+/*通知的數字樣式*/
+[notification-more] {
+position: relative;
+	&:before {
+		content: attr(notification-more);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		top: 4px;
+		right: 0;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		font-size: 0.875rem;
+		transform: translate(25%, -25%);
+		color: #fff;
+		background: $danger-500;
+	}
+}
+
+[notification-more="0"] {
+	&:before {
+		opacity: 0;
+	}
+}
+
+.card.card-notification {
+	.card-body {
+		display: flex;
+		.notification-label {
+			flex-shrink: 0;
+			position: relative;
+			padding: 0 1rem 0 0;
+			i.status-icon {
+				width: 2.25rem;
+				height: 2.25rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				border-radius: 50%;
+				color: #fff;
+				font-size: 1rem;
+				&:before {
+						@include IconMdi();
+				}
+			}
+		}
+		.notification-content {
+			width: 100%;
+			flex: 1 1 auto;
+			.content-header{
+				margin-bottom: 0.25rem;
+				.card-title{
+					color: $gray-900;
+					margin-bottom: 0;
+					line-height: 100%;
+				}
+			}
+			// .content-body{}
+			.card-text{
+				color: $gray-800;
+				margin-bottom: 0;
+				font-size: 0.85rem;
+			}
+		}
+	}
+	.card-notification-close{
+		position: absolute;
+		right: 0.5rem;
+		top: 0.5rem;
+		display: none;
+	}
+	&:hover{
+		.card-notification-close{
+			display: inline-flex;
+		}
+	}
+	&[data-notification-type="read"] {
+		i.status-icon {
+			background: $gray-500;
+			&:before {
+				content: "\F05EF";
+			}
+		}
+	}
+	&[data-notification-type="unread"] {
+		i.status-icon {
+			background: $primary;
+			&:before {
+				content: "NEW";
+				font-size: 0.75rem;
+				font-family: inherit !important;
+				line-height: 1;
+				font-weight: bold;
+				transform: scale(0.7);
+			}
+		}
+	}
+	&[data-notification-type="pin"] {
+		i.status-icon {
+			background: $orange-500; //-_Tzuchi-Header.scss 有作覆蓋修改顏色
+			&:before {
+				content: "\F0403";
+			}
+		}
+	}
+	&[data-notification-type="danger"] {
+		i.status-icon {
+			background: $danger-100;
+			&:before {
+				content: "\F0C65";
+				color: $danger-500;
+			}
+		}
+	}
+	&[data-notification-type="warning"] {
+		i.status-icon {
+			background: $warning-100;
+			&:before {
+				content: "\F002A";
+				color: $warning-500;
+			}
+		}
+	}
+
+
+
+}

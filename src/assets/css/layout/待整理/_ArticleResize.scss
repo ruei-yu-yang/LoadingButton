@@ -1,0 +1,140 @@
+$left_w: 22rem !default;
+$left_min_w: 2rem !default;
+$bar_w: 1rem !default;
+$bar_l: 0.2rem !default;
+
+$article-h: calc(100vh - #{$header-h-t}) !default;
+$transition: all 0.2s linear !default;
+
+.ArticleResize {
+  width: 100%;
+  display: flex;
+  min-height: $article-h;
+  padding: 0;
+  .wrap {
+    display: flex;
+    //與table-layout: fixed; 衝突修正 (滿版日曆元件使用_fullcalendar.scss)
+    display: -webkit-box;
+    display: -ms-flexbox;
+    min-height: $article-h;
+    padding: 0;
+  }
+  .left-wrap {
+    height: 100%;
+  }
+  .left {
+    flex-grow: 0;
+    width: $left_w;
+    min-width: $left_min_w;
+    min-height: $article-h;
+  }
+  .right {
+    flex-grow: 1;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    // overflow-y: hidden;
+    min-height: $article-h;
+    iframe {
+      width: 100%;
+      height: calc(100vh - #{$header-h-t} - 0.1rem);
+      border: none;
+    }
+  }
+  .barResize {
+    cursor: e-resize;
+  }
+  .bar,
+  .barResize {
+    position: relative;
+    width: $bar_w;
+    margin-left: -$bar_w * 0.5;
+    transition: $transition;
+    &:before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      left: ($bar_w - $bar_l) * 0.5;
+      width: $bar_l;
+      height: 100%;
+    }
+    &:hover {
+      &:before {
+        background-color: $primary;
+      }
+
+      .LeftNnav-btn {
+        display: block;
+      }
+    }
+    .LeftNnav-btn {
+      position: absolute;
+      left: -0.1rem;
+      top: calc(100vh / 2 - #{$header-h-t});
+      height: 3rem;
+      width: 1.2rem;
+      border-radius: 0.6rem;
+      background-color: $primary;
+      z-index: 2;
+      cursor: pointer;
+      display: none;
+
+      &:before {
+        content: "\f141";
+        position: absolute;
+        left: -1px;
+        @include IconMdi();
+        color: #fff;
+        font-size: 1.25rem;
+        line-height: 3rem;
+      }
+    }
+  }
+  &.ArticleMousedown {
+    .left,
+    .right {
+      user-select: none;
+    }
+    .bar {
+      &:before {
+        background-color: $primary;
+      }
+    }
+  }
+  &.ArticleClose {
+    .left {
+      width: 0.8rem !important;
+      min-width: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: $transition;
+    }
+    .bar {
+      .LeftNnav-btn {
+        display: block;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 0 0.6rem 0.6rem 0;
+
+        &:before {
+          transform: rotate(180deg);
+        }
+      }
+      &:hover {
+        .LeftNnav-btn {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}
+
+.ArticleScroll {
+  .wrap {
+    height: $article-h;
+  }
+
+  .left,
+  .right {
+    overflow-y: auto;
+  }
+}

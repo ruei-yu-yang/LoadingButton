@@ -1,0 +1,77 @@
+$tree-font-size: 0.95rem !default;
+$tree-font-size-sec: 0.857rem !default;
+// Border
+$tree-border: 1px dotted rgba($gray-500,0.3) !default;
+$tree-border-horizontal: 1px dotted transparent !default;
+$tree-border-title: $tree-border !default;
+// Height
+$tree-item-h: 1.75rem !default;
+$tree-item-h-lg: $tree-item-h * 1.25 !default;
+
+
+$NavInternal-bg-color: var(--bg-color) !default;
+$NavInternal-color-hover: var(--nav-color-hover) !default;
+$NavInternal-bg-color-hover: var(--nav-bg-color-hover) !default;
+$NavInternal-color-active: var(--nav-color-active) !default;
+$NavInternal-bg-color-active: var(--nav-bg-color-active) !default;
+
+// Base
+.tree-toggle .nav-tree-internal,
+.nav-tree-internal {
+  li {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    a,.tree-item {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      line-height: 3rem;
+      i.toggle-icon {
+        position: relative;
+        position: absolute;
+        top: 3px;
+        right: $tree-toggle-icon-height;
+        left: auto;
+        height: 100%;
+        &:before {
+          content: "\F0143";
+          @include IconMdi($font-size:1.25rem, $line-height:$tree-toggle-icon-height);
+        }
+        &:after{
+          display: none;
+        }
+  
+        &:hover{
+          transition: all 0.3s linear;
+          &:before {
+            color: var(--text-color-light);
+          }
+        }
+      }
+      &.tree-toggle-hide {
+        i.toggle-icon {
+          &:before {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:hover{
+        border-radius: $border-radius;
+        color: $NavInternal-color-hover;
+        background-color: $NavInternal-bg-color-hover;
+      }
+      &.active{
+        border-radius: $border-radius;
+        color: $NavInternal-color-active;
+        background-color: $NavInternal-bg-color-active;
+      }
+      
+    }
+    ul li{
+      padding-left: 1.5rem;
+      a{
+        line-height: 2rem;
+        padding-left: 0.75rem;
+      }
+    }
+  }
+}

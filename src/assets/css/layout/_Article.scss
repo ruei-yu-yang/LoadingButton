@@ -1,0 +1,14 @@
+$Article-min-h: calc(100vh - #{$header-h} - 2px) !default;
+$Article-pad: $grid-gutter-width !default;
+$Article-pad-y: $grid-gutter-width * 0.5 !default;
+
+.Article {
+  width: 100%;
+  display: flex;
+  padding: $Article-pad-y  $Article-pad;
+  min-height: $Article-min-h;
+  .wrap {
+    display: block;
+    padding: 0;
+  }
+}

@@ -1,0 +1,143 @@
+.theme-light{
+  --text-color: #{$gray-800};
+  --tooltip-bg-color: #fff;
+}
+.theme-dark{
+  --text-color: #fff;
+  --tooltip-bg-color:#{$gray-900};
+}
+.theme-danger{
+--text-color:#fff;
+--tooltip-bg-color:#{$danger};
+}
+.theme-success{
+--text-color:#fff;
+--tooltip-bg-color:#{$success};
+}
+.theme-danger-light{
+--text-color:#{$danger-800};
+--tooltip-bg-color:#{$danger-100};
+  --tooltip-border-color:#{$danger-300};
+&:after{
+  display: none;
+}
+}
+.theme-success-light{
+--text-color:#{$success-800};
+--tooltip-bg-color:#{$success-100};
+--tooltip-border-color:#{$success-300};
+&:after{
+  display: none;
+}
+}
+
+$arrowSize: 6px;
+$arrowSize-s: 4px;
+@mixin Tooltips($Direction) {
+  @if $Direction=="left" {
+      transform: translateX(calc(-100% - 20px)) translateY(-50%);
+      &:after {
+          right: $arrowSize-s;
+          left: 100%;
+          top:calc(50% - #{$arrowSize});
+          border-width: $arrowSize 0 $arrowSize $arrowSize-s;
+          border-color: transparent transparent transparent var(--tooltip-bg-color);
+      }
+  }
+  @else if $Direction=="bottom" {
+      transform: translateX(-50%) translateY(25px);
+      &:after {
+          right: inherit;
+          left: calc(50% - #{$arrowSize-s});
+          top: -$arrowSize-s;
+          border-width: 0 $arrowSize $arrowSize-s $arrowSize;
+          border-color: transparent transparent var(--tooltip-bg-color) transparent;
+      }
+  }
+  @else if $Direction=="top" {
+      transform: translateX(-50%) translateY(calc(-100% - 20px));
+      &:after {
+          right: inherit;
+          left: calc(50% - #{$arrowSize-s});
+          top: calc(100% - 1px);
+          bottom: 0;
+          border-width: $arrowSize-s $arrowSize 0 $arrowSize;
+          border-color: var(--tooltip-bg-color) transparent transparent transparent;
+      }
+  }
+  @else if $Direction=="right" {
+      transform: translateX(20px) translateY(-50%);
+      &:after {
+          right: inherit;
+          left: - $arrowSize-s;
+          top:calc(50% - #{$arrowSize});
+          border-width: $arrowSize $arrowSize-s $arrowSize 0;
+          border-color: transparent var(--tooltip-bg-color) transparent transparent;
+      }
+  }
+}
+.tooltip-wrap {
+  display: none;
+  position: fixed;
+  padding: $tooltip-padding-y $tooltip-padding-x;
+  @include reset-text();
+  @include font-size($tooltip-font-size);
+  @include border-radius($tooltip-border-radius);
+  color: var(--text-color);
+  background-color: var(--tooltip-bg-color);
+  box-shadow: $box-shadow-lg;
+  z-index: 2000;
+  pointer-events: none;
+  transform: translateX(20px) translateY(-50%);
+  &:after {
+      content: "";
+      position: absolute;
+      right: inherit;
+      left: - $arrowSize-s;
+      top:calc(50% - #{$arrowSize});
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: $arrowSize $arrowSize-s $arrowSize 0;
+      border-color: transparent var(--tooltip-bg-color) transparent transparent;
+  }
+  &.left {
+      @include Tooltips("left")
+  }
+  &.bottom {
+      @include Tooltips("bottom")
+  }
+  &.top {
+      @include Tooltips("top")
+  }
+  &.top[tooltip-layout="TL"],
+  &.top[tooltip-layout="TT"],
+  &.top[tooltip-layout="TR"] {
+      @include Tooltips("bottom")
+  }
+  &.left[tooltip-layout="TL"],
+  &.left[tooltip-layout="ML"],
+  &.left[tooltip-layout="BL"] {
+      @include Tooltips("right")
+  }
+  &.right[tooltip-layout="TR"],
+  &.right[tooltip-layout="MR"],
+  &.right[tooltip-layout="BR"] {
+      @include Tooltips("left")
+  }
+  &.right[tooltip-layout="TR"],
+  &.right[tooltip-layout="MR"],
+  &.right[tooltip-layout="BR"] {
+      @include Tooltips("left")
+  }
+  &.bottom[tooltip-layout="BL"],
+  &.bottom[tooltip-layout="BB"],
+  &.bottom[tooltip-layout="BR"] {
+      @include Tooltips("top")
+  }
+}
+
+[tooltip_info],
+[tooltip-info] {
+  display: none;
+}

@@ -1,0 +1,74 @@
+$header-brand-logo-size: 1.125rem !default;
+$header-brand-font-size: 1.5rem !default;
+$header-drawer-btn-h: 2rem !default;
+
+@mixin Logo ($header-height) {
+  display: flex;
+  align-items: center;
+  min-height: $header-height;
+  .logo {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: $header-height;
+    font-size: $header-brand-font-size;
+    font-weight: 500;
+    color: var(--text-color);
+    white-space: nowrap;
+    i.ASUS-logo {
+      display: inline-block;
+      margin-right: 0.5rem;
+      color: var(--text-color);
+      &:before {
+        line-height: $header-height;
+        font-size: $header-brand-logo-size;
+      }
+    }
+    img{
+      max-height: calc(#{$header-height} - 1.5rem);
+    }
+    b {
+      font-size: $header-brand-font-size;
+      font-weight: bold;
+    }
+    em {
+      font-size: $header-brand-font-size;
+      font-weight: lighter;
+      font-style: normal;
+    }
+    i {
+      font-size: $header-brand-font-size;
+    }
+  }
+}
+@mixin DrawerBtn {
+  .drawer-btn {
+    display: inline-block;
+    line-height: $header-drawer-btn-h;
+    font-size: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    [class^="mdi"] {
+      display: inline-block;
+    	width: $header-drawer-btn-h;
+		height: $header-drawer-btn-h;
+		color: var(--text-color);
+		border-radius:50%;
+      	transform: rotate(180deg);
+    }
+    &:hover {
+      [class^="mdi"] {
+        background-color: var(--bg-color-hover);
+      }
+    }
+  }
+}
+.header-brand{
+  @include Logo($header-h-t);
+  &.absolute-LeftTop{
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    color: var(--text-color);
+  }
+}

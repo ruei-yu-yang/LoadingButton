@@ -1,0 +1,234 @@
+$form-check-input-label-padding:          0.35rem !default;
+$form-check-input-disabled-color:         $gray-200 !default; //- CMS
+$form-check-input-disabled-color-checked: $blue-100 !default;
+$form-check-input-border-color:           $border-color !default; //-add
+$form-check-input-border-disabled-color:  $border-color !default; //-add
+$form-check-label-disabled-color:         $gray-500 !default; //- CMS
+$form-check-label-hover-color:            $primary !default; //- CMS
+$form-switch-input-disabled-color:        $gray-100 !default;
+$form-switch-input-width:                 1.7rem !default; //- CMS
+$transition-bezier:                       all 0.3s cubic-bezier(.2, .85, .32, 1.2)!default;
+$form-check-radio-checked-bg-image-disabled:escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$primary-100}'/></svg>")) !default;
+
+//-lg
+// $form-check-input-width-lg:                1.25rem;
+// $form-check-input-border-radius-lg:        .375rem;
+// $form-switch-input-width-lg:               2.125rem ;
+
+//-sm AOCC-sm = EIDDC-default 
+$form-check-input-width-sm:                1rem !default;
+$form-check-input-border-radius-sm:        .25rem !default;
+$form-switch-input-width-sm:               1.7rem !default;
+$form-check-input-border-radius-sm:        .25rem !default;
+
+//- checkbox align
+.form-check{
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  min-height: inherit;
+  &.form-check-inline{
+    display: inline-flex;
+  }
+  .form-check-input{
+    flex-grow: 0;
+    flex-shrink: 0;
+    float: none;
+    margin-left: 0;
+    margin-top: 0;
+    + .form-check-label{
+      padding-left: $form-check-input-label-padding;
+      &.title-h1, &.title-h2{
+        padding-left: $form-check-input-label-padding * 2;
+      }
+      &.title-h3, &.title-h4{
+        padding-left: $form-check-input-label-padding * 1.5;
+      }
+    }
+  }
+}
+
+
+//- Switch
+.form-switch {
+  padding-left: 0;
+  margin-left: 0;
+  .form-check-input{
+    width: $form-switch-input-width;
+    margin-left: 0;
+    vertical-align: middle;
+  }
+  .form-check-input:not(:invalid) {
+    background-image: escape-svg($form-switch-checked-bg-image);
+    background-color: $gray-500;
+    border-color: $gray-500;  
+    &:focus {
+      background-image: escape-svg($form-switch-checked-bg-image);
+    }
+    &:checked {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+}
+
+
+//checkbox status
+.form-switch .form-check-input,
+.form-check-input{
+  // background-color: $gray-500;
+  margin-top: 0;
+  cursor: pointer;
+  transition: $transition-bezier;
+  &:hover{
+    transition: $transition-bezier;
+  }
+  // &:hover:not(:disabled):not(:checked):not(.validation-danger):not(.validation-warning){
+  //   border-color: $primary; 
+  // }
+  &:checked{
+    transition: $transition-bezier;
+    background-color: $primary;
+    + .form-check-label-primary{
+      color: $primary;
+    }
+    &[data-label="primary"]{
+      + .form-check-label{
+        color: $primary;
+      }  
+    }
+    &[data-label="danger"]{
+      + .form-check-label{
+        color: $danger;
+      }  
+    }
+    &[data-label="success"]{
+      + .form-check-label{
+        color: $success;
+      }  
+    }
+    &[data-check="danger"] {
+      background-color: $danger;
+      border-color: $danger;  
+      
+    }
+    &[data-check="success"] {
+      background-color: $success;
+      border-color: $success;
+    }
+  }
+  //- checkbox disabled
+  &[disabled],
+  &:disabled {
+    pointer-events: inherit;
+    cursor: not-allowed;
+    filter: none;
+    opacity: $form-check-input-disabled-opacity;
+    background-color: $form-check-input-disabled-color; // CMS
+    border-color: $form-check-input-border-disabled-color; // CMS
+    ~ .form-check-label {
+      cursor: default;
+      opacity: $form-check-label-disabled-opacity;
+      color: $form-check-label-disabled-color; // CMS
+    }
+    &:checked{
+      background-color: $form-check-input-disabled-color-checked; // CMS
+      border-color: $form-check-input-disabled-color-checked; // CMS
+    }
+  }
+  //-radio
+  &[type="radio"]{
+    &:checked{
+      background-color: #fff;
+      &[data-check="danger"] {
+        background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$danger}'/></svg>"));  
+      }
+      &[data-check="success"] {
+        background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$success}'/></svg>"));  
+      }
+    }
+    &[disabled],
+    &:disabled {
+      &:checked{
+        background-color: #fff;
+        border-color: $form-check-input-disabled-color-checked; // CMS
+        background-image:$form-check-radio-checked-bg-image-disabled;
+        &[data-check="danger"] {
+          border-color: $danger-100;
+          background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$danger-100}'/></svg>"));  
+        }
+        &[data-check="success"] {
+          border-color: $success-100;
+          background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$success-100}'/></svg>"));  
+        }
+      }
+    }
+  }
+}
+
+.form-switch .form-check-input{
+  &[disabled],
+  &:disabled {
+    background-color: $form-switch-input-disabled-color; // CMS
+    border-color: $form-switch-input-disabled-color; // CMS
+  }
+}
+
+.form-check-label{
+  //form-check-label 文字樣式同表格td (_TableBase.scss)
+  @extend .td-style;
+  transition: $transition-bezier;
+  &:hover{
+    // color: $form-check-label-hover-color;
+    transition: $transition-bezier;
+  }
+  &:hover:not(:disabled){
+    cursor: pointer;
+  }
+}
+
+// [component-size="sm"]{
+//   .form-check-input {
+//     width: $form-check-input-width-sm;
+//     height: $form-check-input-width-sm;
+//     &[type="checkbox"] {
+//       @include border-radius($form-check-input-border-radius-sm);
+//     }
+//   }
+//   .form-switch .form-check-input{
+//     width: $form-switch-input-width-sm;
+//     @include border-radius($form-switch-border-radius);
+//   }
+// }
+
+[check-size="sm"] .form-check-input,
+.form-check-input-sm{
+  width: $form-check-input-width-sm;
+  height: $form-check-input-width-sm;
+  &[type="checkbox"] {
+    @include border-radius($form-check-input-border-radius-sm);
+  }
+}
+[check-size="sm"] .form-switch .form-check-input,
+.form-switch .form-check-input-sm{
+  width: $form-switch-input-width-sm;
+  @include border-radius($form-switch-border-radius);
+}
+
+//- Lg 健檢2.0 檢查品項有用到
+.form-check-input-lg{
+    width: $form-check-input-width * 1.5;
+    height: $form-check-input-width * 1.5;
+    background-size: 75% ;
+}
+
+// [check-size="lg"]{
+//   .form-check-input {
+//     width: $form-check-input-width-lg;
+//     height: $form-check-input-width-lg;
+//     margin-top: ($line-height-base - $form-check-input-width-lg) * .5;
+//   }
+//   .form-switch .form-check-input{
+//     width: $form-switch-input-width-lg;
+//   }
+// }

@@ -1,0 +1,34 @@
+$level-size:0.75rem;
+tr[class^="level-"] > td{
+    color: $gray-500;
+    font-weight: 500;
+}
+td[class^="level-"]{
+    &:before{
+        content:"";
+        display: inline-block;
+        width: $level-size;
+        height: $level-size;
+        border-left:1px dashed rgba(0,0,0,0.3);
+        border-bottom:1px dashed rgba(0,0,0,0.3);
+        top: - $level-size * 0.5;
+        transform: translateY(- $level-size * 0.2);
+        margin-right: $level-size * 0.5;
+        white-space: nowrap;
+    }
+    &.level-3{
+        &:before{
+            margin-left: $level-size * 2;
+        }
+    }
+    &.level-4{
+        &:before{
+            margin-left: $level-size * 4;
+        }
+    }
+    &.level-5{
+        &:before{
+            margin-left: $level-size * 6;
+        }
+    }
+}

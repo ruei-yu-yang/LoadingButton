@@ -1,0 +1,93 @@
+// Sticky
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: $zindex-sticky;
+}
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: $zindex-sticky;
+}
+.sticky-start {
+  position: sticky;
+  left: 0;
+  z-index: $zindex-sticky;
+}
+.sticky-end {
+  position: sticky;
+  right: 0;
+  z-index: $zindex-sticky;
+}
+
+// Sticky Shadow 版本
+$box-shadow-bottom: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%) !default;
+$box-shadow-top: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%) !default;
+$box-shadow-size:0.25rem !default;
+$box-shadow-position: $box-shadow-size - 0.05rem;
+
+%sticky-top-true,
+.sticky-top-true{
+  &[data-sticky="true"]{
+    z-index: $zindex-sticky;
+    transition: $transition;
+    &:before{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: $box-shadow-size;
+      bottom: - $box-shadow-position;
+      right: 0;
+      background:$box-shadow-bottom;
+    }
+  }  
+}
+%sticky-bottom-true,
+.sticky-bottom-true{
+  transition: $transition;
+  &[data-sticky="true"]{
+    position:sticky;
+    right:0;
+    bottom:0;
+    background-color:#fff;
+    z-index: $zindex-sticky;
+    transition: $transition;
+    &:before{
+      transition: $transition;
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: $box-shadow-size;
+      top: - $box-shadow-size;
+      right: 0;
+      background:$box-shadow-top;
+    }
+  }
+}
+
+// Sticky Top
+[position-sticky="top"]{
+  position: sticky;
+  top: 0;
+  @extend %sticky-top-true;
+}
+
+// Sticky Bottom
+[position-sticky="bottom"]{
+  z-index: $zindex-sticky;
+  @extend %sticky-bottom-true;
+}
+
+// 捲動"容器卷軸"觸發事件
+.sticky-container{
+  position: relative;
+  .sticky-top {
+    @extend %sticky-top-true;
+  }
+  .sticky-bottom {
+    @extend %sticky-bottom-true;
+  }
+}
+

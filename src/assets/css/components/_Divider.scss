@@ -1,0 +1,110 @@
+$Divider-border-color: $gray-500 !default;
+//- Divider
+.Divider {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  span {
+    color: $Divider-border-color;
+    font-size: 0.75rem;
+  }
+  &:before,
+  &:after {
+    content: "";
+    opacity: 0.5;
+    flex: 1 1 0;
+  }
+  &.text-white {
+    span {
+      color: #fff;
+    }
+    &:before,
+    &:after {
+      border-color: #fff;
+    }
+  }
+}
+
+.Divider-row {
+  @extend .Divider;
+  position: relative;
+  flex-direction: column;
+  align-self: stretch;
+  span {
+    margin: 0 1.5rem;
+    padding: 0.5rem 0;
+  }
+  &:before,
+  &:after {
+    border-left: 1px solid $Divider-border-color;
+    height: 100%;
+  }
+  &.Divider-dashed{
+    &:before,
+    &:after {
+      border-left-style: dashed;
+    }
+  }
+}
+
+.Divider-column {
+  @extend .Divider;
+  width: 100%;
+  > *{
+    margin:0;
+  }
+  span {
+    padding: 0 0.5rem;
+  }
+  &:before,
+  &:after {
+    border-bottom: 1px solid $Divider-border-color;
+    width: 100%;
+  }
+  &.Divider-dashed{
+    &:before,
+    &:after {
+      border-bottom-style: dashed;
+    }
+  }
+  &.Divider-column-l {
+    &:before {
+      max-width: 2rem;
+      opacity: 0.5;
+      flex: 1 0 0;
+    }
+  }
+  &.Divider-column-r {
+    &:after {
+      max-width: 2rem;
+      opacity: 0.5;
+      flex: 1 0 0;
+    }
+  }
+  &.Divider-column-star {
+    &:before {
+      max-width: 0;
+    }
+    > * {
+      padding: 0 0.5rem 0 0;
+    }
+  }
+}
+
+
+
+
+
+
+@mixin Divider-variant($parent, $color) {
+  #{$parent}:before,
+  #{$parent}:after{
+    border-color: $color;
+  }
+  #{$parent} span{
+    color: $color;
+  }
+}
+@each $color, $value in $theme-colors {
+  @include Divider-variant(".Divider-#{$color}", $value);
+}

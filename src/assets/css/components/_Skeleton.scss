@@ -1,0 +1,46 @@
+$skeleton-bg:rgba($gray-500,0.25);
+$skeleton-bg-linear:linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0) 100%);
+
+@keyframes skeleton-loading {
+	0% {left: -100%;}
+	100% {left: 100%;}
+}
+.skeleton-wrapper{
+	position: relative;
+	overflow: hidden;
+	&:after{
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom:0;
+		height: 100%;
+		width: 50%;
+		left: -100%;
+		background-image: $skeleton-bg-linear;
+		animation-name: skeleton-loading;
+		animation-duration: 1.4s;
+		animation-timing-function: ease;
+		animation-iteration-count: infinite;
+	}
+	--skeleton-bar-size:0.75rem;
+	.skeleton-bar{
+		background: $skeleton-bg;
+		border-radius: $border-radius;
+		width: 100%;
+		height: var(--skeleton-bar-size);
+	}
+	--skeleton-circle-size:2rem;
+	.skeleton-circle{
+		background: $skeleton-bg;
+		border-radius: 50%;
+		width: var(--skeleton-circle-size);
+		height: var(--skeleton-circle-size);
+	}
+	--skeleton-square-size:2rem;
+	.skeleton-square{
+		background: $skeleton-bg;
+		border-radius: $border-radius;
+		width: var(--skeleton-square-size);
+		height: var(--skeleton-square-size);
+	}
+}

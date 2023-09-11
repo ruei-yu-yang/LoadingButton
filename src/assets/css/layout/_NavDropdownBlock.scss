@@ -1,0 +1,87 @@
+//一階一階展開的選單區塊
+nav.NavDropdownBlock {
+  //第一層
+  @extend %menuBar;
+  ul li{
+    position: initial;
+  }
+
+  // 第二層
+  ul li { 
+    ul {
+      display: none;
+      position: absolute;
+      left: 0;
+      height: auto;
+      padding: 1.25rem 0;
+      margin-left: 0;
+      white-space: normal;
+      transition: all 0.3s linear;
+      z-index: 10;
+      &:before{
+        content:"";
+        position: absolute;
+        padding: 1rem;
+        top: 0;
+        width: 100vw;
+        height:100%;
+        background-color: $NavDropdown-dropdown-bg-color;
+      }
+      li {
+        z-index: 11;
+        > a {
+          display: block;
+          padding: $NavDropdown-dropdown-sec-pad-y 3.5rem $NavDropdown-dropdown-sec-pad-y
+            1rem;
+          line-height: $NavDropdown-text-size-sec * 2;
+          font-size: $NavDropdown-text-size-sec;
+          font-weight: 600;
+          i.i-arrow {
+            position: absolute;
+            right: 2rem;
+            top: 0.3rem;
+            display: inline-block;
+            transform: rotate(-90deg);
+          }
+        }
+        &:hover > a {
+          background-color: $NavDropdown-bg-color;
+        }
+        //第三層之後
+        ul{
+          left: 100%;
+          top: 0;
+          width: auto;
+          min-height: 100%;
+          &:before{
+            display: none;
+            width: 0;
+          }
+          
+        }
+      }
+    }
+    //顯示下一層
+    &:hover{
+      > ul{
+        display: inline-flex;
+        flex-direction: column;
+      }
+    }
+    
+
+  }
+
+  //RWD - Back Parent Icon
+  .i-back-rwd {
+    display: none;
+    @extend .mdi;
+    @extend .mdi-arrow-left;
+    background-color: $NavDropdown-dropdown-bg-color-hover;
+  }
+
+
+  &[toggle-element="off"]{
+    display: block;
+  }
+}

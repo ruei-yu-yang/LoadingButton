@@ -1,0 +1,174 @@
+// Nav-Header
+$NavDropdown-text-size: 0.875rem !default;
+$NavDropdown-text-size-sec: $NavDropdown-text-size * 0.9 !default;
+$NavDropdown-text-color:  var(--text-color)!default;
+$NavDropdown-item-padding-x: 1rem !default;
+
+$NavDropdown-bg-color: var(--bg-color) !default;
+$NavDropdown-bg-color-hover: var(--bg-color-hover) !default;
+$NavDropdown-bg-color-focus: var(--bg-color-active) !default;
+
+$NavDropdown-dropdown-bg-color: $NavDropdown-bg-color-hover !default;
+$NavDropdown-dropdown-bg-color-hover: $NavDropdown-bg-color-focus !default;
+
+$NavDropdown-dropdown-sec-pad-y: 0.3rem !default;
+$NavDropdown-dropdown-sec-h: ($NavDropdown-text-size-sec + $NavDropdown-dropdown-sec-pad-y) * 2 !default;
+
+//第一層樣式
+%menuBar {
+  width: 100%;
+  min-width: $min-w;
+  height: $header-h-b;
+  line-height: calc(#{$header-h-b} - 1px);
+  color: $NavDropdown-text-color;
+  background-color: $NavDropdown-bg-color;
+  white-space: nowrap;
+  z-index: 9;
+  ul{
+    display: flex;
+    padding:0;
+    white-space: nowrap;  
+    li {
+      position: relative;
+      display: inline-block;
+      white-space: nowrap;
+      font-size: $NavDropdown-text-size;
+      font-weight: 600;
+      > a {
+        display: block;
+        position: relative;
+        padding: 0 $NavDropdown-item-padding-x;
+        cursor: pointer;
+        color: $NavDropdown-text-color;
+        i {
+          font-size: $NavDropdown-text-size;
+        }
+        i.i-arrow{
+          @extend .mdi;
+          @extend .mdi-chevron-down;
+        }
+        &.active{
+          background-color: $NavDropdown-bg-color-focus;
+        }
+      }
+      &:hover {
+        > a {
+          background-color: $NavDropdown-bg-color-hover;
+        }
+      }
+    }
+  }
+  
+}
+//傳統一階一階展開的選單
+nav.NavDropdown {
+  //第一層
+  @extend %menuBar;
+
+  //第二層
+  ul li {  
+    ul {
+      display: none;
+      position: relative;
+      position: absolute;
+      top: calc(#{$header-h-b} - 1px);
+      left: 0;
+      height: auto;
+      width: auto;
+      padding: 0;
+      margin-left: 0;
+      white-space: normal;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      overflow: visible;
+      li {
+        position: relative;
+        float: left;
+        width: 100%;
+        > a {
+          display: block;
+          padding: $NavDropdown-dropdown-sec-pad-y 2rem $NavDropdown-dropdown-sec-pad-y
+            1rem;
+          background-color: $NavDropdown-dropdown-bg-color;
+          line-height: $NavDropdown-text-size-sec * 2;
+          font-size: $NavDropdown-text-size-sec;
+          font-weight: 600;
+          &:hover {
+            background-color: $NavDropdown-dropdown-bg-color-hover;
+          }
+          i.i-arrow {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.3rem;
+            transform: rotate(-90deg);
+          }
+        }
+        &:hover {
+          > ul {
+            display: inline-block;
+          }
+          > a {
+            background-color: $NavDropdown-dropdown-bg-color-hover;
+          }
+          li {
+            background-color: $NavDropdown-dropdown-bg-color;
+          }
+        }
+        //第三層之後
+        ul{
+          position: absolute;
+          left: 100%;
+          top: 0;
+        }
+      }
+    }
+    //顯示下一層
+    &:hover ,
+    &.hoverShow {
+      > ul{
+        display: inline-block;
+      }
+    }
+  }
+
+  //RWD - Back Parent Icon
+  .i-back-rwd {
+    display: none;
+    @extend .mdi;
+    @extend .mdi-arrow-left;
+  }
+
+  $NavDropdown-h: -$NavDropdown-dropdown-sec-h;
+  @function align($n) {
+    @return $n * $NavDropdown-h;
+  }
+  $i: 0;
+  @while $i <= 30 {
+    .nav-align-t#{$i} {
+      top: calc(#{align($i)} - 1px) !important;
+    }
+    .nav-align-b#{$i} {
+      top: inherit !important;
+      bottom: calc(#{align($i)} - 1px) !important;
+    }
+    $i: $i + 1;
+  }
+
+  &[toggle-element="off"]{
+    display: block;
+  }
+
+}
+
+
+//傳統一階一階展開的選單+放置Top上的選單
+nav.NavTop {
+  line-height: $header-h-t;
+  height: $header-h-t;
+  min-width: inherit;
+  width: auto;
+  background-color: transparent;
+  ul li ul {
+    top: $header-h-t;
+  }
+}

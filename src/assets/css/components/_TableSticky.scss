@@ -1,0 +1,312 @@
+
+$box-shadow-l: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%) !default;
+$box-shadow-r: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%) !default;
+$box-shadow-b: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%) !default;
+$box-shadow-size:0.25rem !default;
+
+// table-sticky (CSS)
+.table-sticky {
+    border-collapse: separate; /* Don't collapse */
+    border-spacing: 0;
+  > thead > tr > th {
+    position: sticky;
+    top: 0;
+    z-index: 1;  
+    &:before{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: $box-shadow-size;
+      bottom: - $box-shadow-size;
+      right: 0;
+      background:$box-shadow-b;
+    }
+  }
+  &.table-bordered>:not(caption){
+    >thead>th {
+      border-width: 1px 1px 0 1px;
+    }
+    >*>* {
+      border-width: 0 1px 1px  0;
+    }
+    >*>*:first-child {
+      border-width: 0 1px 1px 1px;
+    }
+  }
+
+}
+
+// table-sticky (+.float-scroll)
+.float-scroll,.tableSitcky-container{
+  .hasFloatScroll.table-sticky {
+    > tbody,
+    > thead {
+      > tr {
+        > th,
+        > td,
+        .btn-group,
+        .input-group {
+          //修正z軸顯示問題
+          position: static;
+          z-index: inherit;
+            label,
+            input,
+            textarea,
+            .btn {
+              position: static;
+              z-index: inherit;
+            }
+          &.sticky-l,
+          &.sticky-r {
+            position: relative;
+            z-index: 2; 
+          }
+          &.sticky-l-last:after,
+          &.sticky-r-last:after{
+            content:"";
+            position: absolute;
+            display: block;
+            width: $box-shadow-size;
+            height:100% ;
+            top: 0;
+        }
+        &.sticky-l-last:after{
+          content:"";
+          right:- $box-shadow-size;
+          left: initial;
+          border-left: $table-border-color;
+          background: $box-shadow-l;
+        }
+        &.sticky-r-last:after{
+          left:- $box-shadow-size;
+          right: initial;
+          border-right: $table-border-color;
+          background: $box-shadow-r;
+        }
+        }
+        > th{
+          &.sticky-l,
+          &.sticky-r {
+            z-index: 3; 
+          }
+        }
+        > td:not(.th) {
+          background-color: #fff;
+        }
+      }
+      @each $color, $value in $table-variants {
+        .table-#{$color} > td:not(.th){
+          background-color: var(--#{$variable-prefix}table-bg); 
+        }
+      }
+    }
+    > thead{
+      > tr > th{
+        position: relative;
+      }
+    }
+    &:after{
+      content:"";
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+      pointer-events: none;
+      transition: all 0.5s linear;
+      opacity: 1;
+      z-index: 1;
+    }
+    &.MaskNone:after,
+    &.StickyMaskNone:after{
+      opacity: 0 !important;
+      transition: all 0.5s linear;
+    }
+    &.MaskNone + .table-ArrowIcon
+    &.StickyMaskNone + .table-ArrowIcon{
+      opacity: 0 !important;
+    }
+    @keyframes arrow {
+      0% {
+        color: rgba($gray-600,0.8);
+        border-color:$gray-400;
+      }
+      50% {
+        color: rgba($gray-600,1);
+        border-color:$gray-500;
+      }
+      100% {
+        color: rgba($gray-600,0.8);
+        border-color:$gray-400;
+      }
+    }
+    & + .table-ArrowIcon{
+      position: absolute;
+      top: 4rem;
+      right: 2rem;
+      width: 1.9rem;
+      height:1.9rem;
+      line-height: 1.8rem;
+      text-align: center;
+      border-radius:50%;
+      font-size: 2rem;
+      color:$gray-600;
+      box-shadow: 0 0 5px rgba(255,255,255,.25);
+      transition: all 0.5s linear;
+      border:1px solid $gray-500;
+      // pointer-events: none;
+      opacity: 1;
+      z-index: 3;
+      animation-name: arrow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-direction: reverse;
+      &.mdi-pan-right:before{
+        transform: translateX(-5px);
+      }
+    }
+  }
+}
+
+.tableSitcky-container{
+  overflow: auto;
+  .hasFloatScroll.table-sticky {
+    &.hasScroll-Y:after{
+      right: $ScrollBar-size; //-12px
+    }
+    > thead{
+      > tr > th{
+        position: sticky !important;
+        top:0;
+      }
+    }
+  }
+}
+$panel-padding-x: 1rem !default;
+$panel-padding-y: 0.5rem !default;
+.panel-body{
+  .float-scroll .hasFloatScroll.table-sticky:after{
+    right: $panel-padding-x; 
+  }
+}
+.panel-sm{
+  .panel-body{
+    .float-scroll .hasFloatScroll.table-sticky:after{
+      right: $panel-padding-y; 
+    }
+  }
+}
+
+
+%fixed-style{
+  position: sticky;
+  width: 100%;
+  top: 0;
+  background-color: #fff;
+  z-index: 4; 
+  &[box-shadow="true"]{
+    &:before{
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: $box-shadow-size;
+      bottom: - $box-shadow-size;
+      right: 0;
+      background:$box-shadow-b;
+    }
+  }
+}
+.section-sticky.p-fixed {
+  .nav-tab-sticky{
+    // padding-top: 0.5rem; //230420 Template-FormsTable-TableSticky.html
+    width: auto;
+  }
+  .panel-header-sticky,
+  .nav-tab-sticky{
+    @extend %fixed-style;
+    + .panel-body .nav-tab-sticky{
+      padding-top: 0;
+    }
+  }
+}
+//------------
+@include media-breakpoint-down(lg) {
+  .section-sticky.p-fixed[header-rwd-sticky="true"] {
+  
+    .panel-header-sticky{
+      top: $header-h-t  !important;
+      border-radius: 0;
+      &:before{
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: $box-shadow-size;
+        bottom: - $box-shadow-size;
+        right: 0;
+        background:$box-shadow-b;
+      }
+      + .panel-body .nav-tab-sticky{
+        top: $header-h-t + 2.8rem !important;
+        width: 100%;
+        &:before{
+          content: "";
+          position: absolute;
+          display: block;
+          width: 100%;
+          height: $box-shadow-size;
+          bottom: - $box-shadow-size;
+          right: 0;
+          background:$box-shadow-b;
+        }
+      }
+    }
+    .nav-tab-sticky{
+      top: $header-h-t  !important;
+      border-radius: 0;
+    }
+    .nav-tab-rwd-wrap.nav-tab-sticky{
+      padding: $panel-padding-x * 0.5  $panel-padding-x !important;
+      margin: 0 - $grid-gutter-width;
+      left: $grid-gutter-width;
+      width: calc(100% + #{$panel-padding-x} * 2) !important;
+      .nav-tab-rwd-input{
+        margin-bottom: 0;
+      }
+      .nav-tab-rwd{
+        // margin-left: $grid-gutter-width * 2 !important;
+        width: calc(100% - #{$panel-padding-x} * 2);
+      }
+    }
+    .table-sticky{
+      margin-top: $header-h-t  !important;
+    }
+    &.panel-sm{
+      .nav-tab-rwd-wrap.nav-tab-sticky{
+        padding: $panel-padding-y * 0.5  $panel-padding-y !important;
+        width: calc(100% + #{$panel-padding-y} * 2) !important;
+        .nav-tab-rwd{
+          width: calc(100% - #{$panel-padding-y} * 2);
+        }
+      }
+    }
+  }
+  .nav-tab-outside-sticky.p-fixed{
+    &[header-rwd-sticky="true"]{
+      top: $header-h-t  !important;
+    }
+  }
+}
+//-------------
+.nav-tab-outside-sticky.p-fixed{
+  @extend %fixed-style;
+}
+
+//-------------
+.table-borderSeparate{
+  border-collapse: separate; /* Don't collapse */
+  border-spacing: 0;
+}

@@ -1,0 +1,445 @@
+//表單必填-標題
+.required-title {
+  &:before {
+    content: "* ";
+    font-weight: bold;
+    color: $danger;
+    padding-left: 5px;
+  }
+}
+.required-title-reverse{
+  &:after {
+    content: "* ";
+    font-weight: bold;
+    color: $danger;
+    padding-left: 5px;
+  }
+}
+// Placeholder
+.form-select,
+.form-control{
+  &::placeholder {
+    color: $input-placeholder-color;
+    font-weight: $input-placeholder-font-weight;
+    opacity: 1;
+  }
+  &[class*="border-"]{
+    border-width: var(--bs-border-width);
+  }
+}
+.form-control:not(.form-control-xlg):not(.form-control-lg):not(.form-control-sm),
+.form-select:not(.form-select-xlg):not(.form-select-lg):not(.form-select-sm){
+  min-height: $input-height;
+}
+// Required
+@mixin validation-variant($background, $border, $color) {
+  color: $color !important;
+  background-color: $background !important;
+  border-color: $border !important;
+  &::placeholder{
+    color: $color;
+  }
+  &::-webkit-file-upload-button {
+    color: $color;
+    // background-color:rgba($border,50%);
+    &:hover:not(:disabled):not([readonly]) {
+      background-color:$border;
+    } 
+  }
+  &:focus{
+    box-shadow: 0 0 0 $input-btn-focus-width rgb($border, $input-btn-focus-color-opacity);
+    background-color: $background;
+    border-color: $border;
+  }
+  &.form-select,
+  &.indicator-custom{
+    background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>"));
+  }
+  ~ .required-feedback{
+    display: block;
+  }
+}
+
+.required-feedback{
+  display: none;
+}
+.validation-warning:invalid,
+.validation-warning-invalid {
+    @include validation-variant(shift-color($warning, $alert-bg-scale),shift-color($warning, $alert-border-scale), shift-color($warning, $alert-color-scale));  
+}
+.validation-primary:invalid,
+.validation-primary-invalid,
+.validation-primary-invalid:focus {
+    @include validation-variant(shift-color($primary, $alert-bg-scale),shift-color($primary, $alert-border-scale), shift-color($primary, $alert-color-scale));  
+}
+.validation-danger:invalid,
+.validation-danger-invalid {
+    @include validation-variant(shift-color($danger, $alert-bg-scale),shift-color($danger, $alert-border-scale), shift-color($danger, $alert-color-scale));
+}
+.validation-success:valid,
+.validation-success-valid {
+    @include validation-variant(shift-color($success, $alert-bg-scale),shift-color($success, $alert-border-scale), shift-color($success, $alert-color-scale));
+    ~ .required-feedback{
+      display: none;
+    }
+}
+.form-select:disabled,
+.indicator-custom:disabled{
+  background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{$gray-300}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>"));
+}
+
+
+// Disable border and bg
+.visabled-text {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  opacity: 1 !important;
+  cursor: default !important;
+  padding-left: 0;
+
+  color: $td-font-color !important;
+  font-size: $td-font-size;
+  font-weight: $td-font-weight;
+  &::before {
+    opacity: 0.3 !important;
+    cursor: not-allowed;
+  }
+}
+
+//AutoHeight
+.AutoHeight {
+  // overflow-y:auto;
+  overflow: hidden;
+  &.form-control {
+    padding-top:0.25rem;
+    padding-bottom:0.25rem;
+    min-height: $input-height;
+  }
+  &.form-control-xlg {
+    padding-top:0.6rem;
+    padding-bottom:0.5rem;
+    min-height: $input-height-xlg;
+    // height: calc($line-height-xlg * 1rem + $input-btn-padding-y-xlg * 2 - 2px);
+  }
+  &.form-control-lg {
+    padding-top:0.4rem;
+    padding-bottom:0.4rem;
+    min-height: $input-height-lg;
+    // height: calc($line-height-lg * 1rem + $input-btn-padding-y-lg * 2 - 2px);
+  }
+  &.form-control-sm {
+    padding-top:0rem;
+    padding-bottom:0rem;
+    min-height: $input-height-sm;
+    // height: calc($line-height-sm * 1rem + $input-btn-padding-y-sm * 2 + 4px);
+  }  
+}
+
+//Form Size
+.form-control-xlg,
+.form-select-xlg {
+  min-height: $input-height-xlg;
+}
+.form-control-lg,
+.form-select-lg {
+  min-height: $input-height-lg;
+}
+.form-control-sm,
+.form-select-sm {
+  min-height: $input-height-sm;
+}  
+
+.form-control-xlg {
+  min-height: $input-height-xlg;
+  padding: $input-padding-y-xlg $input-padding-x-xlg;
+  @include font-size($input-font-size-xlg);
+  @include border-radius($input-border-radius-lg);
+
+  &::file-selector-button {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    margin: (-$input-padding-y-lg) (-$input-padding-x-lg);
+    margin-inline-end: $input-padding-x-lg;
+  }
+}
+
+.form-select-xlg {
+  // min-height: $input-height-xlg;
+  padding-top: $form-select-padding-y-xlg;
+  padding-bottom: $form-select-padding-y-xlg;
+  padding-left: $form-select-padding-x-xlg;
+  @include font-size($form-select-font-size-xlg);
+  @include border-radius($form-select-border-radius-lg);
+}
+
+.input-group-xlg > .form-control,
+.input-group-xlg > .form-select,
+.input-group-xlg > .input-group-text,
+.input-group-xlg > .btn {
+  padding: $input-padding-y-xlg $input-padding-x-lg;
+  @include font-size($input-font-size-xlg);
+  @include border-radius($input-border-radius-lg);
+}
+
+// Input has Icon
+$icon-size:$input-line-height + $input-padding-y * 2;
+$icon-size-xlg:$input-line-height + $input-padding-y-xlg * 2 + 0.2rem;
+$icon-size-lg:$input-line-height + $input-padding-y-lg * 2 + 0.2rem;
+$icon-size-sm:$input-line-height + $input-padding-y-sm * 2;
+.input-group-icon-wrap{
+  position: relative;
+  // $icon-size:$input-height;
+  input,
+  .bootstrap-select.form-control .dropdown-toggle.btn{
+    padding-left: $icon-size;
+    // height: 100%;
+    &.form-control-xlg{
+      padding-left: $icon-size-xlg;
+    }
+    &.form-control-lg{
+      padding-left: $icon-size-lg;
+    }
+    &.form-control-sm{
+      padding-left: $icon-size-sm;
+    }
+  }
+
+  i{
+    @extend .input-icon-btn;
+  }
+  @at-root .input-icon-btn{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left:0;
+    font-size: 1rem !important;
+    $icon-size: $icon-size;
+    width: $icon-size;
+    height: $icon-size;
+    line-height: $icon-size;
+    text-align: center;
+    z-index: 2;
+    border: none;
+    background-color: transparent;
+    color: $gray-900;
+    &.btn{
+      position: relative;
+      top: inherit;
+      transform: none;
+      border:1px solid $border-color;
+      &:hover{
+        background-color: transparent;
+      }
+    } 
+  }
+
+  .input-group-xlg + i,
+  .form-control-xlg + i{
+    width: $icon-size-xlg;
+    height: $icon-size-xlg;
+    line-height: $icon-size-xlg;
+    font-size: 1.2rem;
+  }
+  .input-group-lg + i,
+  .form-control-lg + i{
+    width: $icon-size-lg;
+    height: $icon-size-lg;
+    line-height: $icon-size-lg;
+    font-size: 1.2rem;
+  }
+  .input-group-sm + i,
+  .form-control-sm + i{
+    width:$icon-size-sm;
+    height: $icon-size-sm;
+    line-height: $icon-size-sm;
+  }
+  &[icon-position="right"]{
+    input,
+    .bootstrap-select.form-control .dropdown-toggle.btn{
+      padding-left:$input-padding-x;
+      padding-right: $icon-size;
+      &.form-control-xlg{
+        padding-left:$input-padding-x-xlg;
+        padding-right: $icon-size-xlg;
+        ~ .dropdown-menu{
+          transform: translate(0,#{$input-height-xlg}) !important;
+        }
+      }
+      &.form-control-lg{
+        padding-left:$input-padding-x-lg;
+        padding-right: $icon-size-lg;
+        ~ .dropdown-menu{
+          transform: translate(0,#{$input-height-lg}) !important;
+        }
+      }
+      &.form-control-sm{
+        padding-left:$input-padding-x-sm;
+        padding-right: $icon-size-sm;
+        ~ .dropdown-menu{
+          transform: translate(0,#{$input-height-sm}) !important;
+        }
+      }
+    }
+    i,.input-icon-btn{
+      left:inherit;
+      right: 0;
+    }
+    .dropdown-menu{
+      transform: translate(0,#{$input-height}) !important;
+      margin-top: 4px !important;
+      
+    }
+    &:last-child .dropdown-menu{
+      inset: 0 auto auto !important;
+      right: 0 !important;
+    }
+  }
+}
+
+//- input group
+.input-group{
+  > .input-group-icon-wrap{
+    width:100%;
+  }
+  > .input-group-icon-wrap:not(:last-child) {
+      input.form-control,
+      input.form-select{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  > .input-group-icon-wrap:not(:first-child) {
+      margin-left: -1px;
+      input.form-control,
+      input.form-select{
+        
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+  }
+}
+
+//- input-number-handler-wrap
+.input-number-handler-wrap{
+  flex-wrap: nowrap;
+  width: inherit;
+  display: inline-flex;
+  input{
+    flex: 0 0; 
+    text-align: center;
+    min-width: 2rem;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  .btn-number-handler{
+    width: 2rem;
+  }
+  .btn-number-handler:not(:hover){
+    background-color: #fff;
+    border-color: $input-border-color;
+    color: $gray-800;
+  }
+}
+//theme
+.theme-form{
+  &.form-select,
+  &.form-control,
+  &.indicator-custom{
+    color:var(--text-color);
+    background-color:var(--bg-color);
+    border-color:var(--border-color);
+    background-image:var(--form-select-img);
+  }
+}
+
+//input underline
+.input-underline{
+  border: none;
+  border-bottom:1px solid $input-border-color;
+  border-radius: 0;
+}
+
+//form-check-label 文字樣式同表格td (_TableBase.scss)
+.form-check-label{
+  @extend .td-style;
+}
+
+//-datalist 隱藏三角形樣式
+.form-select:not(select){
+  background-position:-100%;
+  // padding-right: 1.5rem; // 220519-datalist
+  padding-right: 0rem;
+  &::-webkit-calendar-picker-indicator{
+    display: none;
+    -webkit-appearance: none;
+    color:transparent;
+  }
+  &:hover{
+    background-position: $form-select-bg-position;
+  }
+}
+//-日曆改變觸控範圍
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.form-control-FullTouchRange{
+  position: relative;
+  &::-webkit-calendar-picker-indicator{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: auto;
+    background: transparent;
+    // background-color: rgba(0,0,0,0.5);
+    color: transparent;
+    background-position: 0 right;
+  }
+}
+
+//- 三角形樣式
+.indicator-custom{
+  padding-right: 1.5rem;
+  background-image: escape-svg($form-select-indicator);
+  // background-image:var(--form-select-img);
+  background-repeat: no-repeat;
+  background-position: $form-select-bg-position;
+  background-size: $form-select-bg-size;
+  &::-webkit-calendar-picker-indicator{
+    display: none;
+    -webkit-appearance: none;
+    color:transparent;
+  }
+  &.dropdown-toggle{
+    &:after{
+      border: 0;
+    }
+  }
+}
+
+
+//-combo-box
+.combo-box {
+  position: relative;
+  input.form-select{
+    background-position: $form-select-bg-position;
+    padding-right: 1.5rem;
+  }
+}
+
+  // input 自動 Focus 隱藏上下加減按鈕 ==============
+  input.authentication-input[type="number"]{
+    text-align: center;
+    // -moz-appearance: textfield;
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+

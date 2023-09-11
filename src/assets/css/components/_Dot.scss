@@ -1,0 +1,99 @@
+
+$dot-size:12px !default;
+$dot-size-lg:20px !default;
+$dot-size-sm:8px !default;
+.dot,.dot-lg,.dot-sm{
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.dot-b,.dot-b-lg,.dot-b-sm,
+.dot-a,.dot-a-lg,.dot-a-sm{
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+//dot -------------------------------------
+.dot{
+  height: $dot-size;
+  width: $dot-size;
+  flex:0 0 $dot-size;
+}
+.dot-b,
+.dot-a {
+  line-height: $dot-size;
+}
+.dot-b:before,
+.dot-a:after {
+  content: "";
+  display: inline-block;
+  @extend .dot;
+}
+.dot-b:before{
+  margin-right: 0.25rem;
+}
+.dot-a:after {
+  margin-left: 0.25rem;
+}
+
+//dot-lg  -------------------------------------
+.dot-lg{
+  height: $dot-size-lg;
+  width: $dot-size-lg;
+  flex:0 0 $dot-size-lg;
+  border-radius: 50%;
+}
+.dot-b-lg,
+.dot-a-lg {
+  line-height: $dot-size-lg;
+}
+.dot-b-lg:before,
+.dot-a-lg:after {
+  content: "";
+  display: inline-block;
+  @extend .dot-lg;
+}
+.dot-b-lg:before{
+  margin-right: 0.5rem;
+}
+.dot-a-lg:after {
+  margin-left: 0.5rem;
+}
+//dot-sm  -------------------------------------
+.dot-sm{
+  height: $dot-size-sm;
+  width: $dot-size-sm;
+  flex:0 0 $dot-size-sm;
+  border-radius: 50%;
+}
+.dot-b-sm,
+.dot-a-sm {
+  line-height: $dot-size-lg;
+}
+.dot-b-sm:before,
+.dot-a-sm:after {
+  content: "";
+  display: inline-block;
+  @extend .dot-sm;
+}
+.dot-b-sm:before{
+  margin-right: 0.25rem;
+}
+.dot-a-sm:after {
+  margin-left: 0.25rem;
+}
+
+
+
+//客製化Dot 尺寸
+.dot-b.dot-size-customize:before,
+.dot-a.dot-size-customize:after,
+.dot.dot-size-customize {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    flex: 0 0 var(--dot-size);
+}

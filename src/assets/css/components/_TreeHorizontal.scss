@@ -1,0 +1,176 @@
+//-tree-horizontal
+$treeHorizontal-content-width:var(--content-width) !default;
+$treeHorizontal-border-radius: $border-radius-lg !default;
+$treeHorizontal-pad-left:1.25rem !default; //- 20
+$treeHorizontal-pad-y:0.25rem !default;
+
+.tree-horizontal-wrap{
+  display: block;
+  --content-width:10rem;
+  // @at-root
+  ul{
+    position: relative;
+    margin:0;
+    padding:$treeHorizontal-pad-y 0 $treeHorizontal-pad-y $treeHorizontal-pad-left;
+    &:not(:first-child) {
+      margin-left: $treeHorizontal-pad-left;
+    }
+    &:not(:first-child):after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: - $treeHorizontal-pad-left;
+      width: $treeHorizontal-pad-left;
+      border-top: $border;
+    }
+    li {
+      position: relative;
+      display: flex;
+      align-items: center;
+      //垂直線
+      &:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        left: - $treeHorizontal-pad-left;
+        border-left: $border; 
+      }
+      &:first-child:before {
+        width: $treeHorizontal-pad-left;
+        height: 50%;
+        top: 50%;
+        border-radius: $treeHorizontal-border-radius 0 0 0;
+        border-left:$border;
+      }
+      &:last-child:before {
+        width: $treeHorizontal-pad-left;
+        height: 50%;
+        top: 0;
+        border-radius: 0 0 0 $treeHorizontal-border-radius;
+        border-left:$border;
+      }
+      &:only-child:before {
+        display: none;
+      }
+      //水平線
+      &:after {
+        content: "";
+        position: absolute;
+        left: - $treeHorizontal-pad-left;
+        top: 50%;
+        width: $treeHorizontal-pad-left;
+        transition: border 0.5s;
+        border-top: $border;
+      }
+      &:first-child:after {
+        height: $treeHorizontal-pad-left * 0.5;
+        border-radius: $treeHorizontal-border-radius 0 0 0;
+      }
+      &:last-child:after {
+        height:  $treeHorizontal-pad-left * 0.5;
+        top: calc(50% - ($treeHorizontal-pad-left / 2));
+        border-radius: 0 0 0 $treeHorizontal-border-radius;
+        border-top: none;
+        border-bottom: $border;
+      }
+      &:only-child:after {
+        top: 50%;
+        width: $treeHorizontal-pad-left;
+        height: 0;
+        border-radius: 0;
+      }
+      .tree-item {
+        display: block;
+        border: $border;
+        width:$treeHorizontal-content-width;
+        padding: 0.25rem 0.75rem;
+        margin:0.25rem 0;
+        color: $gray-700;
+        border-radius: $border-radius;
+        transition: all 0.5s;
+        &:hover,
+        &:hover + ul .tree-item{
+          background: $gray-100;
+          color: $gray-800;
+          border-color: $gray-400;
+          + ul {
+            .tree-item::after,
+            .tree-item::before,
+            &::before
+            &.branch::before{
+              border-color: $gray-400;
+            }
+          }
+        }
+      }
+      
+    }
+    &.nav-tree-h{
+      > li:only-child:after{
+        display: none;
+      }
+    }
+  }
+}
+
+
+// .tree-toggle
+.tree-toggle .nav-tree-h{
+  $i-bg-w:1.25rem;
+  $i-bg-w-top: $i-bg-w * 0.5;
+  li .tree-item{
+    display: flex;
+    align-items: center;
+    i.toggle-icon {
+      margin-left: -0.3rem;
+      margin-right: 0.25rem;
+      width: $i-bg-w;
+      height: $i-bg-w;
+      text-align: center;
+      font-style: inherit;
+      color: $primary;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.3s linear;
+
+      &:before {
+        content: "\F1639";
+        @include IconMdi($font-size:1.25rem, $line-height:$i-bg-w);
+        text-align: center;
+        color: var(--text-color-light);
+        z-index: 2;
+      }
+     
+      &:hover{
+        transition: all 0.3s linear;
+        &:before {
+          color: var(--text-color-light);
+          background-color: var(--bg-color-active);
+          border-radius: $border-radius-sm;
+        }
+      }
+    }
+    &.tree-toggle-hide {
+      i.toggle-icon {
+        &:before {
+          content: "\F11EC";
+        }
+      }
+      + ul {
+        display: none;
+      }
+    }
+    &.noToggleIcon i.toggle-icon {
+      display: none;
+    }
+    &.active {
+      i.toggle-icon {
+        &:before {
+          color: var(--text-color-dark);
+        }
+      }
+    }
+  }
+}
+
+

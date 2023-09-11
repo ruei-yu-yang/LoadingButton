@@ -1,0 +1,25 @@
+//-Body =======================
+$body-bg-color: $gray-200;
+$bg-mask: rgba(0, 0, 0, 0.6);
+
+//-Header =======================
+$header-h-t: 3.125rem;
+$header-h-b: 2.625rem;
+$header-h:   $header-h-t + $header-h-b;
+$footer-h:   0rem;
+$article-h:  calc(100vh - #{$header-h} - #{$footer-h});
+
+//-Width =======================
+$min-w: 100%; //頁面整體最小寬1280px;
+$max-w: 100%; //頁面整體最大寬
+
+//-transition ===================
+$transition: all 0.3s linear;
+$transition-bezier: all 0.3s cubic-bezier(.2, .85, .32, 1.2);
+
+//-NavLeft ===================
+$NavLeft-Nav-w:16rem;
+
+//-Panel ===================
+$panel-padding-x: 1rem; // TableSticky 的白色遮罩 也會使用到
+

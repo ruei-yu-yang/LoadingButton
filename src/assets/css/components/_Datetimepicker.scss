@@ -1,0 +1,399 @@
+// .datepick-inline 為顯示日曆
+$table-td-bg-hover: $gray-200 !default;
+$span-item-h: 2.25rem !default;
+$span-item-h-sm: 1.75rem !default;
+$td-item-h: 1.75rem !default;
+$td-item-h-sm: 1rem !default;
+$td-item-h-explain: 1rem !default;
+.datetimepicker,
+.datepicker{
+    white-space: normal;
+    background-color: #fff;
+    // border:1px solid $gray-200;
+    &.datetimepicker-rtl {
+        direction: rtl;
+        table tr td span{
+            float: right;
+        }
+    }
+    &.dropdown-menu{
+        padding: 0.5rem;
+        box-shadow: $box-shadow;
+        background-color: #fff;
+    }
+    & > div,
+    &.minutes div.datetimepicker-minutes,
+    &.minutes div.datepicker-minutes,
+    &.hours div.datetimepicker-hours,
+    &.hours div.datepicker-hours,
+    &.days div.datetimepicker-days,
+    &.days div.datepicker-days,
+    &.months div.datetimepicker-months,
+    &.months div.datepicker-months,
+    &.years div.datetimepicker-years,
+    &.years div.datepicker-years{
+        display: block;
+    }
+    
+    span.minute,
+    span.hour,
+    span.month,
+    span.year,
+    span.decade{
+        display: block;
+        width: 23%;
+        float: left;
+        margin: 1%;
+        padding-right:0.25rem;
+        padding-left: 0.25rem;
+        height: $span-item-h;
+        line-height: $span-item-h;
+        border-radius: 4px;
+        cursor: pointer;
+        &:hover {
+            background: $table-td-bg-hover;
+        }
+    }
+    span.decade{
+        width: 30%;
+    }
+
+    // Table
+    .table-condensed{
+        @extend .table;
+        @extend .table-borderless;
+        width: 100%;
+        min-width: 14rem;
+        // margin: 0 auto;
+        border:2px solid $gray-900;
+        white-space: nowrap;
+        > thead {
+            border-bottom:1px solid $gray-900;
+            background-color: #fff;
+            th{
+                background-color: #fff;
+                text-align: center;
+            }
+        }
+        >tfoot{
+            border-top:1px solid $gray-900 !important;
+        }
+        tr {
+            td,th {
+                text-align: center;
+                width: $td-item-h;
+                height: $td-item-h;
+                line-height: $td-item-h;
+                border: none;    
+            }
+            th {
+                border-radius: 0;
+            }
+            td {
+                &.day {
+                    &:hover {
+                        background: $table-td-bg-hover;
+                        cursor: pointer;
+                    }
+                }
+                &.old,
+                &.new {
+                    color: $gray-400;
+                    font-weight: 400;    
+                }
+                &.today{
+                    position: relative;
+                    border:1px solid $primary;
+                    &:before {
+                        content: "";
+                        display: inline-block;
+                        position: absolute;
+                        bottom: 2px;
+                        right: 2px;
+                        width: 0;
+                        height: 0;
+                        border-style: solid;
+                        border-width: 6px 6px 0 0 ;
+                        border-color: transparent $primary;   
+                    }
+                    &.active{
+                        &:before {
+                            border-color: transparent #fff;   
+                        }
+                    }
+                }
+                &.holiday, &.weekend{
+                    color: $danger;
+                    &.new,&.old{
+                      color: $coral;
+                    }
+                }
+                &.marked{
+                    position: relative;
+                    $size: 1.75rem;
+                    &:before{
+                        content:"";
+                        position:absolute;
+                        top:calc(50% - #{$size} / 2);
+                        left:calc(50% - #{$size} / 2);
+                        width:$size;
+                        height:$size;
+                        border:1px solid $gray-300;
+                        border-radius:50%;
+                    }
+                }
+                &.disabled,
+                &.disabled:hover {
+                    cursor: default;
+                    color: $gray-400;
+                    background-color: transparent;
+                    &.holiday, &.weekend{
+                        color: $coral;
+                    }
+                    &.old,
+                    &.new{
+                        color: transparent !important;
+                    }
+                }
+                &.active,
+                span.active{
+                    &:hover,
+                    &.disabled,
+                    &:active,
+                    &.active{
+                        background-color: $primary;
+                        outline:1px solid $primary;
+                        color: #fff;
+                    }
+                    &.disabled{
+                        background-color: lighten($primary,45%) !important;
+                        border: none !important;
+                        outline: none;
+                    }
+                }
+                &.active-remove{
+                position:relative;
+                // border:1px solid $primary;
+                    &:after,
+                    &:before{
+                        content:"";
+                        display:inline-block;
+                        position:absolute;
+                        top:0;
+                        left:50%;
+                        width:2px;
+                        height:100%;
+                        background-color:$primary;
+                        border-width:0;
+                        z-index:1;
+                        opacity:0.5;
+                    }
+                    &:after{
+                        transform: rotate(45deg);
+                    }
+                    &:before{
+                        transform: rotate(-45deg);
+                    }
+                    &:hover{
+                        background-color: transparent;
+                    }
+                }
+                &.active-old,
+                &.active-old:hover{
+                    @extend .active;
+                    position:relative;
+                    background-color: $primary;
+                    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 1px, #{lighten($primary,15)} 0, #{lighten($primary,15)} 5%);
+                    
+                    
+                }    
+            }
+        }
+        // Btn
+        .prev,.next,.switch,.picker-switch,.today,.clear{
+            text-align: center;
+            cursor: pointer;
+            &:hover{
+                background-color: $table-td-bg-hover;
+            }
+        }
+        // Icon
+        .glyphicon{
+            @extend .mdi;
+            &.glyphicon-chevron-right,
+            &.glyphicon-arrow-right,
+            &.icon-arrow-right{
+                &:before{
+                    @extend .mdi-arrow-right;
+                }  
+            }
+            &.glyphicon-chevron-left,
+            &.glyphicon-arrow-left,
+            &.icon-arrow-left{
+                &:before{
+                    @extend .mdi-arrow-left;
+                }
+            }
+        }
+        &.table-condensed-explain{
+            border:none;
+            width: auto;
+            margin-left:0 ;
+            tr {
+				td,th {
+					height: $td-item-h-explain;
+                    line-height:$td-item-h-explain;
+                    white-space: nowrap;    
+				}
+                td.td-style{
+                    text-align: left;
+                    padding-right: 1rem;
+                    background-color: transparent;
+                }
+			}
+        }
+    }
+    .datetimepicker-days{
+        .table-condensed > thead > tr:last-child{
+            th:nth-last-child(2),
+            th:last-child{
+                color:$danger;
+            }
+        }
+    }
+    .datetimepicker-hours{
+        table tr td span{
+            &.hour_am,
+            &.hour_pm {
+                width: 14.6%;
+            }
+        }
+        fieldset legend{
+            margin-bottom: inherit;
+            line-height: 30px;
+        }
+    }
+}
+// sm
+.datepicker-sm{
+	.datetimepicker,
+	.datepicker{
+		.table-condensed{
+			tr {
+				td,th {
+					height: $td-item-h-sm;
+                    line-height: $td-item-h-sm;
+
+				}
+			}
+        } 
+        span.minute,
+        span.hour,
+        span.month,
+        span.year{
+            height: $span-item-h-sm;
+            line-height: $span-item-h-sm;    
+        } 
+    }
+}
+
+//- 表格跳色修正
+.table-striped {
+    .datetimepicker,
+    .datepicker {
+        table tr {
+            td,th{
+                background-color: transparent;
+            }
+        }    
+    }
+}
+
+
+// dropdown
+.datetimepicker-dropdown, 
+.datetimepicker-dropdown-left {
+    top: 0;
+    left: 0;
+}
+[class*="datetimepicker-dropdown"]:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #ccc;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+}
+[class*="datetimepicker-dropdown"]:after {
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    position: absolute;
+}
+[class*="datetimepicker-dropdown-top"]:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #ccc;
+    border-top-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 0;
+}
+[class*="datetimepicker-dropdown-top"]:after {
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ffffff;
+    border-bottom: 0;
+}
+.datetimepicker-dropdown-bottom-left {
+    &:before {
+        top: -7px;
+        right: 6px;
+    }
+    &:after {
+        top: -6px;
+        right: 7px;
+    }
+}
+.datetimepicker-dropdown-bottom-right {
+    &:before {
+        top: -7px;
+        left: 6px;
+    }
+    &:after {
+        top: -6px;
+        left: 7px;
+    }
+}
+.datetimepicker-dropdown-top-left {
+    &:before {
+        bottom: -7px;
+        right: 6px;
+    }
+    &:after {
+        bottom: -6px;
+        right: 7px;
+    }
+}
+.datetimepicker-dropdown-top-right {
+    &:before {
+        bottom: -7px;
+        left: 6px;
+    }
+    &:after {
+        bottom: -6px;
+        left: 7px;
+    }
+}
+
+
+
+
+
+
+

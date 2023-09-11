@@ -1,0 +1,315 @@
+@import "_Header-mixin";
+$header-box-shadow: -3px 0 3px 2px rgb(0, 0 ,0 ,0.1) !default;
+$header-font-size:0.875rem!default;
+$header-item-size:2.5rem !default;
+$header-item-size-pad:0 0.7rem 0 0.2rem !default;
+//header
+header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  min-width: $min-w;
+  min-height: $header-h-t;
+  vertical-align: middle;
+  background-color: var(--bg-color);
+  box-shadow: $header-box-shadow;
+  z-index: 4;
+  > .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  a {
+    text-decoration: none;
+    transition: $transition-base;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  //left
+  .header-brand{
+    @include DrawerBtn;
+  }
+
+  //right
+  .header-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: $header-h-t;  
+    font-weight: 600;
+    .header-item { 
+      position: relative;
+      display: inline-flex;
+      margin: 0 0.25rem;
+      padding:$header-item-size-pad;
+      height:  $header-item-size;
+      line-height:  $header-item-size;
+      font-size: $header-font-size;
+      color: var(--text-color);
+      text-align: center;  
+      white-space: nowrap;
+      border-radius:  $header-item-size * 0.5;
+      // display: inline-flex;
+      // flex-wrap: wrap;
+      @include media-breakpoint-down(lg) {
+        padding:0;
+      }
+
+      > i {
+        display: inline-block;
+        padding: 0;
+        width: $header-item-size;
+        line-height: $header-item-size;
+        font-size:1.25rem;
+        color: var(--text-color);
+        + span{
+          display: inline-block;
+          line-height:  $header-item-size;
+          margin-left: -0.2rem;
+        }
+      }
+      &.nav-icon,
+      > .nav-icon {
+        padding:0;
+      }
+
+      
+      &.has-msg{
+        &:before{
+          content:"";
+          position: absolute;
+          right: 0.35rem;
+          top: 0.45rem;
+          width: 10px;
+          height: 10px;
+          background-color: $danger;
+          border:2px solid var(--bg-color);
+          border-radius:50%;
+        }
+        + .dropdown-menu{
+          li{
+            border-bottom:1px dotted $gray-300;
+            &:last-child{
+              border-bottom: none;
+            }
+            a{
+              line-height: 130%;
+              padding:0.75rem 1rem;
+              > *{
+                margin-bottom: 0;
+              }
+            }
+            .title{
+              margin: 0;
+              color: var(--text-color);
+            }
+            .descript{
+              margin: 0;
+              font-size: 0.75rem;
+              color: var(--text-color-light);
+            }
+            time{
+              margin: 0;
+              font-size: 0.5rem;
+              font-weight: 400;
+              color: var(--text-color-superlight);
+            }
+          }
+        }
+      }
+    }
+    a.header-item:hover,
+    .dropdown-toggle:hover {
+      background-color: var(--bg-color-hover);
+      &.has-msg{  
+        &:before{
+          border-color:var(--bg-color-hover);
+        }
+      }
+    }
+    &.header-item-square  {
+      .header-item{
+        border-radius:  0;
+      }
+      .dropdown,
+      .dropdown-hoverable {
+        .dropdown-toggle{
+          &:after{
+            display: inline-block;
+            margin-right: 0.5rem;
+            margin-left: -0.25rem;
+            margin-top:calc(#{$header-item-size} / 2 - 0.1rem);
+          }
+        }
+      }
+    }
+    .dropdown,
+    .dropdown-hoverable {
+      cursor: pointer;
+      .dropdown-toggle {
+        display: inline-flex;
+        vertical-align: middle;
+        color: var(--text-color);
+        &:after{
+          display: none;
+        }
+        span{
+          vertical-align: middle;
+        }
+      }
+    }
+    .dropdown-hoverable{
+      position: relative;
+      .dropdown-toggle:hover{
+        .dropdown-menu-hoverable{
+          display: inline-block;
+        }
+      }
+      .dropdown-menu-hoverable{
+        display: none;
+        position: absolute;
+        left: 0;
+        top: $header-item-size;
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: left;
+        font-size: 1rem;
+        color: var(--text-color);
+        background-color: var(--bg-color-hover);
+        a{
+          display: block;
+          line-height: 140%;
+          color: var(--text-color);
+          padding: 0.5rem 1rem;  
+          &:hover,&.active{
+            background-color: var(--bg-color-active);
+          }
+        }
+        ul{
+          padding: 0;
+          margin: 0;
+          li{
+            position: relative;
+            a{
+              display: block;
+              font-size: 0.85rem;
+              padding: 0.25rem 0.25rem 0.25rem 1.25rem;  
+              color: var(--text-color-light);
+              &:before{
+                content: "‧";
+                display: inline-block;
+                margin-right: 0.25rem;
+              }
+            }
+          }
+        }
+      }
+    }  
+  }
+
+  //search
+  .header-search-wrap{
+    position: relative;
+    margin-right: 0.25rem;
+    .header-item{
+      margin-right: 0;
+      &:hover{
+        background-color: transparent;
+      }
+    }
+    input{
+      position: absolute;
+      right: 0;
+      top: 0;
+      width:0;
+      height: $header-item-size;
+      color:var(--text-color);
+      background-color:transparent;
+      border-radius:$header-item-size * 0.5;
+      border:none;
+      transition: all 0.5s linear;
+      &::placeholder{
+        color:var(--text-placeholder-color);
+      }
+    }
+    &:hover input,
+    &:focus input,
+    input:focus{
+        width:20rem;
+        padding:0 2.1rem 0 1rem;
+        color:var(--text-color);
+        background-color:var(--bg-color-hover);
+        box-shadow: none;
+        transition: all 0.5s linear;  
+    }
+  }
+  // @include media-breakpoint-down(lg) {
+  //   position: sticky;
+  //   z-index: 1;
+  // 與 modal 衝突
+  // }
+
+  //收合Top
+  &[toggle-element="off"] {
+    display: block;
+    margin-top: -$header-h;
+    [toggle-btn="trig"] {
+      position: fixed;
+      top: -1.75rem;
+      right: 1rem;
+      padding: 0;
+      transition: all 0.1s linear;
+      background-color: var(--bg-color-mask);
+      border-radius:$border-radius;
+      i{
+        transform: rotate(180deg);
+        + span{
+          display: none;
+        }  
+      }
+      
+      &:hover {
+        top: -0.25rem;
+        transition: all 0.1s linear;
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+  //收合Top-Hover
+  &[header-display="hover-block"]{
+    z-index: 6;
+    &[data-fixed="true"]{
+      z-index: $zindex-sticky;
+      transition: $transition;
+      margin-top: -$header-h ;
+      position: fixed;
+      top: 0;
+      &:hover{
+        margin-top: 0;
+        transition: $transition;
+      }
+      &:after{
+        content: "\F0140";
+        // @include IconMdi(0.75rem,block);
+        @include IconMdi($font-size: IconMdi, $display: block);
+        position: absolute;
+        // display: block;
+        width: 2rem;
+        height: 1rem;
+        bottom: - 1rem;
+        right: 0;
+        line-height: 1;
+        text-align: center;
+        background:$gray-800;
+        color: #fff;
+        border-radius:0 0 $border-radius $border-radius;
+      }
+    }
+  }
+}
+
+.wrap.justify-content-start .header-form{
+  flex-direction: row;
+}

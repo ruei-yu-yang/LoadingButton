@@ -1,0 +1,58 @@
+@font-face { font-family: '新微軟正黑體'; unicode-range: U+7db0, U+78A7, U+7B75; font-style: normal; font-weight: bold; src: local(MS Gothic), local(Yu Gothic);}
+@font-face { font-family: '新微軟正黑體'; unicode-range: U+7db0, U+78A7, U+7B75; font-style: normal; font-weight: normal;}
+// @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+$body-font-size-xs:   0.75rem !default; //12px
+$body-font-size-sm:   0.875rem !default; //14px
+$body-font-size:      1rem     !default; //16px
+$body-font-size-lg:   1.125rem !default; //18px
+$body-font-size-xlg:  1.25rem !default;  //20px
+
+
+html{
+  font-size: $body-font-size;
+}
+html,
+body {
+  font-family: $font-family-base;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
+  background-color: $body-bg-color;
+}
+body {
+  background-color: $body-bg-color;
+}
+a {
+  text-decoration: none;
+  color: $link-color;
+  cursor: pointer;
+  &:hover {
+    color: $link-hover-color;
+  }
+}
+.wrap {
+  width: 100%;
+  max-width: $max-w;
+  margin: 0 auto;
+  padding: 0 $grid-gutter-width;
+}
+em {
+  font-style: italic;
+}
+
+[data-layout-size="xs"] {
+  font-size: $body-font-size-xs;
+}
+[data-layout-size="sm"] {
+  font-size: $body-font-size-sm;
+}
+[data-layout-size="md"] {
+  font-size: $body-font-size;
+}
+[data-layout-size="lg"] {
+  font-size: $body-font-size-lg;
+}
+[data-layout-size="xlg"] {
+  font-size: $body-font-size-xlg;
+}

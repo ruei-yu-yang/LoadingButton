@@ -1,0 +1,161 @@
+//- Border Merger
+@each $color, $value in $theme-colors {
+  $i: 1;
+  @while $i <= 5 {
+    .border-#{$color}-#{$i} {
+      border-color: $value !important;
+      border-width: $i * 1px !important;
+      border-style: solid;
+    }
+    .border-#{$color}-#{$i}-top {
+      border-top-color: $value !important;
+      border-top-width: $i * 1px !important;
+      border-top-style: solid;
+    }
+    .border-#{$color}-#{$i}-bottom {
+      border-bottom-color: $value !important;
+      border-bottom-width: $i * 1px !important;
+      border-bottom-style: solid;
+    }
+    .border-#{$color}-#{$i}-start {
+      border-left-color: $value !important;
+      border-left-width: $i * 1px !important;
+      border-left-style: solid;
+    }
+    .border-#{$color}-#{$i}-end {
+      border-right-color: $value !important;
+      border-right-width: $i * 1px !important;
+      border-right-style: solid;
+    }
+    $i: $i + 1;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  $i: 1;
+  @while $i <= 5 {
+    .g-border-#{$color}-#{$i} {
+      > *{
+        border-color: $value !important;
+        border-width: $i * 1px !important;
+        border-style: solid;
+      }
+      &.g-border-dashed > *{
+        border-style: dashed !important;
+      }
+      &.g-border-dotted > *{
+        border-style: dotted !important;
+      }
+    }
+    .g-border-#{$color}-#{$i}-top {
+      > *{
+        border-top-color: $value !important;
+        border-top-width: $i * 1px !important;
+        border-top-style: solid;
+        &:first-child{
+          border-top: none !important;
+        }
+      }
+      
+      &.g-border-dashed > *{
+        border-top-style: dashed !important;
+      }
+      &.g-border-dotted > *{
+        border-top-style: dotted !important;
+      }
+    }
+    .g-border-#{$color}-#{$i}-bottom {
+      > *{
+        border-bottom-color: $value !important;
+        border-bottom-width: $i * 1px !important;
+        border-bottom-style: solid;
+        &:last-child{
+          border-bottom-width: 0px !important;
+        }
+      }
+      
+      &.g-border-dashed > *{
+        border-bottom-style: dashed !important;
+      }
+      &.g-border-dotted > *{
+        border-bottom-style: dotted !important;
+      }
+    }
+    .g-border-#{$color}-#{$i}-start {
+      > *{
+        border-left-color: $value !important;
+        border-left-width: $i * 1px !important;
+        border-left-style: solid;
+        &:first-child{
+          border-left-width: 0px !important;
+        }
+      }
+      &.g-border-dashed > *{
+        border-left-style: dashed !important;
+      }
+      &.g-border-dotted > *{
+        border-left-style: dotted !important;
+      }
+    }
+    .g-border-#{$color}-#{$i}-end {
+      > *{
+        border-right-color: $value !important;
+        border-right-width: $i * 1px !important;
+        border-right-style: solid;
+        &:last-child{
+          border-right-width: 0px !important;
+        }
+      }
+      &.g-border-dashed > *{
+        border-right-style: dashed !important;
+      }
+      &.g-border-dotted > *{
+        border-right-style: dotted !important;
+      }
+    }
+    $i: $i + 1;
+  }
+}
+// .border-dark-2 {
+//   border: $border-strong !important;
+// }
+// .border-dark-2-top {
+//   border-top: $border-strong !important;
+// }
+// .border-dark-2-bottom {
+//   border-bottom: $border-strong !important;
+// }
+// .border-dark-2-start {
+//   border-left: $border-strong !important;
+// }
+// .border-dark-2-end {
+//   border-right: $border-strong !important;
+// }
+
+
+//- Border Style
+.border-dashed {
+  border-style: dashed !important;
+}
+.border-dotted {
+  border-style: dotted !important;
+}
+
+
+//- Border Radius
+.rounded-start-0{
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.rounded-end-0{
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.rounded-top-0{
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.rounded-bottom-0{
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}

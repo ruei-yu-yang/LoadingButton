@@ -1,0 +1,100 @@
+//Nav
+$NavLeft-Nav-w:          16rem !default;
+$NavLeft-Nav-w-s:        3.9rem !default;
+$NavLeft-Nav-w-xs:       0.02rem !default;
+$NavLeft-header-brand-h: $header-h-t !default;
+$header-drawer-btn-h :   2rem !default;
+//Article
+$Article-pad-y: 0.5rem;
+$Article-pad: 0.75rem;
+
+.ArticleRows-wrap[article-type="FullHeader"]{
+    display: flex;
+    position: relative;
+    flex:1 1 100% ;
+    height: $article-h;
+    // Nav ============
+    aside.Nav-area{ 
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        flex: 0 0 $NavLeft-Nav-w;
+        width: $NavLeft-Nav-w;
+        height: $article-h;
+        background-color: var(--bg-color);
+        z-index: 5;
+        transition: $transition; 
+        // form
+        .form-control,
+        .form-select{
+            flex: 1 1 100%;
+            height: $header-drawer-btn-h;
+            margin: 0 auto;
+            padding: 0.15rem 0.5rem 0.15rem 0.5rem;
+            font-weight: 600;
+            font-size: 1rem;
+            // color: var(--text-color);
+            border-color: transparent;
+        }
+        // select
+        .form-select{
+            padding: 0.15rem 1.8rem 0.15rem 0.5rem;
+        }
+        .pad{
+            padding: $Article-pad-y $Article-pad;
+        }
+    }
+    // Article ==============
+    article {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 0;
+        min-height: $article-h;
+        width: 100%;
+        padding: 0.5rem $Article-pad ;
+        padding-left: $NavLeft-Nav-w + $Article-pad;
+        transition: $transition;
+        .nav-equal{
+            border-bottom: none;
+            width: fit-content;
+        }
+        .tab-main{
+            flex:1 1 100%;
+            // padding:0.25rem;
+            border:1px solid $primary;
+            overflow-y: hidden;
+            .tab-pane{
+                height: 100%;
+                overflow-y: auto;
+            }
+        }
+    }
+    ul.breadcrumbs{
+        //- 修正 layout/ArticleRows 檔案衝突
+        position: relative;
+        top: 0;
+    }
+}
+
+// hide Drawer
+.ArticleRows-wrap{
+    &.hide-drawer{
+        .Nav-area{
+            margin-left: - $NavLeft-Nav-w;
+            transition: $transition;
+            overflow: hidden; 
+        }
+        article{
+            padding-left: $Article-pad;
+            transition: $transition;
+        }
+    } 
+}
+
+.ArticleRows-wrap[article-type=template] .BrandNav-area{
+    z-index: 1030;
+}
+.ArticleRows-wrap[article-type=template] ul.breadcrumbs[breadcrumbs-position=header]{
+    z-index: 1029;
+}

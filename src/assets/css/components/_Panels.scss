@@ -1,0 +1,158 @@
+$panel-line-color: $border-color !default;
+$panel-padding-x: 1rem !default;
+$panel-padding-y: 0.5rem !default;
+$panel-head-kit-h: 1.75rem !default;
+$panel-head-square: 2rem !default;
+$panel-head-title-icon-color: $gray-800 !default;
+$panel-body-border-top: 1px solid $panel-line-color !default;
+$panel-title-font-size:1.125rem !default; //1.25rem
+$panel-title-line-height:150% !default; //180%
+$panel-border-radius:$border-radius-lg !default;
+
+.panel {
+  margin-bottom: 1rem;
+  background-color: #fff;
+  border: 0px;
+  border-radius: $panel-border-radius;
+  box-shadow: $box-shadow;
+  //box-shadow: 0 0 1rem rgba($primary, 0.15);
+}
+
+section.panel {
+  overflow: inherit;
+  %panel-heading-footer {
+    padding: $panel-padding-y $panel-padding-x;
+    display: flex;
+    justify-content: space-between;
+    // align-items: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    > div {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &.position-sticky{
+    top:0; 
+    z-index:3;
+  }
+  .panel-header {
+    @extend %panel-heading-footer;
+    border-radius: $panel-border-radius $panel-border-radius 0 0;
+    background-color: #fff;
+    + .panel-body {
+      border-top: 1px solid $panel-line-color;
+    }
+    .i-toggle{
+      display: inline-block;
+      width: $panel-head-kit-h;
+      height: $panel-head-kit-h;
+      line-height: $panel-head-kit-h;
+      text-align: center;
+      border-radius: $border-radius;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      i {
+        display: block;
+        line-height: $panel-head-kit-h;
+  
+        &:before {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+  //-收起後 上下圓角
+  &:has(.panel-header + [toggle-element="off"]){
+    .panel-header{
+      border-radius: $panel-border-radius;
+    }
+  }
+  .panel-title {
+    display: inline-flex;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: $panel-title-font-size;
+    line-height: $panel-title-line-height;
+    .circle {
+      display: inline-block;
+      margin-right: 0.25rem;
+      width: $panel-head-kit-h;
+      height: $panel-head-kit-h;
+      line-height: $panel-head-kit-h;
+      text-align: center;
+      border-radius: 50%;
+      background-color: $panel-head-title-icon-color;
+      color: #fff;
+    }
+    .square {
+      display: inline-block;
+      position: absolute;
+      padding-top:0.5rem;
+      top: - 0.5rem;
+      width: $panel-head-square;
+      height: $panel-head-kit-h + 0.5rem;
+      line-height: $panel-head-kit-h;
+      text-align: center;
+      color: #fff;
+      background-color: $panel-head-title-icon-color;
+      border-radius: 0 0 4px 4px;
+      &:before{
+        transform: translate(0, -3px);
+      }
+      + span{
+        margin-left: 2.5rem;
+      }
+    }
+    small{
+      font-size: 0.875rem;
+    }
+  }
+  .panel-body {
+    position: relative;
+    padding: $panel-padding-y $panel-padding-x;
+  }
+
+  .panel-footer {
+    @extend %panel-heading-footer;
+    border-top: 1px solid $panel-line-color;
+  }
+  &.panel-sm{
+    .panel-header,
+    .panel-body,
+    .panel-footer{
+      padding: $panel-padding-y;
+    }
+    
+  }
+
+  
+
+}
+
+section.hide-panel-body {
+  .panel-header {
+    border-radius: $panel-border-radius;
+    border-bottom: none;
+  }
+}
+
+.tab-pane > .panel{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.tab-content.stretch{
+  height: calc(100% - 2.95rem);
+  .tab-pane,
+  .panel{
+    height: 100%;
+  }
+}
+
+[data-stopPropagation]:not(a){
+  cursor: default;
+}

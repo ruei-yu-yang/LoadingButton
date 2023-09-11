@@ -1,0 +1,140 @@
+// 文字區塊
+.limited-block {
+  display: block;
+  position: relative;
+  word-break: break-all;
+  // 收合按鈕
+  .limited-control {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  // 收起樣式
+  &.limited-ellipsis {
+    @include multi_ellipsis(2); //IE Fixed
+    max-height: $line-height-base * 2 * (1rem - 0.125rem);
+    overflow: hidden;
+    .limited-control,
+    + .limited-control {
+      &:after {
+        content: attr(data-show);
+      }
+    }
+  }
+}
+// 收合按鈕
+.limited-control:not(.btn) {
+  padding: 0 0.25rem;
+  background-color: #fff;
+  font-weight: 600;
+  border-radius: $border-radius;
+  cursor: pointer;
+  &:after {
+    content: attr(data-hidden);
+    display: inline-block;
+    cursor: pointer;
+    color: $primary;
+  }
+}
+// 收合按鈕(沒放在文字區塊內.table-header-fix修正)
+.limited-control {
+  &:after {
+    content: attr(data-hidden);
+  }
+  &:before {
+    content: "";
+  }
+}
+
+// 顯示行數
+@function limited($n) {
+  // @return $line-height-base * $n * (1rem - 0.125rem);
+  @return $line-height-base * $n * (1rem);
+}
+$i: 1;
+@while $i <= 20 {
+  .limited-ellipsis.limited-line-#{$i},
+  .text-ellipsis.limited-line-#{$i} {
+    @include multi_ellipsis($i);
+    max-height: limited($i);
+    white-space:inherit;
+    position: relative;
+    line-break: anywhere;
+    // &.text-ellipsis:after{
+    //   content:"...";
+    //   position:absolute;
+    //   right:0;
+    //   bottom:0;
+    // }
+  }
+  $i: $i + 1;
+}
+
+
+
+@each $color, $value in $table-variants {
+  .table-#{$color}{
+    .limited-control:not(.btn) {
+      background-color:var(--#{$variable-prefix}table-bg) ; 
+    }
+  }
+}
+
+// table-striped
+.table-striped {
+  > tbody > tr:nth-of-type(even) .limited-control:not(.btn) {
+    background-color: shift-color($gray-900,  -95%);
+  }
+  @each $color, $value in $table-variants {
+    &.table-#{$color},
+    .table-#{$color}{
+      .limited-control:not(.btn) {
+        background-color:var(--#{$variable-prefix}table-bg) ; 
+      }
+    }
+    &.table-#{$color} > tbody > tr:nth-of-type(even),
+    tr.table-#{$color}:nth-of-type(even){
+      .limited-control:not(.btn) {
+      background-color:var(--#{$variable-prefix}table-striped-bg); 
+      }
+    }
+  }
+}
+
+// table-hover
+.table-hover {
+  > tbody > tr:hover,
+  > tbody > tr.focus {
+    > td .limited-control:not(.btn) {
+      background-color: shift-color($gray-900,  -90%);
+    }
+  }
+
+  // + 狀態
+  @each $color, $value in $table-variants {
+    &.table-#{$color} tr:hover,
+    .table-#{$color}:hover{
+      > tbody > tr:nth-of-type(even) .limited-control:not(.btn),
+      &:nth-of-type(even) .limited-control:not(.btn),
+      .limited-control:not(.btn) {
+        background-color:var(--#{$variable-prefix}table-hover-bg);
+      }
+    }
+  }
+  &.table-custom{
+    > tbody > tr:hover,
+    > tbody > tr.focus {
+      > td .limited-control:not(.btn) {
+        background-color: shift-color($primary, -80%) !important;
+        box-shadow:none !important;
+      }
+    }
+  }
+}
+
+.text-ellipsis{
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+

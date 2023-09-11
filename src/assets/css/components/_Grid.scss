@@ -1,0 +1,35 @@
+//table 用的 Grid
+.table-grid {
+	display: grid;
+	gap: 4px;
+	align-items: center;
+	.grid-cell {
+		padding: var(--table-grid-padding-y) var(--table-grid-padding-x);
+	}
+}
+
+[table-grid] {
+	.table-grid {
+			grid-template-columns: var(--table-grid-width);
+			gap: var(--table-grid-gap);	
+	}
+}
+
+//版面布局用
+.layout-grid {
+	display: grid;
+	grid-template-columns: var(--layout-grid-width);
+	grid-template-rows: var(--layout-grid-height);
+	gap: var(--layout-grid-gap);
+}
+
+
+//Grid
+.grid-auto-flow-row{
+  display: grid;
+  grid-auto-flow: row;
+}
+.grid-auto-flow-column{
+  display: grid;
+  grid-auto-flow: column;
+}

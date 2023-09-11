@@ -1,0 +1,356 @@
+$border-default: $gray-300;
+.steps-flow {
+  display: grid;
+  // grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: dense; /* this is important to fill all the space*/
+  // grid-gap: 4px;
+  parent,
+  child {
+    position: relative;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 4rem;
+    height:var(--flow-height);
+    //-直線
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      top: 50%;
+      right: 0;
+      z-index: 0;
+    }
+    //-橫線
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: $border-default;
+      // opacity: 0.2;
+      left: 0;
+      z-index: 0;
+    }
+    // //轉彎直線
+    // &:nth-child(5n){
+    //   &:before {
+    //     background: $border-default;
+    //   }
+    // }
+    // &:nth-child(10n){
+    //   &:before {
+    //     background: $border-default;
+    //     left: 0;
+    //   }
+    // }
+    // &:last-child(){
+    //   &:before {
+    //     background: transparent;
+    //   }
+    // }
+    // //start + end
+    // //排序
+    // &:nth-child(10n + 6) {
+    //   grid-column: 5;
+    // }
+    // &:nth-child(10n + 7) {
+    //   grid-column: 4;
+    // }
+    // &:nth-child(10n + 8) {
+    //   grid-column: 3;
+    // }
+    // &:nth-child(10n + 9) {
+    //   grid-column: 2;
+    // }
+  }
+
+  //- dot ============
+  parent .dot{
+    $dot-size:0.8rem;
+    position: absolute;
+    display: inline-block;
+    top: calc(50% - #{$dot-size} * 0.5);
+    left: calc(50% - #{$dot-size} * 0.5);
+    width:   $dot-size;
+    height:  $dot-size;
+    border-radius: 50%;
+    background-color: var(--li-color);
+    z-index: 1;
+    &:before {
+      position: absolute;
+      display: inline-block;
+      top: calc(50% - #{$dot-size} * 0.5);
+      left: calc(50% - #{$dot-size} * 0.5);
+      width:   $dot-size;
+      height:  $dot-size;
+      border-radius: 50%;
+      background-color: var(--li-color);
+      z-index: 1;
+
+      content: "";
+      opacity: 0.4;
+      transform-origin: center center;
+      transform: scale(2,2);
+    }
+  }
+  child .dot {
+    $dot-size:0.6rem;
+    position: absolute;
+    display: inline-block;
+    top: calc(50% - #{$dot-size} * 0.5);
+    left: calc(50% - #{$dot-size} * 0.5);
+    width:   $dot-size;
+    height:  $dot-size;
+    border-radius: 50%;
+    background-color: var(--li-color);
+    z-index: 1;
+    &:before {
+      display: none;
+    }
+  }
+
+  //- text ============
+  time {
+    position: absolute;
+    top: calc(50% + #{$dot-size} + 0.25rem);
+    color: $gray-500;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .steps-title{
+    position: absolute;
+    top: calc(50% - #{$dot-size} - 2rem);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+  child {
+    .steps-title{
+      position: absolute;
+      top: calc(50% - #{$dot-size} - 1.5rem);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+  }
+  &.steps-flow-colums-4{
+    grid-template-columns: repeat(4, 1fr);
+    parent,child {
+      //轉彎直線
+      &:nth-child(4n){
+        &:before {
+          background: $border-default;
+        }
+      }
+      &:nth-child(8n){
+        &:before {
+          background: $border-default;
+          left: 0;
+        }
+      }
+      &:last-child(){
+        &:before {
+          background: transparent;
+        }
+      }
+      //start + end
+      //排序
+      &:nth-child(8n + 5) {
+        grid-column: 4;
+      }
+      &:nth-child(8n + 6) {
+        grid-column: 3;
+      }
+      &:nth-child(8n + 7) {
+        grid-column: 2;
+      }
+    }  
+  }
+  &.steps-flow-colums-5{
+    grid-template-columns: repeat(5, 1fr);
+    parent,child {
+      //轉彎直線
+      &:nth-child(5n){
+        &:before {
+          background: $border-default;
+        }
+      }
+      &:nth-child(10n){
+        &:before {
+          background: $border-default;
+          left: 0;
+        }
+      }
+      &:last-child(){
+        &:before {
+          background: transparent;
+        }
+      }
+      //start + end
+      //排序
+      &:nth-child(10n + 6) {
+        grid-column: 5;
+      }
+      &:nth-child(10n + 7) {
+        grid-column: 4;
+      }
+      &:nth-child(10n + 8) {
+        grid-column: 3;
+      }
+      &:nth-child(10n + 9) {
+        grid-column: 2;
+      }  
+    }
+  }
+
+  &.steps-flow-colums-6{
+    grid-template-columns: repeat(6, 1fr);
+    parent,child {
+      //轉彎直線
+      &:nth-child(6n){
+        &:before {
+          background: $border-default;
+        }
+      }
+      &:nth-child(12n){
+        &:before {
+          background: $border-default;
+          left: 0;
+        }
+      }
+      &:last-child(){
+        &:before {
+          background: transparent;
+        }
+      }
+      //start + end
+      //排序
+      &:nth-child(12n + 7) {
+        grid-column: 6;
+      }
+      &:nth-child(12n + 8) {
+        grid-column: 5;
+      }
+      &:nth-child(12n + 9) {
+        grid-column: 4;
+      }
+      &:nth-child(12n + 10) {
+        grid-column: 3;
+      }
+      &:nth-child(12n + 11) {
+        grid-column: 2;
+      } 
+    }
+  }
+}
+
+// .ssnflow.collapse {
+//   child {
+//     display: none;
+//   }
+//   parent {
+//     &:before {
+//       content: "";
+//       display: block;
+//       position: absolute;
+//       width: 1px;
+//       height: 100%;
+//       top: 50%;
+//       right: 0;
+//       z-index: 0;
+//     }
+//     &:after {
+//       content: "";
+//       display: block;
+//       position: absolute;
+//       width: 100%;
+//       height: 1px;
+//       background: $border-default;
+//       // opacity: 0.2;
+//       left: 0;
+//       z-index: 0;
+//     }
+//     //轉彎
+//     &:nth-child(5n) {
+//       &:before {
+//         background: transparent;
+//       }
+//     }
+//     &:nth-child(10n) {
+//       &:before {
+//         background: transparent;
+//         left: 0;
+//       }
+//     }
+//     &:last-child() {
+//       &:before {
+//         background: transparent;
+//       }
+//     }
+//     //轉彎
+//     &:nth-of-type(5n) {
+//       &:before {
+//         background: $border-default;
+//       }
+//     }
+//     &:nth-of-type(10n) {
+//       &:before {
+//         background: $border-default;
+//         left: 0;
+//       }
+//     }
+//     &:last-child() {
+//       &:before {
+//         background: transparent;
+//       }
+//     }
+
+//     //start + end
+//     &:first-child() {
+//       &:before {
+//         content: "";
+//         display: block;
+//         position: absolute;
+//         width: 10px;
+//         height: 10px;
+//         border-radius: 50%;
+//         background: #666;
+//         top: calc(50% - 5px);
+//         left: 0;
+//         z-index: 1;
+//       }
+//     }
+//     &:last-child() {
+//       &:before {
+//         content: "";
+//         display: block;
+//         position: absolute;
+//         width: 10px;
+//         height: 10px;
+//         border-radius: 50%;
+//         background: #666;
+//         top: calc(50% - 5px);
+//         left: 0;
+//         z-index: 1;
+//       }
+//     }
+//     //排序
+//     &:nth-of-type(10n + 6) {
+//       grid-column: 5;
+//     }
+//     &:nth-of-type(10n + 7) {
+//       grid-column: 4;
+//     }
+//     &:nth-of-type(10n + 8) {
+//       grid-column: 3;
+//     }
+//     &:nth-of-type(10n + 9) {
+//       grid-column: 2;
+//     }
+//   }
+// }
+

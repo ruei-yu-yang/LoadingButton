@@ -1,0 +1,107 @@
+@each $size, $length in $spacers {
+  @if $size !=0 {
+    //Margin
+    .g-m-#{$size} {
+      > * {
+        margin: $length;
+      }
+    }
+    .g-mt-#{$size},
+    .g-my-#{$size} {
+      > * {
+        margin-top: $length;
+      }
+    }
+    .g-me-#{$size},
+    .g-mx-#{$size} {
+      > * {
+        margin-right: $length;
+      }
+    }
+    .g-mb-#{$size},
+    .g-my-#{$size} {
+      > * {
+        margin-bottom: $length;
+      }
+    }
+    .g-ms-#{$size},
+    .g-mx-#{$size} {
+      > * {
+        margin-left: $length;
+      }
+    }
+
+    .g-mt-#{$size} {
+      > :first-child {
+        margin-top: 0;
+      }
+    }
+    .g-mb-#{$size} {
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+    .g-me-#{$size} {
+      > :last-child {
+        margin-right: 0;
+      }
+    }
+    .g-ms-#{$size} {
+      > :first-child {
+        margin-left: 0;
+      }
+    }
+
+    //Padding
+    .g-p-#{$size} {
+      > * {
+        padding: $length;
+      }
+    }
+    .g-pt-#{$size},
+    .g-py-#{$size} {
+      > * {
+        padding-top: $length;
+      }
+    }
+    .g-pe-#{$size},
+    .g-px-#{$size} {
+      > * {
+        padding-right: $length;
+      }
+    }
+    .g-pb-#{$size},
+    .g-py-#{$size} {
+      > * {
+        padding-bottom: $length;
+      }
+    }
+    .g-ps-#{$size},
+    .g-px-#{$size} {
+      > * {
+        padding-left: $length;
+      }
+    }
+
+    .g-pt-#{$size} {
+      > :first-child {
+        padding-top: 0;
+      }
+    }
+    .g-pb-#{$size} {
+      > :last-child {
+        padding-bottom: 0;
+      }
+    }
+    .g-pe-#{$size} {
+      > :last-child {
+        padding-right: 0;
+      }
+    }
+    .g-ps-#{$size} {
+      > :first-child {
+        padding-left: 0;
+      }
+    }
+  }
+}

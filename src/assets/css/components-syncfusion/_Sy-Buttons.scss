@@ -1,0 +1,68 @@
+
+//- Button
+.e-btn,
+.e-btn.e-css{
+  @extend .btn;
+  &.e-primary:not(.e-flat):not(.e-outline){
+    @extend .btn;
+    @extend .btn-primary;
+  }
+  &.e-danger:not(.e-flat):not(.e-outline){
+    @extend .btn;
+    @extend .btn-danger;
+  }
+  &.e-warning:not(.e-flat):not(.e-outline){
+    @extend .btn;
+    @extend .btn-warning;
+  }
+  &.e-success:not(.e-flat):not(.e-outline){
+    @extend .btn;
+    @extend .btn-success;
+  }
+  &.e-info:not(.e-flat):not(.e-outline){
+    @extend .btn;
+    @extend .btn-info;
+  }
+  //-e-flat
+  // &.e-flat {
+  //   @extend .btn;
+  //   color: var(--#{$prefix}btn-color);
+  //   background-color: transparent;
+  //   border-color: transparent;
+  //   &:hover{
+  //     color: var(--#{$prefix}btn-hover-color);
+  //     text-decoration: if($link-hover-decoration == underline, none, null);
+  //     background-color: var(--#{$prefix}btn-hover-bg);
+  //     border-color: var(--#{$prefix}btn-hover-border-color);
+  //   }
+  // }
+  // &.e-outline {
+  //   @each $color, $value in $theme-colors {
+  //     &.e-#{$color} {
+  //       @include button-outline-variant($value);
+  //     }
+  //   }
+  // }
+  // &.e-small{
+  //   @extend .btn;
+  // }
+}
+
+
+//-Button Group
+*{
+  .e-btn-group, 
+  .e-css.e-btn-group{
+    @extend .btn-group;
+  }
+}
+
+
+
+
+//- ??
+.e-btn .e-btn-icon.e-icon-left, 
+.e-css.e-btn .e-btn-icon.e-icon-left{
+  margin: 0;
+  width: inherit;
+}

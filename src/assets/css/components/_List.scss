@@ -1,0 +1,136 @@
+
+$list-tit-f-size:       0.75rem !default;
+$list-info-f-size:      $td-font-size !default;
+$list-info-f-color-sec: $gray-600 !default;
+
+.ul-list {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+}
+.ol-list {
+  list-style-type: decimal;
+  padding-left: 1.25rem;
+}
+
+
+$List-item: 1.5rem !default;
+$List-item-pad: $List-item + 0.6rem !default;
+.dl-list{
+  margin-bottom: 0;
+  transform-origin: top left;
+  > a,
+  > .dl-group-item{
+    // display: block;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    align-self: stretch;
+    dd{
+      margin-bottom: 0;
+    }
+  }
+  a:hover {
+    dt,
+    dd {
+      color: $primary;
+    }
+  }
+  dt {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $gray-800;
+    line-height: 130%;
+    @include text-truncate;
+  }
+  dd {
+    font-size: $list-tit-f-size;
+    color: $list-info-f-color-sec;
+    line-height: 130%;
+    @include text-truncate;
+  }
+
+  &.dl-list-increment{
+    margin: 0 0 0 $List-item-pad;
+    counter-reset: myItem;
+    a,
+    .dl-group-item {
+      position: relative;
+      display: block;
+      counter-increment: myItem;
+      &:before {
+        content: counter(myItem);
+        position: absolute;
+        left: -$List-item-pad;
+        top: 0.3rem;
+        width: $List-item;
+        height: $List-item;
+        line-height: $List-item;
+        border-radius: $border-radius;
+        background-color: $primary;
+        text-align: center;
+        font-weight: 600;
+        color: #fff;
+      }
+    }
+    dd{
+      line-height: 150%;
+    }
+    
+  }
+  &.dl-list-reverse{
+    dt {
+      font-size: $list-tit-f-size;
+      color: $list-info-f-color-sec;
+    }
+    dd {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $gray-800;
+      line-height: 130%;
+    }
+  }
+}
+
+.dl-label {
+  margin-bottom: 0;
+  transform-origin: top left;
+  dt {
+    line-height: 120%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $list-info-f-color-sec; 
+    transform-origin: top left;
+    transform:scale(0.84);
+  }
+  dd {
+    margin-bottom: 1rem;
+    line-height: 120%;
+    font-size: $list-info-f-size;
+    font-weight: 600;
+    color: $gray-800;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  > a{
+    > dd,
+    > dd:last-child{
+      margin-bottom: 1rem;
+    }
+  }
+  a:not(.btn){
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $gray-800;
+    text-decoration: underline;
+  }
+}
+
+//form-label 樣式同 dl-list
+.form-label-customer{
+  display: block;
+  font-size: $list-tit-f-size;
+  font-weight: 600;
+  color:$list-info-f-color-sec;
+}

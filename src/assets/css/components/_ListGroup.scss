@@ -1,0 +1,155 @@
+$list-group-gutter-hover-color:$gray-800 !default;
+$list-group-gutter-hover-bg:$gray-100 !default;
+$list-group-gutter-hover-border:$border-color !default;
+
+$list-group-gutter-active-color:$primary !default;
+$list-group-gutter-active-bg:shift-color($primary, $alert-bg-scale) !default;
+$list-group-gutter-active-border:$primary !default;
+
+.list-group-gutter{
+  @extend .list-group;
+  &.row{
+    flex-direction: row;
+  }
+  .list-group-item-action{
+    @extend .list-group-item;
+    @extend .rounded;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: $transition;
+    height: 100%;
+    &:hover {
+      color: $list-group-gutter-hover-color;
+      background-color: $list-group-gutter-hover-bg;
+      border-color: $list-group-gutter-hover-border;
+      transition: $transition;
+    }
+    &.active {
+      color: $list-group-gutter-active-color;
+      background-color: $list-group-gutter-active-bg;
+      border-color: $list-group-gutter-active-border;
+    }
+  }
+}
+.list-group-check{
+  @extend .list-group;
+  li{
+    @extend .list-group-item;
+    @extend .rounded;
+    border-top-width:1px !important;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: $transition;
+    height: 100%;
+    margin-top: 0 !important;
+    padding:0;
+    label{
+      display: flex;
+      align-items: center;
+      padding: 0.25rem 0.5rem;
+      height: 100%;
+      cursor: pointer;
+      .form-check-input{
+        margin-top: 0;
+      }
+      .label{
+        margin-left: 0.5rem;
+        width: 100%;
+      }
+    }
+    .form-check-input{
+      flex:0 0 auto;
+    }
+    &:hover{
+      color: $list-group-gutter-hover-color;
+      background-color: $list-group-gutter-hover-bg;
+      border-color: $list-group-gutter-hover-border;
+      transition: $transition;
+    }
+    &.active{
+      color: $list-group-gutter-active-color;
+      background-color: $list-group-gutter-active-bg;
+      border-color: $list-group-gutter-active-border;
+    }
+  }
+}
+
+// list-group-custom 同步 Dropdown
+$list-group-custom-text-size:          $td-font-size !default; //  0.938rem
+$list-group-custom-text-line-heigh:    1rem !default;
+$list-group-custom-text-color-default: $gray-700 !default;
+$list-group-custom-text-color-active:  $primary !default;
+$list-group-custom-bg-color-hover:     $gray-050 !default;
+$list-group-custom-bg-color-active:    shift-color($primary, $alert-bg-scale) !default;
+
+$list-group-custom-padding-y:          0.25rem !default;
+$list-group-custom-list-padding-y:     0.5rem !default;
+$list-group-custom-list-padding-x:     1rem !default;
+
+$list-group-custom-margin-sm:         0 !default;
+$list-group-custom-list-padding-x-sm: 0.75rem !default;
+$list-group-custom-list-padding-y-sm: 0.25rem !default;
+
+.list-group-custom{
+  position: relative;
+  margin: 0 -1rem;
+  padding: 0;
+  &.dropdown-menu{
+    padding: $dropdown-menu-padding-y 0;
+    margin: 0;
+  }
+  > li {
+    position: relative;
+    width: 100%;
+    .list-group-item,
+    a,
+    a:not([href]),
+    a:not(.btn){
+      display: flex;
+      align-items: center;
+      padding: $list-group-custom-list-padding-y $list-group-custom-list-padding-x;
+      line-height: $list-group-custom-text-line-heigh;
+      color: $list-group-custom-text-color-default;
+      font-size: $list-group-custom-text-size;
+      font-weight: 600;
+      border:none;
+      &:hover{
+        color: $list-group-custom-text-color-active;
+        background-color: $list-group-custom-bg-color-hover;
+      }
+    }
+
+
+    &.finished .list-group-item,
+    &.finished a{
+      &:before {
+        color: $list-group-custom-text-color-active;
+        content: "\F05E0";
+      }
+    }
+    &.active a,
+    a.active,
+    &.active:hover a,
+    a.active:hover,
+    &.active .list-group-item,
+    .list-group-item.active,
+    &.active:hover .list-group-item,
+    .list-group-item.active:hover{
+      color: $list-group-custom-text-color-active;
+      background-color: $list-group-custom-bg-color-active;
+    }
+    &.focus.text-primary{
+      > * ,a {
+        color: $list-group-custom-text-color-active;
+      }
+    }
+  }
+  &.list-group-custom-sm{
+    margin:0 $list-group-custom-margin-sm;
+    >li a,
+    a:not([href]){
+      padding: $list-group-custom-list-padding-y-sm $list-group-custom-list-padding-x-sm;
+    }
+  }
+}
+

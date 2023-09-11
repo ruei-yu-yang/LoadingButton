@@ -1,0 +1,135 @@
+/*
+* V5.2-230728
+*/
+// Customize & Bootstrap
+@import "customize/_Reset";
+@import "customize/_Customize"; // 變數值放在這個檔案內
+@import "bootstrap-5.2.0-beta/bootstrap";
+@import "customize/_Theme";
+@import "customize/_Reboot";
+
+// Icon
+@import "icon/material-icon/_materialdesignicons";
+@import "icon/_ASUS-logo";
+@import "icon/_Medus-logo";
+
+// Mixin
+@import "mixin/_Mixin";
+
+// Utilities
+@import "components/_Animate";
+@import "components/_Borders";
+@import "components/_Color";
+@import "components/_Dot";
+@import "components/_Flex";
+@import "components/_Interactions";
+@import "components/_OverFlow";
+@import "components/_ScrollBar";
+@import "components/_Shadows";
+@import "components/_Sizing";
+@import "components/_Spacing";
+@import "components/_Text";
+
+// Container
+@import "components/_Column";
+@import "components/_Grid";
+@import "components/_SystemContainer";
+@import "components/_PanelLayout"; // 搭配 Panel 使用
+
+// Form & Table
+@import "components/_Forms";
+@import "components/_FormsCheck";
+@import "components/_FormsSelectBadge";
+@import "components/_FormsSelectList";
+@import "components/_FormsTableFilter";
+@import "components/_FormsFloatingLabels";
+@import "components/_FormsUploadList";
+@import "components/_FormsGrid";
+@import "components/_FormsReadonly";
+@import "components/_TableBase";
+@import "components/_TableFloatingScroll";
+@import "components/_TableRWD";
+@import "components/_TableSort";
+@import "components/_TableSticky";
+@import "components/_TableTree";
+@import "components/_TableLevel";
+@import "components/_TableVariants";
+@import "components/_TableRounded";
+
+// Components
+@import "components/_Alerts";
+@import "components/_Approve";
+@import "components/_Badge";
+@import "components/_Breadcrumb";
+@import "components/_Buttons";
+@import "components/_ButtonsCustom";
+@import "components/_Caption";
+@import "components/_Card"; //
+@import "components/_Code"; //
+@import "components/_Datetimepicker";
+@import "components/_Divider";
+@import "components/_Dropdowns";
+@import "components/_Flag";
+@import "components/_FloatingWindow";
+@import "components/_Focus";
+@import "components/_FolderPath";
+@import "components/_FileDrag";
+@import "components/_FullScreenSize";
+@import "components/_Gotop";
+@import "components/_HamburgerIcon";
+@import "components/_LimitedText";
+@import "components/_List";
+@import "components/_ListGroup";
+@import "components/_Loading";
+@import "components/_Modal";
+@import "components/_Notification";
+@import "components/_Pagination";
+@import "components/_Panels";
+@import "components/_PanelsDetail";
+@import "components/_Popover"; 
+@import "components/_Sortable";
+@import "components/_Skeleton";
+@import "components/_Statistic";
+@import "components/_Steps";
+@import "components/_StepsFlow";
+@import "components/_StickyTopBottom";
+@import "components/_ScrollShadows";
+@import "components/_Tabs";
+@import "components/_TabsRWD";
+@import "components/_Timeline"; 
+@import "components/_Toggle";
+@import "components/_Tooltips";
+@import "components/_Transfer";
+@import "components/_Tree";
+@import "components/_TreeHorizontal";
+@import "components/_TreeInternal";
+
+// Plugin
+@import "plug/bootstrap-select-1.14.0/_bootstrap-select-custom";
+
+// Syncfusion
+// @import "components-syncfusion/_All";
+
+// Components Angular
+@import "components-ng/_All";
+
+// Layout
+@import "layout/_Article";
+@import "layout/_ArticleRows-FullNav";
+@import "layout/_ArticleRows-FullHeader";
+@import "layout/_ErrorPage";
+@import "layout/_Header";
+@import "layout/_Footer";
+@import "layout/_NavDropdown";
+@import "layout/_NavDropdownBlock";
+@import "layout/_NavExpand";
+@import "layout/_NavInternal";
+@import "layout/_NavRWD";
+@import "layout/_Login";
+@import "layout/_Login-internal";
+@import "layout/_ErrorPage";
+
+// System
+@import "system/_System"; // 每個系統不同的設定在這個檔案內
+
+

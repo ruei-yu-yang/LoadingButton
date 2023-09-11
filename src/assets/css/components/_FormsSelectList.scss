@@ -1,0 +1,111 @@
+@use "sass:math";
+
+$list-group-item-padding-y-sm: 0rem !default;
+$list-group-item-padding-x-sm: 0.75rem !default;
+$list-group-item-bg-hover: $table-hover-bg !default;
+$list-group-item-line-h: 2.2rem !default;
+$list-group-title-bg-color: $gray-200 !default;
+
+
+// 外框 (.dropdown-menu)
+.list-wrap {
+  overflow: hidden;
+  border: 1px solid $border-color;
+  min-width: 100%;
+  padding: 0;
+  background-color: #fff;
+  border-radius: $border-radius;
+  overflow: auto;
+  .form-check:not(.list-caption){
+    padding-left: 2rem;
+    .form-check-input{
+        flex:0 0 $form-check-input-width;
+    }    
+  }
+}
+
+// list style (li)
+%list-style {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: $list-group-item-padding-y-sm $list-group-item-padding-x-sm;
+  margin-bottom: 0;
+  font-size: $td-font-size;
+  line-height: $list-group-item-line-h;
+  height: $list-group-item-line-h;
+  flex: 1 0 auto;
+  @include text-truncate;
+  label {
+    display: block;
+    margin-bottom: 0;
+    padding-left: 0.5rem;
+    width: 100%;
+    line-height: $list-group-item-line-h;
+    @include text-truncate;
+  }
+}
+
+//Select All
+.list-caption {
+    @extend %list-style;
+    border-bottom: 1px solid $border-color;
+    background-color: $list-group-title-bg-color;
+    font-weight: 600;
+    height: inherit;
+    padding:0.3rem 0.5rem;
+    input[type='checkbox']{
+      margin-left: 0rem;
+    }
+    label{
+      white-space: nowrap;
+      text-overflow: inherit;
+      overflow: initial;
+      flex:0 0;
+      margin-right: 0.5rem;
+    }
+    input[type='search']{
+      flex:1 1 ;
+      width: 50%;
+      
+    }
+  }
+
+//list
+.list-wrap .list-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding-left: 0;
+  overflow-y: auto;
+  li {
+    @extend %list-style;
+    max-height: $list-group-item-line-h;
+    &:hover {
+      color: $primary;
+    }
+  }
+  // list width
+  &%li-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  $row-w: 100%;
+  @function space($n) {
+    @return  math.div($row-w, $n);
+  }
+  $i: 2;
+  @while $i <= 4 {
+      &.li-row#{$i * 1} {
+          flex-direction: row;
+          flex-wrap: wrap;
+          li{
+              width: space($i);
+          }
+      }
+    $i: $i + 1;
+  }
+  &.list-group-horizontal{
+    flex-direction: row;
+  }
+}

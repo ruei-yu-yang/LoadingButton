@@ -1,0 +1,82 @@
+//Code
+pre{
+	margin: 0;
+  tab-size: 2;
+	@include ScrollBar(4px,2px,white,white);
+	transition: all 0.5s linear;
+	&:hover{
+		@include ScrollBar(4px,2px,$gray-300,white);
+		transition: all 0.5s linear;
+	}
+}
+code.code{
+	display: block;
+	color: $gray-600;
+	margin-bottom: 0.25rem;
+	font-size: 0.75rem;
+	pre{
+		font-size: 0.75rem;
+	}
+	div div{
+		margin-left: 1rem;
+	}
+}
+.code-content{
+	position: relative;
+	padding:0.5rem;
+	border: 1px dashed $gray-300;
+	border-radius: $border-radius;
+	&:hover{
+		.btn-copy-code{
+			display: inline-block;
+		}
+	}
+}
+.btn-copy-code{
+	display: none;
+	position: absolute;
+	left: 0.25rem;
+	top: 0.25rem;
+	z-index: 2;
+}
+
+
+// Copy
+.copied{
+		&:after {
+			content: "Copied";
+			// @extend .alert;
+			// @extend .alert-success;
+			
+			position: absolute;
+			padding: 0 0.25rem;
+			margin:0 0.25rem;
+			color:shift-color($success, $alert-color-scale);
+			border:1px solid shift-color($success, $alert-color-scale);
+			border-radius: $border-radius;
+			background-color: shift-color($success, $alert-bg-scale);;
+			font-size: 12px;
+			z-index: 3;
+
+			animation-name: copied;
+  		animation-duration: 1s;
+			animation-direction: alternate;
+			animation-iteration-count: 1;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+	}
+}
+@keyframes copied {
+	0% {
+		opacity: 0;
+	}
+	30% {
+		opacity: 1;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

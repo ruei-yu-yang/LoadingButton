@@ -1,0 +1,57 @@
+body.overflow-hidden {
+  overflow-y: hidden;
+}
+.show-pop {
+  cursor: pointer;
+}
+.popbg-fill {
+  position: absolute;
+  position: fixed;
+  left: 0;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: auto;
+  overflow-x: hidden;
+  transition: top 0s;
+
+  &.show {
+    display: block;
+    background-color: #333;
+    background: $bg-mask;
+    top: 0;
+    transition: top 0s;
+
+    &.va-center,
+    &.modal-dialog-centered {
+      display: flex;
+      align-items: center;
+      .pop-box {
+        margin: 0 auto;
+      }
+      .modal-body {
+        max-height: calc(100vh - 6.5rem);
+        overflow-y: auto;
+      }
+    }
+    .pop-box {
+      top: 0px;
+    }
+  }
+}
+
+$PopBoxMaxW: 94%;
+
+.pop-box {
+  position: relative;
+  top: -100%;
+  width: 96%;
+  max-width: 96%;
+  margin: 2rem auto;
+  border-radius: $border-radius-lg;
+  background: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  transition: all 0.8s;
+}

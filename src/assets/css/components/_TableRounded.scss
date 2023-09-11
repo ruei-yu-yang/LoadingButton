@@ -1,0 +1,111 @@
+$table-custom-rounded-th-cell-padding-y:.5rem !default;
+$table-custom-rounded-td-cell-padding-y:.75rem !default;
+$table-custom-rounded-cell-padding-x:   1.25rem !default;
+$table-custom-rounded-border-color:     $gray-200 !default;
+
+$table-custom-rounded-th-bg:           $gray-100 !default;
+$table-custom-rounded-th-f-size:       0.875rem !default;
+$table-custom-rounded-th-f-weight:     400 !default;
+$table-custom-rounded-th-f-color:      $gray-500 !default;
+$table-custom-rounded-th-border-color: $table-custom-rounded-border-color !default;
+
+$table-custom-rounded-th-tit-bg:       $gray-400 !default;
+$table-custom-rounded-th-tit-f-color:  $gray-900 !default;
+
+$table-custom-rounded-td-f-size:       0.875rem !default;
+$table-custom-rounded-td-f-weight:     500 !default;
+$table-custom-rounded-td-f-color:      $gray-900 !default;
+$table-custom-rounded-td-border-color: $table-custom-rounded-border-color !default;
+
+
+// table custom
+.table-custom-rounded {
+  @extend .table;
+  // border-radius
+  width: 100%;
+  border-radius: $border-radius;
+  > :first-child > tr:first-child > :first-child{
+    border-top-left-radius: $border-radius;
+  }
+  > :first-child > tr:first-child > :last-child{
+    border-top-right-radius: $border-radius;
+  }
+  > :last-child > tr:last-child > :first-child{
+    border-bottom-left-radius: $border-radius;
+  }
+  > :last-child > tr:last-child > :last-child{
+    border-bottom-right-radius: $border-radius;
+  }
+  //border
+  > :not(caption) > * > * {
+    border-bottom: 1px solid $table-custom-rounded-border-color;
+  }
+  > :last-child > tr:last-child > * {
+    border-bottom: none;
+  }
+  tr.th-title th,
+  .th-title{
+    color: $table-custom-rounded-th-tit-f-color;
+    background-color: $table-custom-rounded-th-tit-bg;
+    font-weight: $table-custom-rounded-td-f-weight;
+
+  }
+  th {
+    padding: $table-custom-rounded-th-cell-padding-y $table-custom-rounded-cell-padding-x;
+    color: $table-custom-rounded-th-f-color;
+    font-size: $table-custom-rounded-th-f-size;
+    font-weight: $table-custom-rounded-th-f-weight;
+    background-color: $table-custom-rounded-th-bg;
+  }
+  td{
+    padding: $table-custom-rounded-td-cell-padding-y $table-custom-rounded-cell-padding-x;
+    color:$table-custom-rounded-td-f-color;
+    font-size: $table-custom-rounded-td-f-size;
+    font-weight: $table-custom-rounded-td-f-weight;
+    background-color: #fff;
+  }
+
+  &.table-bordered{
+    > :not(caption) > * > * {
+      border-width: 0;
+      border-right:1px solid $table-custom-rounded-border-color;
+    }
+  }
+}
+
+//-
+.table-shadow{
+  box-shadow:$box-shadow-sm;
+  border:none;
+}
+
+//-
+.table-outline{
+  border-collapse: separate;
+  border-spacing:0;
+  > :first-child > tr:first-child > *{
+    border-top: 1px solid $table-custom-rounded-border-color;
+  }
+  > :last-child > tr:last-child > *{
+    border-bottom: 1px solid $table-custom-rounded-border-color;
+  }
+  > :not(caption) > tr > :first-child{
+    border-left: 1px solid $table-custom-rounded-border-color;
+  }
+  > :not(caption) > tr > :last-child{
+    border-right: 1px solid $table-custom-rounded-border-color;
+  } 
+  //th-title
+  > thead:first-child > tr.th-title > th,
+  > thead:first-child > tr > th.th-title{
+    border-top: 1px solid $table-custom-rounded-th-tit-bg;
+  }
+  > thead:first-child > tr.th-title > th:first-child,
+  > thead:first-child > tr > th:first-child.th-title{
+    border-left: 1px solid $table-custom-rounded-th-tit-bg;
+  }
+  > thead:first-child > tr.th-title > th:last-child,
+  > thead:first-child > tr > th:last-child.th-title{
+    border-right: 1px solid $table-custom-rounded-th-tit-bg;
+  } 
+}

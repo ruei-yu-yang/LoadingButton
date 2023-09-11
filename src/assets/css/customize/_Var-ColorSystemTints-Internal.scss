@@ -1,0 +1,679 @@
+@import "../bootstrap-5.2.0-beta/functions";
+$grays: (
+  "050": $gray-050,
+  "075": $gray-075,
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "fushsia":    $fushsia, //
+  "magenta":    $magenta, //
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "chartreuse": $chartreuse, //
+  "celery":     $celery, //
+  "green":      $green,
+  "seafoam":     $seafoam, //
+  "cyan":       $cyan,
+
+  "teal":       $teal,
+  "pink":       $pink,
+  "coral":      $coral,
+  "brown":      $brown,
+
+  "black":      $black,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+) !default;
+
+
+// The contrast ratio to reach against white, to determine if color changes from "light" to "dark". Acceptable values for WCAG 2.0 are 3, 4.5 and 7.
+// See https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast
+$min-contrast-ratio:   4.5 !default;
+// Customize the light and dark text colors for use in our color contrast function.
+$color-contrast-dark:      $black !default;
+$color-contrast-light:     $white !default;
+
+
+// fusv-disable
+$primary-050: #eaf4fd !default;
+$primary-075: #ddefff !default;
+$primary-100: #c4e4ff !default;
+$primary-200: #a5d6fe !default;
+$primary-300: #7ac2fd !default;
+$primary-400: #37a2fc !default;
+$primary-500: #1389fc !default;
+$primary-600: #006ce1 !default;
+$primary-700: #005fd1 !default;
+$primary-800: #1442cc !default;
+$primary-900: #002169 !default;
+$primarys: (
+  "primary-050": $primary-050,
+  "primary-075": $primary-075,
+  "primary-100": $primary-100,
+  "primary-200": $primary-200,
+  "primary-300": $primary-300,
+  "primary-400": $primary-400,
+  "primary-500": $primary-500,
+  "primary-600": $primary-600,
+  "primary-700": $primary-700,
+  "primary-800": $primary-800,
+  "primary-900": $primary-900
+) !default;
+
+
+
+$blue-050: $primary-050 !default;
+$blue-075: $primary-075 !default;
+$blue-100: $primary-100 !default;
+$blue-200: $primary-200 !default;
+$blue-300: $primary-300 !default;
+$blue-400: $primary-400 !default;
+$blue-500: $primary-500 !default;
+$blue-600: $primary-600 !default;
+$blue-700: $primary-700 !default;
+$blue-800: $primary-800 !default;
+$blue-900: $primary-900 !default;
+$blues: (
+  "blue-050": $blue-050,
+  "blue-075": $blue-075,
+  "blue-100": $blue-100,
+  "blue-200": $blue-200,
+  "blue-300": $blue-300,
+  "blue-400": $blue-400,
+  "blue-500": $blue-500,
+  "blue-600": $blue-600,
+  "blue-700": $blue-700,
+  "blue-800": $blue-800,
+  "blue-900": $blue-900
+) !default;
+
+
+$indigo-050: tint-color($indigo, 90%) !default;
+$indigo-075: tint-color($indigo, 80%) !default;
+$indigo-100: tint-color($indigo, 65%) !default;
+$indigo-200: tint-color($indigo, 55%) !default;
+$indigo-300: tint-color($indigo, 40%) !default;
+$indigo-400: #9c9ffe !default;
+$indigo-500: #7e84fc !default;
+$indigo-600: shade-color($indigo, 20%) !default;
+$indigo-700: shade-color($indigo, 40%) !default;
+$indigo-800: shade-color($indigo, 50%) !default;
+$indigo-900: shade-color($indigo, 65%) !default;
+$indigos: (
+  "indigo-050": $indigo-050,
+  "indigo-075": $indigo-075,
+  "indigo-100": $indigo-100,
+  "indigo-200": $indigo-200,
+  "indigo-300": $indigo-300,
+  "indigo-400": $indigo-400,
+  "indigo-500": $indigo-500,
+  "indigo-600": $indigo-600,
+  "indigo-700": $indigo-700,
+  "indigo-800": $indigo-800,
+  "indigo-900": $indigo-900
+) !default;
+
+
+$purple-050: tint-color($purple, 90%) !default;
+$purple-075: tint-color($purple, 80%) !default;
+$purple-100: tint-color($purple, 65%) !default;
+$purple-200: tint-color($purple, 55%) !default;
+$purple-300: tint-color($purple, 40%) !default;
+$purple-400: #c597ff !default;
+$purple-500: #ae72f9 !default;
+$purple-600: shade-color($purple, 20%) !default;
+$purple-700: shade-color($purple, 40%) !default;
+$purple-800: shade-color($purple, 50%) !default;
+$purple-900: shade-color($purple, 65%) !default;
+$purples: (
+  "purple-050": $purple-050,
+  "purple-075": $purple-075,
+  "purple-100": $purple-100,
+  "purple-200": $purple-200,
+  "purple-300": $purple-300,
+  "purple-400": $purple-400,
+  "purple-500": $purple-500,
+  "purple-600": $purple-600,
+  "purple-700": $purple-700,
+  "purple-800": $purple-800,
+  "purple-900": $purple-900
+) !default;
+
+
+$fushsia-050: tint-color($fushsia, 90%) !default;
+$fushsia-075: tint-color($fushsia, 80%) !default;
+$fushsia-100: tint-color($fushsia, 65%) !default;
+$fushsia-200: tint-color($fushsia, 55%) !default;
+$fushsia-300: tint-color($fushsia, 40%) !default;
+$fushsia-400: #f67af6 !default;
+$fushsia-500: #e650e8 !default;
+$fushsia-600: shade-color($fushsia, 20%) !default;
+$fushsia-700: shade-color($fushsia, 40%) !default;
+$fushsia-800: shade-color($fushsia, 50%) !default;
+$fushsia-900: shade-color($fushsia, 65%) !default;
+$fushsias: (
+  "fushsia-050": $fushsia-050,
+  "fushsia-075": $fushsia-075,
+  "fushsia-100": $fushsia-100,
+  "fushsia-200": $fushsia-200,
+  "fushsia-300": $fushsia-300,
+  "fushsia-400": $fushsia-400,
+  "fushsia-500": $fushsia-500,
+  "fushsia-600": $fushsia-600,
+  "fushsia-700": $fushsia-700,
+  "fushsia-800": $fushsia-800,
+  "fushsia-900": $fushsia-900
+) !default;
+
+$magenta-050: tint-color($magenta, 90%) !default;
+$magenta-075: tint-color($magenta, 80%) !default;
+$magenta-100: tint-color($magenta, 65%) !default;
+$magenta-200: tint-color($magenta, 55%) !default;
+$magenta-300: tint-color($magenta, 40%) !default;
+$magenta-400: #fb7faf !default;
+$magenta-500: #f25194 !default;
+$magenta-600: shade-color($magenta, 20%) !default;
+$magenta-700: shade-color($magenta, 40%) !default;
+$magenta-800: shade-color($magenta, 50%) !default;
+$magenta-900: shade-color($magenta, 65%) !default;
+$magentas: (
+  "magenta-050": $magenta-050,
+  "magenta-075": $magenta-075,
+  "magenta-100": $magenta-100,
+  "magenta-200": $magenta-200,
+  "magenta-300": $magenta-300,
+  "magenta-400": $magenta-400,
+  "magenta-500": $magenta-500,
+  "magenta-600": $magenta-600,
+  "magenta-700": $magenta-700,
+  "magenta-800": $magenta-800,
+  "magenta-900": $magenta-900
+) !default;
+
+
+$red-050: #fff3f3 !default;
+$red-075: #ffebeb !default;
+$red-100: #ffd6d6 !default;
+$red-200: #ffc7c7 !default;
+$red-300: #ffa79b !default;
+$red-400: #ff6e57 !default;
+$red-500: #ff330b !default;
+$red-600: #db2828 !default;
+$red-700: #b61c1c !default;
+$red-800: #a10000 !default;
+$red-900: #5b0000 !default;
+$reds: (
+  "red-050": $red-050,
+  "red-075": $red-075,
+  "red-100": $red-100,
+  "red-200": $red-200,
+  "red-300": $red-300,
+  "red-400": $red-400,
+  "red-500": $red-500,
+  "red-600": $red-600,
+  "red-700": $red-700,
+  "red-800": $red-800,
+  "red-900": $red-900
+) !default;
+
+$danger-050: $red-050 !default;
+$danger-075: $red-075 !default;
+$danger-100: $red-100 !default;
+$danger-200: $red-200 !default;
+$danger-300: $red-300 !default;
+$danger-400: $red-400 !default;
+$danger-500: $red-500 !default;
+$danger-600: $red-600 !default;
+$danger-700: $red-700 !default;
+$danger-800: $red-800 !default;
+$danger-900: $red-900 !default;
+$dangers: (
+  "danger-050": $danger-050,
+  "danger-075": $danger-075,
+  "danger-100": $danger-100,
+  "danger-200": $danger-200,
+  "danger-300": $danger-300,
+  "danger-400": $danger-400,
+  "danger-500": $danger-500,
+  "danger-600": $danger-600,
+  "danger-700": $danger-700,
+  "danger-800": $danger-800,
+  "danger-900": $danger-900
+) !default;
+
+$orange-050: #fff9e5 !default;
+$orange-075: #ffebc0 !default;
+$orange-100: #ffdd9a !default;
+$orange-200: #ffcf7a !default;
+$orange-300: #ffb03c !default;
+$orange-400: #ff8800 !default;
+$orange-500: #eb6e00 !default;
+$orange-600: #b75500 !default;
+$orange-700: #a24b00 !default;
+$orange-800: #7e3b00 !default;
+$orange-900: #401e00 !default;
+$oranges: (
+  "orange-050": $orange-050,
+  "orange-075": $orange-075,
+  "orange-100": $orange-100,
+  "orange-200": $orange-200,
+  "orange-300": $orange-300,
+  "orange-400": $orange-400,
+  "orange-500": $orange-500,
+  "orange-600": $orange-600,
+  "orange-700": $orange-700,
+  "orange-800": $orange-800,
+  "orange-900": $orange-900
+) !default;
+
+$warning-050: $orange-050 !default;
+$warning-075: $orange-075 !default;
+$warning-100: $orange-100 !default;
+$warning-200: $orange-200 !default;
+$warning-300: $orange-300 !default;
+$warning-400: $orange-400 !default;
+$warning-500: $orange-500 !default;
+$warning-600: $orange-600 !default;
+$warning-700: $orange-700 !default;
+$warning-800: $orange-800 !default;
+$warning-900: $orange-900 !default;
+$warnings: (
+  "warning-050": $warning-050,
+  "warning-075": $warning-075,
+  "warning-100": $warning-100,
+  "warning-200": $warning-200,
+  "warning-300": $warning-300,
+  "warning-400": $warning-400,
+  "warning-500": $warning-500,
+  "warning-600": $warning-600,
+  "warning-700": $warning-700,
+  "warning-800": $warning-800,
+  "warning-900": $warning-900
+) !default;
+
+$yellow-050: #faf7d6 !default;
+$yellow-075: #f9f5af !default;
+// $yellow-100: #f3e584 !default;
+// $yellow-200: #ecd557 !default;
+$yellow-100: #f8ea6d !default;
+$yellow-200: #f8d904 !default;
+$yellow-300: #e5c620 !default;
+$yellow-400: #cba500 !default;
+$yellow-500: #b59000 !default;
+$yellow-500: #b59000 !default;
+$yellow-600: #856600 !default;
+$yellow-700: #705300 !default;
+$yellow-800: #5b4300 !default;
+$yellow-900: #483300 !default;
+
+$yellows: (
+  "yellow-050": $yellow-050,
+  "yellow-075": $yellow-075,
+  "yellow-100": $yellow-100,
+  "yellow-200": $yellow-200,
+  "yellow-300": $yellow-300,
+  "yellow-400": $yellow-400,
+  "yellow-500": $yellow-500,
+  "yellow-600": $yellow-600,
+  "yellow-700": $yellow-700,
+  "yellow-800": $yellow-800,
+  "yellow-900": $yellow-900
+) !default;
+
+
+$chartreuse-050: #f5ffd5 !default;
+$chartreuse-075: #e6fd9b !default;
+$chartreuse-100: #d9fb6b !default;
+$chartreuse-200: #c1e940 !default;
+$chartreuse-300: #a8d615 !default;
+$chartreuse-400: #8bb800 !default;
+$chartreuse-500: #7aa100 !default;
+$chartreuse-600: shade-color($chartreuse, 20%) !default;
+$chartreuse-700: shade-color($chartreuse, 40%) !default;
+$chartreuse-800: shade-color($chartreuse, 50%) !default;
+$chartreuse-900: shade-color($chartreuse, 65%) !default;
+$chartreuses: (
+  "chartreuse-050": $chartreuse-050,
+  "chartreuse-075": $chartreuse-075,
+  "chartreuse-100": $chartreuse-100,
+  "chartreuse-200": $chartreuse-200,
+  "chartreuse-300": $chartreuse-300,
+  "chartreuse-400": $chartreuse-400,
+  "chartreuse-500": $chartreuse-500,
+  "chartreuse-600": $chartreuse-600,
+  "chartreuse-700": $chartreuse-700,
+  "chartreuse-800": $chartreuse-800,
+  "chartreuse-900": $chartreuse-900
+) !default;
+
+
+$celery-050: #eeffdf !default;
+$celery-075: #daf8c0 !default;
+$celery-100: #beee9e !default;
+$celery-200: #a2e57d !default;
+$celery-300: #80d557 !default;
+$celery-400: #53c22e !default;
+$celery-500: #28a709 !default;
+$celery-600: #1a8400 !default;
+$celery-700: #156c00 !default;
+$celery-800: #125a00 !default;
+$celery-900: #0a3100 !default;
+$celerys: (
+  "celery-050": $celery-050,
+  "celery-075": $celery-075,
+  "celery-100": $celery-100,
+  "celery-200": $celery-200,
+  "celery-300": $celery-300,
+  "celery-400": $celery-400,
+  "celery-500": $celery-500,
+  "celery-600": $celery-600,
+  "celery-700": $celery-700,
+  "celery-800": $celery-800,
+  "celery-900": $celery-900
+) !default;
+
+$success-050: $celery-050 !default;
+$success-075: $celery-075 !default;
+$success-100: $celery-100 !default;
+$success-200: $celery-200 !default;
+$success-300: $celery-300 !default;
+$success-400: $celery-400 !default;
+$success-500: $celery-500 !default;
+$success-600: $celery-600 !default;
+$success-700: $celery-700 !default;
+$success-800: $celery-800 !default;
+$success-900: $celery-900 !default;
+$successs: (
+  "success-050": $success-050,
+  "success-075": $success-075,
+  "success-100": $success-100,
+  "success-200": $success-200,
+  "success-300": $success-300,
+  "success-400": $success-400,
+  "success-500": $success-500,
+  "success-600": $success-600,
+  "success-700": $success-700,
+  "success-800": $success-800,
+  "success-900": $success-900
+) !default;
+
+
+$green-050: tint-color($green, 90%) !default;
+$green-075: tint-color($green, 80%) !default;
+$green-100: tint-color($green, 65%) !default;
+$green-200: tint-color($green, 55%) !default;
+$green-300: tint-color($green, 40%) !default;
+$green-400: #1cbf7d !default;
+$green-500: #15a46e !default;
+$green-600: shade-color($green, 20%) !default;
+$green-700: shade-color($green, 40%) !default;
+$green-800: shade-color($green, 50%) !default;
+$green-900: shade-color($green, 65%) !default;
+$greens: (
+  "green-050": $green-050,
+  "green-075": $green-075,
+  "green-100": $green-100,
+  "green-200": $green-200,
+  "green-300": $green-300,
+  "green-400": $green-400,
+  "green-500": $green-500,
+  "green-600": $green-600,
+  "green-700": $green-700,
+  "green-800": $green-800,
+  "green-900": $green-900
+) !default;
+
+$seafoam-050: tint-color($seafoam, 90%) !default;
+$seafoam-075: tint-color($seafoam, 80%) !default;
+$seafoam-100: tint-color($seafoam, 65%) !default;
+$seafoam-200: tint-color($seafoam, 55%) !default;
+$seafoam-300: tint-color($seafoam, 40%) !default;
+$seafoam-400: #0ebcad !default;
+$seafoam-500: #07a598 !default;
+$seafoam-600: shade-color($seafoam, 20%) !default;
+$seafoam-700: shade-color($seafoam, 40%) !default;
+$seafoam-800: shade-color($seafoam, 50%) !default;
+$seafoam-900: shade-color($seafoam, 65%) !default;
+$seafoams: (
+  "seafoam-050": $seafoam-050,
+  "seafoam-075": $seafoam-075,
+  "seafoam-100": $seafoam-100,
+  "seafoam-200": $seafoam-200,
+  "seafoam-300": $seafoam-300,
+  "seafoam-400": $seafoam-400,
+  "seafoam-500": $seafoam-500,
+  "seafoam-600": $seafoam-600,
+  "seafoam-700": $seafoam-700,
+  "seafoam-800": $seafoam-800,
+  "seafoam-900": $seafoam-900
+) !default;
+
+$cyan-050: tint-color($cyan, 90%) !default;
+$cyan-075: tint-color($cyan, 80%) !default;
+$cyan-100: tint-color($cyan, 65%) !default;
+$cyan-200: tint-color($cyan, 55%) !default;
+$cyan-300: tint-color($cyan, 40%) !default;
+$cyan-400: #0cb5e5 !default;
+$cyan-500: #029fcb !default;
+$cyan-600: shade-color($cyan, 20%) !default;
+$cyan-700: shade-color($cyan, 40%) !default;
+$cyan-800: shade-color($cyan, 50%) !default;
+$cyan-900: shade-color($cyan, 65%) !default;
+$cyans: (
+  "cyan-050": $cyan-050,
+  "cyan-075": $cyan-075,
+  "cyan-100": $cyan-100,
+  "cyan-200": $cyan-200,
+  "cyan-300": $cyan-300,
+  "cyan-400": $cyan-400,
+  "cyan-500": $cyan-500,
+  "cyan-600": $cyan-600,
+  "cyan-700": $cyan-700,
+  "cyan-800": $cyan-800,
+  "cyan-900": $cyan-900
+) !default;
+
+$teal-050: tint-color($teal, 90%) !default;
+$teal-075: tint-color($teal, 80%) !default;
+$teal-100: tint-color($teal, 65%) !default;
+$teal-200: tint-color($teal, 55%) !default;
+$teal-300: tint-color($teal, 40%) !default;
+$teal-400: #0ebcad !default;
+$teal-500: #07a598 !default;
+$teal-600: shade-color($teal, 20%) !default;
+$teal-700: shade-color($teal, 40%) !default;
+$teal-800: shade-color($teal, 50%) !default;
+$teal-900: shade-color($teal, 65%) !default;
+$teals: (
+  "teal-050": $teal-050,
+  "teal-075": $teal-075,
+  "teal-100": $teal-100,
+  "teal-200": $teal-200,
+  "teal-300": $teal-300,
+  "teal-400": $teal-400,
+  "teal-500": $teal-500,
+  "teal-600": $teal-600,
+  "teal-700": $teal-700,
+  "teal-800": $teal-800,
+  "teal-900": $teal-900
+) !default;
+
+$pink-050: tint-color($pink, 90%) !default;
+$pink-075: tint-color($pink, 80%) !default;
+$pink-100: tint-color($pink, 65%) !default;
+$pink-200: tint-color($pink, 55%) !default;
+$pink-300: tint-color($pink, 40%) !default;
+$pink-400: tint-color($pink, 20%) !default;
+$pink-500: $pink !default;
+$pink-600: shade-color($pink, 20%) !default;
+$pink-700: shade-color($pink, 40%) !default;
+$pink-800: shade-color($pink, 50%) !default;
+$pink-900: shade-color($pink, 65%) !default;
+$pinks: (
+  "pink-050": $pink-050,
+  "pink-075": $pink-075,
+  "pink-100": $pink-100,
+  "pink-200": $pink-200,
+  "pink-300": $pink-300,
+  "pink-400": $pink-400,
+  "pink-500": $pink-500,
+  "pink-600": $pink-600,
+  "pink-700": $pink-700,
+  "pink-800": $pink-800,
+  "pink-900": $pink-900
+) !default;
+
+$brown-050: tint-color($brown, 90%) !default;
+$brown-075: tint-color($brown, 80%) !default;
+$brown-100: tint-color($brown, 65%) !default;
+$brown-200: tint-color($brown, 55%) !default;
+$brown-300: tint-color($brown, 40%) !default;
+$brown-400: tint-color($brown, 20%) !default;
+$brown-500: $brown !default;
+$brown-600: shade-color($brown, 20%) !default;
+$brown-700: shade-color($brown, 40%) !default;
+$brown-800: shade-color($brown, 50%) !default;
+$brown-900: shade-color($brown, 65%) !default;
+$browns: (
+  "brown-050": $brown-050,
+  "brown-075": $brown-075,
+  "brown-100": $brown-100,
+  "brown-200": $brown-200,
+  "brown-300": $brown-300,
+  "brown-400": $brown-400,
+  "brown-500": $brown-500,
+  "brown-600": $brown-600,
+  "brown-700": $brown-700,
+  "brown-800": $brown-800,
+  "brown-900": $brown-900
+) !default;
+
+$coral-050: tint-color($coral, 90%) !default;
+$coral-075: tint-color($coral, 85%) !default;
+$coral-100: tint-color($coral, 80%) !default;
+$coral-200: tint-color($coral, 60%) !default;
+$coral-300: tint-color($coral, 40%) !default;
+$coral-400: tint-color($coral, 20%) !default;
+$coral-500: $coral !default;
+$coral-600: shade-color($coral, 20%) !default;
+$coral-700: shade-color($coral, 40%) !default;
+$coral-800: shade-color($coral, 50%) !default;
+$coral-900: shade-color($coral, 65%) !default;
+$corals: (
+  "coral-050": $coral-050,
+  "coral-075": $coral-075,
+  "coral-100": $coral-100,
+  "coral-200": $coral-200,
+  "coral-300": $coral-300,
+  "coral-400": $coral-400,
+  "coral-500": $coral-500,
+  "coral-600": $coral-600,
+  "coral-700": $coral-700,
+  "coral-800": $coral-800,
+  "coral-900": $coral-900
+) !default;
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "primary":    $primary,
+  "primary-light": $primary-light,
+  "primary-dark": $primary-dark,
+  "secondary":  $secondary,
+  "secondary-light":$secondary-light,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light, //$gray-200
+  "light-gray": $light-gray, //$gray-400
+  "gray":       $gray, //$gray-600
+  "gray-dark":  $gray-dark, //$gray-800
+  "dark":       $dark, //$gray-900
+
+  "gray-050": $gray-050,
+  "gray-075": $gray-075,
+  "gray-100": $gray-100,
+  "gray-200": $gray-200,
+  "gray-300": $gray-300,
+  "gray-400": $gray-400,
+  "gray-500": $gray-500,
+  "gray-600": $gray-600,
+  "gray-700": $gray-700,
+  "gray-800": $gray-800,
+  "gray-900": $gray-900,
+
+  "blue": $blue,
+  "indigo": $indigo,
+  "purple": $purple,
+  "fushsia": $fushsia,
+  "magenta": $magenta,
+  "red": $red,
+  "orange": $orange,
+  "yellow": $yellow,
+  "chartreuse": $chartreuse,
+  "celery": $celery,
+  "green": $green,
+  "seafoam": $seafoam,
+  "cyan": $cyan,
+
+  "teal": $teal,
+  "pink": $pink,
+  "coral": $coral,
+  "brown": $brown,
+) !default;
+// scss-docs-end theme-colors-map
+
+// scss-docs-start theme-colors-map
+$theme-colors-075: (
+  "primary":    $blue-075,
+  "success":    $celery-075,
+  "info":       $cyan-075,
+  "warning":    $orange-075,
+  "danger":     $red-075,
+) !default;
+$theme-colors-700: (
+  "primary":    $blue-700,
+  "success":    $celery-700,
+  "info":       $cyan-700,
+  "warning":    $orange-700,
+  "danger":     $red-700,
+) !default;
+// scss-docs-end theme-colors-map
+
+// // scss-docs-start table-loop
+// $table-variants: (
+//   "primary":    $primary-050,
+//   // "secondary":  shift-color($secondary, -80%),
+//   "success":    $celery-050,
+//   "info":       $cyan-050,
+//   "warning":    $orange-050,
+//   "danger":     $red-050,
+
+//   "blue":       $blue-050,
+//   "indigo":     $indigo-050,
+//   "purple":     $purple-050,
+//   "pink":       $pink-050,
+//   "red":        $red-050,
+//   "orange":     $orange-050,
+//   "yellow":     $yellow-050,
+//   "green":      $green-050,
+//   "teal":       $teal-050,
+//   "cyan":       $cyan-050,
+//   "light":      $light,
+//   "dark":       $dark,
+//   "gray":       $gray-400,
+// ) !default;
+// // scss-docs-end table-loop

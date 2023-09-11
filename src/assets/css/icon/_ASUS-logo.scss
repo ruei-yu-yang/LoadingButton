@@ -1,0 +1,44 @@
+/*!
+ * ASUS LOGO
+ */
+$asus-font-path:"../fonts/logo-asus"; 
+@font-face {
+	font-family: 'ASUS-logo';
+	src:url('#{$asus-font-path}/ASUS-logo.eot?d5bfm9');
+	src:url('#{$asus-font-path}/ASUS-logo.eot?d5bfm9#iefix') format('embedded-opentype'),
+		url('#{$asus-font-path}/ASUS-logo.ttf?d5bfm9') format('truetype'),
+		url('#{$asus-font-path}/ASUS-logo.woff?d5bfm9') format('woff'),
+		url('#{$asus-font-path}/ASUS-logo.svg?d5bfm9#ASUS-logo') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+[class^="ASUS-logo"],[class*="ASUS-logo"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'ASUS-logo';
+	// speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.ASUS-logo:before {
+	content: "\e900";
+}
+.ASUS-logo-h:before {
+	content: "\e901";
+}
+.ASUS-logo-s:before {
+	content: "\e902";
+}
+.ASUS-logo-v:before {
+	content: "\e903";
+}
+

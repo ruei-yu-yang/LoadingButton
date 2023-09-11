@@ -1,0 +1,61 @@
+@import "../bootstrap-5.2.0-beta/functions";
+
+// Color system
+$primary:#1e76d5; 
+$primary-light: mix(white,$primary,20);
+$primary-dark: mix(black,$primary,20);
+$secondary: #314366; 
+$secondary-light:mix(white,$secondary,6);
+$secondary-dark:mix(black,$secondary,15);
+
+// scss-docs-start gray-color-variables
+$white: #fff !default;
+$gray-050: #f5f6f8 !default;
+$gray-075: #eef2f5 !default;
+$gray-100: #eef2f5 !default;
+$gray-200: #e6e9ef !default;
+$gray-300: #cdd2db !default;
+$gray-400: #abb3ba !default;
+$gray-500: #8a9199 !default;
+$gray-600: #687075 !default;
+$gray-700: #464d53 !default;
+$gray-800: #323a48 !default;
+$gray-900: #292e35 !default;
+$black: #000 !default;
+// scss-docs-end gray-color-variables
+
+
+// scss-docs-start color-variables
+$blue:       #1e76d5 !default;
+$indigo:     #6610f2 !default;
+$purple:     #6f42c1 !default;
+$pink:       #d63384 !default;
+$red:        #dc3545 !default;
+$orange:     #fd7e14 !default;
+$yellow:     #ffc107 !default;
+$green:      #198754 !default;
+$teal:       #20c997 !default;
+$cyan:       #0dcaf0 !default;
+$brown:      #6e5938 !default;
+$coral:      #df737a !default;
+
+$celery:     #198754 !default; 
+$fushsia:    #e650e8 !default; // New - CMS
+$magenta:    #f25194 !default; // New - CMS
+$chartreuse: #7aa100 !default; // New - CMS
+$seafoam:    #07a598 !default; // New - CMS teal
+// scss-docs-end color-variables
+
+// scss-docs-start theme-color-variables
+$primary:       $blue !default;
+$secondary:     $gray !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $orange !default;
+$danger:        $red !default;
+$light:         $gray-200 !default;
+$light-gray:    $gray-400 !default;
+$gray:          $gray-600 !default;
+$gray-dark:     $gray-800 !default;
+$dark:          $gray-900 !default;
+// scss-docs-end theme-color-variables

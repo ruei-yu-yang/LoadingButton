@@ -1,0 +1,142 @@
+$System-list-gap : 0 !default;
+$grid-aside: 18rem !default;
+
+.system-container {
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    &[container-type="main"] {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "header""main""footer";
+        gap: $System-list-gap;
+    }
+    &[container-type="aside-start"] {
+        grid-template-columns: $grid-aside 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "header header""aside main""footer footer";
+        gap: $System-list-gap;
+        &[aside-custom="true"] {
+            grid-template-columns: var(--aside-width) 1fr;
+        }
+    }
+    &[container-type="aside-end"] {
+        grid-template-columns: 1fr $grid-aside;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "header header""main aside""footer footer";
+        gap: $System-list-gap;
+        &[aside-custom="true"] {
+            grid-template-columns: 1fr var(--aside-width);
+        }
+    }
+    &[container-type="aside-start-collapse"] {
+        grid-template-columns: $grid-aside 12px 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "header header header""aside aside-collapse main""footer footer footer";
+        gap: $System-list-gap;
+        &.collapsed {
+            grid-template-columns: 12px 1fr auto;
+            grid-template-areas: "header header""aside-collapse main""footer footer footer";
+            .system-block[block-type="aside"] {
+                display: none;
+            }
+        }
+        &[aside-custom="true"] {
+            grid-template-columns: var(--aside-width) 12px 1fr;
+            &.collapsed {
+                grid-template-columns: 12px 1fr;
+            }
+        }
+    }
+    &[container-type="aside-end-collapse"] {
+        grid-template-columns: 1fr 12px 18rem;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: "header  header header""main aside-collapse aside""footer footer footer";
+        gap: $System-list-gap;
+        &.collapsed {
+            grid-template-columns: 1fr 12px;
+            grid-template-areas: "header header""main aside-collapse""footer footer footer";
+            .system-block[block-type="aside"] {
+                display: none;
+            }
+        }
+        &[aside-custom="true"] {
+            grid-template-columns: 1fr 12px var(--aside-width);
+            &.collapsed {
+                grid-template-columns: 1fr 12px;
+            }
+        }
+        .system-block[block-type="aside-collapse"] {
+            .aside-toggle-control {
+                &::before {
+                    content: "\F0142";
+                    @include IconMdi();
+                }
+                &.collapsed {
+                    &:before {
+                        content: "\F0141";
+                    }
+                }
+            }
+        }
+    }
+    
+    .system-block {
+        &[block-type="header"] {
+            grid-area: header;
+            z-index: 1025;
+        }
+        &[block-type="footer"] {
+            grid-area: footer;
+            z-index: 1025;
+        }
+        &[block-type="main"] {
+            grid-area: main;
+            overflow: auto;
+        }
+        &[block-type="aside"] {
+            grid-area: aside;
+        }
+        &[block-type="aside-collapse"] {
+            position: relative;
+            grid-area: aside-collapse;
+        }
+        &[block-type="footer"] {
+            position: relative;
+            grid-area: footer;
+        }
+    }
+}
+
+//- aside 區塊顯示控制
+.aside-toggle-control {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    color: $gray-800;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+    cursor: pointer;
+    &::before {
+        content: "\F0141";
+        @include IconMdi();
+    }
+    &.collapsed {
+        &:before {
+            content: "\F0142";
+        }
+    }
+    &:hover {
+        background: $gray-800;
+        color: #fff;
+    }
+}

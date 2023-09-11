@@ -1,0 +1,317 @@
+$tree-font-size: 0.95rem !default;
+$tree-font-size-sec: 0.875rem !default;
+// Border
+$tree-border: 1px dotted rgba($gray-500,0.3) !default;
+$tree-border-horizontal: 1px dotted transparent !default;
+$tree-border-title: $tree-border !default;
+// Height
+$tree-item-h: 1.75rem !default;
+$tree-item-h-lg: $tree-item-h * 1.25 !default;
+// toggle-icon
+$tree-toggle-icon-height: 2rem !default;
+// toggle-title-color
+$tree-title-color:var(--text-color-dark) !default;
+
+// Base
+.nav-tree {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-size: $tree-font-size;
+  ul {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: $tree-border-horizontal;
+    a,.tree-item {
+      display: block;
+      width: 100%;
+      line-height: $tree-item-h;
+      font-size: $tree-font-size-sec;
+      font-weight: 600;
+      color: var(--text-color-light);
+      text-decoration: none;
+      @include text-truncate;
+      &:hover {
+        color: var(--text-color-dark);
+        background-color: var(--bg-color-hover);
+      }
+      &.active,
+      &.active:hover {
+        color: var(--text-color-dark);
+        background-color:var(--bg-color-active);
+        
+      }
+      &.noHover:hover {
+        cursor: default;
+        user-select: none;
+        color: var(--text-color-light);
+        background-color: transparent;
+      } 
+    }
+  }
+}
+.nav-tree{
+  // icon & border
+  $itme-left-margin: 1rem !default;
+  $itme-a-left: 2.1rem !default;
+  $before-line-left: 1rem !default;
+  $toggle-icon-left: 0rem !default;
+  li {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 100%;
+      left: $before-line-left;
+      z-index: 1;
+    }
+    &:last-child {
+      &:before {
+        height: $tree-item-h * 0.5;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      width: 0.75rem;
+      left: $before-line-left;
+      top: $tree-item-h * 0.5;
+    }
+    a,.tree-item {
+      position: relative;
+      padding-left: $itme-a-left;
+      padding-right: 1rem;
+      i.toggle-icon {
+        left: $toggle-icon-left;
+      }
+    }
+  }
+  ul{
+    @mixin listLine($n){
+      &:before,
+      &:after {
+        left: $before-line-left + $itme-left-margin * $n;
+      }
+      a,.tree-item {
+        padding-left: $itme-a-left + $itme-left-margin * $n;
+        i.toggle-icon {
+          left: $toggle-icon-left + $itme-left-margin * $n;
+        }
+      }
+    }
+    li{
+      @include listLine(1);
+    }
+    li li{
+      @include listLine(2);
+    }
+    li li li{
+      @include listLine(3);
+    }
+    li li li li{
+      @include listLine(4);
+    }
+    li li li li li{
+      @include listLine(5);
+    }
+    li li li li li li{
+      @include listLine(6);
+    }
+    li li li li li li li{
+      @include listLine(7);
+    }
+    li li li li li li li li{
+      @include listLine(8);
+    }
+    li li li li li li li li li{
+      @include listLine(9);
+    }
+  }
+}
+
+// .tree-bordered
+.tree-bordered .nav-tree {
+  li {
+    &:before {
+      border-left: $tree-border;
+    }
+    &:after {
+      border-top: $tree-border;
+    }
+  }
+  ul li {
+    &:before {
+      border-left: $tree-border;
+    }
+    &:after {
+      border-top: $tree-border;
+    }
+  }
+}
+
+// .tree-toggle
+.tree-toggle .nav-tree{
+  li a, li .tree-item{
+    i.toggle-icon {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      text-align: center;
+      font-style: inherit;
+      color: $primary;
+      cursor: pointer;
+      z-index: 1;
+      transition: all 0.3s linear;
+      &:before {
+        content: "\F035D";
+        @include IconMdi($font-size:1.25rem, $line-height:$tree-toggle-icon-height);
+        position: absolute;
+        margin-top: ($tree-item-h - $tree-toggle-icon-height)*0.5;
+        width: $tree-toggle-icon-height;
+        height: $tree-toggle-icon-height;
+        text-align: center;
+        color: var(--text-color-light);
+        z-index: 2;
+      }
+      &:after{
+        $i-bg-w:1.25rem;
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: calc(50% - #{$i-bg-w} / 2 );
+        left: .35rem;
+        width: $i-bg-w;
+        height: $i-bg-w;
+        border-radius: 3px;
+        transition: all 0.3s linear;
+      }
+      &:hover{
+        transition: all 0.3s linear;
+        &:before {
+          color: var(--text-color-light);
+        }
+        &:after{
+          background-color: var(--bg-color-active);
+          opacity: 0.5;
+          transition: all 0.3s linear;
+        }
+      }
+    }
+    &.tree-toggle-hide {
+      i.toggle-icon {
+        &:before {
+          transform: rotate(-90deg);
+        }
+      }
+      + ul {
+        display: none;
+      }
+    }
+    &.noToggleIcon i.toggle-icon {
+      display: none;
+    }
+    &.active {
+      i.toggle-icon {
+        &:before {
+          color: var(--text-color-dark);
+        }
+      }
+    }
+  }
+}
+
+
+
+// .tree-title
+.tree-title .nav-tree{
+  $tree-title-line-height: $tree-item-h + 1rem !default;
+  > li {
+    &:after {
+      top: $tree-title-line-height * 0.5 !important;
+      border: 0;
+    }
+    &:before {
+      border: 0;
+    }
+    &:last-child {
+      &:before {
+        height: $tree-title-line-height * 0.5 !important;
+      }
+    }
+    &:first-child {
+      border: 0;
+    }
+    > a {
+      font-size: $tree-font-size;
+      color: $tree-title-color;
+      font-weight: 600;
+      line-height: $tree-title-line-height;
+      > i.toggle-icon:before {
+        margin-top: ($tree-title-line-height - $tree-toggle-icon-height)*0.5;
+      }
+      &.noHover:hover{
+        color: $tree-title-color;
+      }
+    }
+  }
+}
+
+// .tree-lg
+.tree-lg .nav-tree{
+  li {
+    a, .tree-item {
+      line-height: $tree-item-h-lg;
+      i.toggle-icon {
+        height: $tree-item-h-lg;
+        &:before {
+          margin-top: ($tree-item-h-lg - $tree-toggle-icon-height)*0.5;
+        }
+      }
+    }
+    &:last-child {
+      &:before {
+        height: $tree-item-h-lg * 0.5;
+      }
+    }
+    &:after {
+      top: $tree-item-h-lg * 0.5;
+    }
+  }
+}
+
+// .tree-checkbox
+.tree-checkbox .nav-tree{
+   li a, li .tree-item {
+    .form-check {
+      display: flex;
+      align-items: center;
+      .form-check-input{
+        float: inherit;
+        margin-right: 0.25rem;
+      }
+      .form-check-label {
+        flex:1 1 ;
+        width: 100%;
+      }
+    }
+    
+  }
+}
+
+
+// .tree-icon
+.tree-icon .nav-tree{
+  > li > a > i.mdi{
+    margin-left: -0.25rem;
+    margin-right: 0.25rem;
+    width: 0.5rem;
+  }
+}

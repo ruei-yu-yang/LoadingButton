@@ -1,0 +1,299 @@
+$form-floating-custom-height:$input-height-lg !default;
+
+.form-floating-custom {
+    @extend .form-floating;
+    position: relative;
+    >.form-control,
+    >.form-select {
+        height: $form-floating-custom-height;
+        min-height: $form-floating-custom-height;
+        padding: $form-floating-padding-y $form-floating-padding-x !important;
+        line-height: 1.5;
+        border-color: transparent;
+        font-size: $input-font-size-lg;
+        &::placeholder {
+            color: transparent !important;
+        }
+        @mixin validation-States($color) {
+            border-color: shift-color($color, $alert-bg-scale);
+            ~label,
+            ~.form-right .icon-btn {
+                color: shift-color($color, $alert-color-scale);
+            }
+            ~fieldset {
+                border-color: shift-color($color, $alert-border-scale);
+            }
+        }
+        &.validation-warning:invalid,
+        &.validation-warning-invalid {
+            @include validation-States($warning)
+        }
+        &.validation-danger:invalid,
+        &.validation-danger-invalid {
+            @include validation-States($danger)
+        }
+        &.validation-primary:invalid,
+        &.validation-primary-invalid {
+            @include validation-States($primary)
+        }
+        &.validation-success:valid,
+        &.validation-success-valid {
+            @include validation-States($success)
+        }
+    }
+    >label {
+        color: $input-placeholder-color;
+        font-weight: 600;
+    }
+    .form-right {
+        display: inline-flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0;
+        width: auto;
+        height: $form-floating-custom-height;
+        line-height: $form-floating-custom-height;
+        align-items: center;
+        .icon-btn {
+            padding: 0;
+            width: calc(#{$form-floating-custom-height} - 4px);
+            text-align: center;
+            border: none;
+            &.btn {
+                line-height: initial;
+                padding: 0;
+                margin-right: 0.5rem;
+            }
+        }
+        button.icon-btn {
+            background-color: transparent;
+        }
+        i {
+            font-size: 1.25rem;
+        }
+    }
+    fieldset {
+        position: absolute;
+        top: 0;
+        @extend .form-control;
+        // height: $form-floating-custom-height;
+        height: 100% !important;
+        line-height: 0;
+        border-color: $input-border-color;
+        pointer-events: none;
+        text-align: left;
+        &:read-only {
+            background-color: transparent;
+        }
+    }
+    legend {
+        width: auto;
+        padding: 0;
+        margin: 0;
+        margin-left: -0.25rem;
+        font-size: 100%;
+        transform: scale(0.84);
+        visibility: hidden;
+    }
+    // focus
+    >.form-control:focus {
+        ~fieldset {
+            border-color: $input-focus-border-color;
+            legend {
+                float: none;
+            }
+        }
+    }
+    >.form-control:focus,
+    >.form-control:not(:placeholder-shown),
+    >.form-select {
+        ~fieldset {
+            legend {
+                float: none;
+            }
+        }
+        ~label {
+            color: $gray-800;
+        }
+    }
+    >.validation-danger-invalid {
+        ~label {
+            color: shift-color($danger, $alert-color-scale) !important;
+        }
+    }
+    >.validation-primary-invalid {
+        ~label {
+            color: shift-color($primary, $alert-color-scale) !important;
+        }
+    }
+    >.form-control:-webkit-autofill {
+        ~fieldset {
+            legend {
+                float: none;
+            }
+        }
+    }
+    //textarea
+    textarea {
+        resize: none;
+    }
+}
+
+// .form-floating-div
+.form-floating-div {
+    @extend .form-control;
+    position: relative;
+    min-height: $form-floating-custom-height;
+    padding:0 0.4rem;
+    &:not(.form-control-lg):not(.select-badge.form-control-lg):not(.form-control-sm){
+        min-height: $form-floating-custom-height;
+    }
+    &.border-top {
+        border-bottom-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
+        border-radius: 0;
+    }
+    &.border-0 {
+        border-bottom: transparent;
+        border-radius: 0;
+    }
+    .form-floating-label {
+        position: absolute;
+        top: -0.5rem;
+        left: 0.25rem;
+        padding: 0 0.25rem;
+        font-weight: 600;
+        background-color: #fff;
+        +.form-check.mt-1 {
+            margin-top: 0.35rem !important;
+        }
+    }
+    input.input-underline {
+        @extend .form-control-sm;
+        padding: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+    &.disabled {
+        background-color: $input-disabled-bg;
+        border-color: $input-disabled-border-color;
+    }
+    //checkbox label Hover
+    .form-check-input {
+        &[disabled],
+        &:disabled {
+            ~.form-check-label {
+                opacity: 1;
+                color: $td-font-color;
+            }
+        }
+    }
+}
+
+.form-floating-label {
+    line-height: 120%;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $gray-800;
+    transform-origin: top left;
+    transform: scale(0.84);
+}
+
+//checkbox block & Hover
+.form-check-label-block {
+    .form-check-label {
+        display: block;
+    }
+}
+
+// input:-internal-autofill-selected {
+//     background-color: transparent;
+// }
+// .form-floating-div + checkbox
+// Checkbox+Input
+.form-floating-div.form-floating-checkboxHasInput {
+    min-height: $form-floating-custom-height;
+    padding-top: 0;
+    padding-bottom: 0;
+    label.form-floating-label {
+        visibility: hidden;
+    }
+    .form-check {
+        @extend .form-check-label-block;
+        // margin-top: 0.3rem;
+        width: 100%;
+    }
+    input.input-underline {
+        visibility: hidden;
+        width: 0;
+        transition: $transition;
+    }
+    &.checked {
+        transition: $transition;
+        label.form-floating-label {
+            visibility: visible;
+        }
+        .form-check {
+            width: auto;
+            .form-check-label {
+                display: none;
+            }
+        }
+        input.input-underline {
+            visibility: visible;
+            width: 100%;
+            border-bottom-color: $primary;
+            transition: $transition;
+        }
+    }
+}
+
+//- Add Bootstrap Select
+.form-floating-custom {
+    .bootstrap-select.form-control,
+    .bootstrap-select.form-select {
+        padding: 0 !important;
+        button.btn.dropdown-toggle {
+            padding-left: $form-floating-padding-x;
+            min-height: $form-floating-custom-height;
+            line-height: 1.5;
+            border-color: transparent;
+            .filter-option-inner-inner {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+        .dropdown-toggle.btn:not(.form-control-lg):not(.select-badge.form-control-lg):not(.form-control-sm){
+            min-height: $form-floating-custom-height;
+        }
+    }
+}
+
+
+//Group
+.input-group .form-floating-custom {
+    flex: 1 1;
+}
+
+// requried
+.form-floating-custom [required],
+.form-floating-custom.required,
+.form-floating-div.validation-warning-invalid {
+    ~label,
+    .bootstrap-select~label {
+        z-index: 1;
+        &:after {
+            content: " * ";
+            display: inline-block;
+            color: $danger;
+            margin-left: 0.2rem;
+            font-weight: 600;
+            // transform-origin: top left;
+            transform-origin: 0 0.428rem;
+            transform: scale(1.4);
+        }
+    }
+}

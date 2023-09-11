@@ -1,0 +1,59 @@
+@use "sass:math";
+//--Default
+$ScrollBar-size: 10px !default;
+// $ScrollBar-radius: $ScrollBar-size / 2 !default;
+$ScrollBar-radius: math.div($ScrollBar-size, 2)!default;
+$ScrollBar-color: $gray-500 !default;
+$ScrollBar-bgColor: transparent !default;
+::-webkit-scrollbar-thumb {
+  background: $ScrollBar-color;
+  border-radius: $ScrollBar-radius;
+}
+::-webkit-scrollbar-track {
+  background: $ScrollBar-bgColor;
+}
+::-webkit-scrollbar {
+  width: $ScrollBar-size;
+  height: $ScrollBar-size;
+}
+
+@mixin ScrollBar($size,$radius,$Color,$bgColor){
+  ::-webkit-scrollbar-thumb,
+  &::-webkit-scrollbar-thumb {
+    background: $Color;
+    border-radius: $radius;
+  }
+  ::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track {
+    background: $bgColor;
+  }
+  ::-webkit-scrollbar,
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+}
+// .scrollBar-sm
+.scrollBar-sm{
+  @include ScrollBar(6px,3px,$gray-500,transparent);
+}
+
+//-滑入在顯示Scrollbar
+.scrollbar-hover {
+  transition: $transition;
+  &:hover {
+    transition: $transition;
+    &::-webkit-scrollbar-thumb {
+      background: $ScrollBar-color;
+    }
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    // background: rgba(0, 0, 0, 0);
+  }
+  ::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+

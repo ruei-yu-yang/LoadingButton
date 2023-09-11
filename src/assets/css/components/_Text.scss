@@ -1,0 +1,100 @@
+.tinny {
+  font-size: 0.725rem;
+}
+// Hover Color
+.text-hover-danger:hover{
+  color:$danger;
+}
+@each $color, $value in $theme-colors {
+  .text-hover-#{$color}:hover{
+    color: $value !important;
+  }
+}
+
+$Text-title-color:$gray-900;
+//-Title
+.title-h1{
+  font-size: 2.25rem !important;
+  line-height: 1.25;
+  font-weight: 800;
+  color: $Text-title-color;
+}
+.title-h2{
+  font-size: 1.875rem !important;
+  line-height: 1.27;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h3{
+  font-size: 1.5rem !important;
+  line-height: 1.25;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h4{
+  font-size: 1.25rem !important;
+  line-height: 1.25;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h5{
+  font-size: 1.125rem !important;
+  line-height: 1.28;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h6{
+  font-size: 1rem !important;
+  line-height: 1.25;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h7{
+  font-size: 0.875rem !important;
+  line-height: 1.29;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.title-h8{
+  font-size: 0.75rem !important;
+  line-height: 1.25;
+  font-weight:600;
+  color: $Text-title-color;
+}
+
+//- Body
+.body-h1{
+  font-size: 1.25rem !important;
+  line-height: 1.5;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.body-h2{
+  font-size: 1.125rem !important;
+  line-height: 1.5;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.body-h3{
+  font-size: 1rem !important;
+  line-height: 1.5;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.body-h4{
+  font-size: 0.875rem !important;
+  line-height: 1.5;
+  font-weight:600;
+  color: $Text-title-color;
+}
+.body-h5{
+  font-size: 0.75rem !important;
+  line-height: 1.5;
+  font-weight:600;
+  color: $Text-title-color;
+}
+// .body-h6{
+//   font-size: 0.75rem;
+//   line-height: 1.75;
+//   font-weight: 600;
+// }

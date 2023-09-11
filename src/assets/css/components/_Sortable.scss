@@ -1,0 +1,51 @@
+$sortable-border-color:$primary !default;
+$sortable-border-radius:$border-radius !default;
+$sortable-bg-color-place:shift-color($primary, $alert-bg-scale) !default; //$primary-050
+$sortable-min-h:3rem !default;
+$sortable-min-h:var(--sortable-h) !default;
+*{--sortable-h:3rem;}
+
+.sortable-placeholder{
+  outline: 1px dashed $sortable-border-color;
+  outline-offset: -1px;
+  border:none !important;
+  width: 100%;
+  min-height: $sortable-min-h;
+  background-color: $sortable-bg-color-place !important;
+  &:not(tr){
+    display: flex;
+    align-items: center;
+    border-radius: $sortable-border-radius;
+    &:before{
+      position: relative;
+      content:"Place here";
+      color: $primary;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+
+tr.sortable-placeholder{
+  border-radius: 0;
+  display: table-row;
+  &:hover{
+    background-color: $sortable-bg-color-place;
+  }
+  td{
+    padding:1rem 0 !important;
+    background-color: $sortable-bg-color-place;
+    border:none;
+    text-align: center;
+    color: $primary;
+    &:before{
+      content:"Place here";
+      text-align: center;
+    }
+  }
+}
+
+.sortable-dragging:not(tr){
+  border:1px solid $primary !important;
+}

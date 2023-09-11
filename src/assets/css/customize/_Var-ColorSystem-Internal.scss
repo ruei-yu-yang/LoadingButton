@@ -1,0 +1,61 @@
+@import "../bootstrap-5.2.0-beta/functions";
+
+// Color system
+$primary:#006ce1; 
+$primary-light: #1389fc;
+$primary-dark: #005fd1;
+$secondary: #002169;
+$secondary-light:mix(white,$secondary,6);
+$secondary-dark:mix(black,$secondary,15);
+
+// scss-docs-start gray-color-variables
+$white:    #FFFFFF !default;
+$gray-050: #F5F6F8 !default; // Background
+$gray-075: #EEEFF5 !default;
+$gray-100: #DFE1EF !default; //
+$gray-200: #D1D4E4 !default; //
+$gray-300: #BBBFD4 !default;
+$gray-400: #A2A7BD !default; //
+$gray-500: #7D849B !default; //
+$gray-600: #676C7F !default;
+$gray-700: #525665 !default;
+$gray-800: #393C46 !default;
+$gray-900: #23252C !default; //
+$black:    #000 !default;
+// scss-docs-end gray-color-variables
+
+// scss-docs-start color-variables
+$blue:        #1389fc !default; 
+$indigo:      #7e84fc !default;
+$purple:      #ae72f9 !default;
+$fushsia:     #e650e8 !default; // New - CMS
+$magenta:     #f25194 !default; // New - CMS
+$red:         #ff330b !default; 
+$orange:      #eb6e00 !default; 
+$yellow:      #b59000 !default; 
+$chartreuse:  #7aa100 !default; // New - CMS
+$celery:      #28a709 !default; 
+$green:       #15a46e !default; // New - CMS
+$seafoam:     #07a598 !default; // New - CMS teal
+$cyan:        #029fcb !default;
+
+$teal:        #07a598 !default;  // 等同於 CMS seafoam
+$pink:        #d63384 !default;  // Bootstrap
+$coral:       #e97e7e  !default; // Eiddc#df737a
+$brown:       #664618 !default;  // Eiddc#6e5938
+// scss-docs-end color-variables
+
+
+
+// scss-docs-start theme-color-variables
+$secondary:     $gray !default;
+$success:       #1a8400 !default;
+$info:          #0cb5e5 !default;
+$warning:       #eb6e00 !default;
+$danger:        #db2828 !default;
+$light:         $gray-100 !default;
+$light-gray:    $gray-400 !default;
+$gray:          $gray-600 !default;
+$gray-dark:     $gray-800 !default;
+$dark:          $gray-900 !default;
+// scss-docs-end theme-color-variables

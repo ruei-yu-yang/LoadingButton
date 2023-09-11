@@ -1,0 +1,86 @@
+$breadcrumbs-line-height: 1.5rem !default;
+$breadcrumbs-text-color: $gray-600 !default;
+$breadcrumbs-text-weight: 600 !default;
+$breadcrumbs-text-after-color: $gray-600 !default;
+$breadcrumbs-text-last: $gray-600 !default;
+$breadcrumbs-text-before-first: "\F02DC" !default;
+.breadcrumbs {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0;
+  padding-left: 0;
+  font-size: 0.75rem;
+  vertical-align: middle;
+  color: $breadcrumbs-text-color;
+  overflow: hidden;
+  li {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin-right: 0.25rem;
+    vertical-align: middle;
+    line-height: $breadcrumbs-line-height;
+    color: $breadcrumbs-text-color;
+    font-weight: $breadcrumbs-text-weight;
+    cursor: default;
+    &:after {
+      margin-left: 0.25rem;
+      content: "\F0142";
+      // @include IconMdi(1rem,inline-block,$breadcrumbs-line-height);
+      @include IconMdi($font-size: 1rem, $line-height:$breadcrumbs-line-height);
+      vertical-align: middle;
+      color:$breadcrumbs-text-after-color;
+    }
+    &:first-child {
+      margin-left: 0;
+      &:before {
+        left: 0;
+        top: 0;
+        margin-right: 0.25rem;
+        content: $breadcrumbs-text-before-first;
+        // @include IconMdi(1.25rem, inline-block,$breadcrumbs-line-height);
+        @include IconMdi($font-size: 1.25rem, $line-height:$breadcrumbs-line-height);
+      }
+    }
+    &:last-child {
+      color:$breadcrumbs-text-last;
+      &:after {
+        opacity: 0;
+      }
+    }
+    a {
+      display: inline-block;
+      color: $breadcrumbs-text-color;
+      font-weight: $breadcrumbs-text-weight;
+      text-decoration: none;
+      line-height: $breadcrumbs-line-height;
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+  &[data-home="off"]{
+    padding-left: 0;
+    li:first-child:before {
+      content: none;
+    }
+  }
+  $caption-border-color: $secondary-dark !default;
+  &[data-home="caption-border"]{
+    border-left: 5px solid $caption-border-color;
+    padding-left: 0.75rem;
+    color: $gray-900;
+    li:first-child:before {
+      content: none;
+    }
+    li,
+    li:after,
+    li a{
+      color: $gray-900;
+    }
+    li a:hover{
+      color: $primary;
+    }
+  }
+}

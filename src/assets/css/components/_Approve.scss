@@ -1,0 +1,60 @@
+
+// 全核准/全核退 ==============================================
+[data-group="All"] [data-approve]:not(:hover):not(.active){
+  background-color:#fff;
+  border-style:solid;
+  &:focus{
+    color: $primary;
+  }
+}
+
+// 核准/核退 ==============================================
+[data-approve] {
+  &.btn-outline-danger:not(:hover):not(.active){
+    border-color:$gray-600;
+    color:$gray-600;
+  }
+  &.active {
+    i:before {
+      content:"\F012C"
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    border-style:solid;
+    line-height: 2rem;
+    margin-right:0 !important;
+    margin-left:0 !important;
+  }
+  + [data-reject="reason"] {
+    display: none;
+    min-height:1.75rem;
+    // @extend .min-h-4rem;
+    @extend .mt-1;
+  }
+}
+
+
+
+
+[data-approve="Reject"] {
+  &.active + [data-reject="reason"] {
+    display: block;
+  }
+}
+// @include media-breakpoint-up(lg) {
+//   [data-approve="Reject"] {
+//     margin:0 0.1rem;
+//   }
+//   [data-approve="Approve"] {
+//     margin:0 0.1rem;
+//   }
+// }
+@include media-breakpoint-down(md) {
+  [data-approve="Approve"],
+  [data-approve="Reject"],
+  [data-reject="reason"] {
+    margin:0 0 0.5rem 0 !important;
+    
+  }
+}

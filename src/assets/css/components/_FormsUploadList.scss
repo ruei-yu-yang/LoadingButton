@@ -1,0 +1,259 @@
+label.input-file-custom{
+  display: flex;
+  @extend .input-group;
+  input[type="file"]{
+    &::-webkit-file-upload-button {
+      display: none;
+    }
+    &.form-control-sm{
+      + .btn{
+        @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
+      }
+    }
+    &.form-control-lg{
+      + .btn{
+        @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+      }
+    }
+  }
+}
+//input file btn has icon
+
+label.input-file-btn{
+  position: relative;
+  overflow: hidden;
+  flex:0 0 auto;
+  input[type="file"]{
+    position: absolute !important;
+    left:-1px;
+    top:-1px;
+    width: 1px;
+    height: 1px;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .btn{
+    height: 100%;
+  }
+}
+.table-td-middle .input-file-btn{
+  vertical-align: middle;
+}
+@mixin validation-btn($background, $border, $color) {
+  ~ .btn {
+    color: shade-color($color, 10%);
+    background-color:rgba($border,50%);
+    border-color: $border;
+    &:hover{
+      background-color:$border;
+    }
+  }
+}
+// validation
+label{
+  .validation-warning:invalid,
+  .validation-warning-invalid {
+    @include validation-btn(shift-color($warning, $alert-bg-scale),shift-color($warning, $alert-border-scale), shift-color($warning, $alert-color-scale));  
+  }
+  .validation-primary:invalid,
+  .validation-primary-invalid,
+  .validation-primary-invalid:focus {
+    @include validation-btn(shift-color($primary, $alert-bg-scale),shift-color($primary, $alert-border-scale), shift-color($primary, $alert-color-scale));  
+  }
+  .validation-danger:invalid,
+  .validation-danger-invalid {
+    @include validation-btn(shift-color($danger, $alert-bg-scale),shift-color($danger, $alert-border-scale), shift-color($danger, $alert-color-scale));
+  }
+  .validation-success:valid,
+  .validation-success-valid {
+    @include validation-btn(shift-color($success, $alert-bg-scale),shift-color($success, $alert-border-scale), shift-color($success, $alert-color-scale));
+    ~ .required-feedback{
+      display: none;
+    }
+  }
+  input[type="file"]:disabled ~ .btn {
+    color: $gray-600;
+    background-color: $gray-200;
+    border-color: $gray-300;
+    cursor: default;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+
+
+// list
+// .file-upload-wrap,
+.file-upload-list{
+  display: flex;
+  align-items: center;
+  padding:0.25rem;
+  border:$border;
+  border-radius:$border-radius;
+  box-shadow: $box-shadow-sm;
+  transition:$transition;
+  overflow: hidden;
+  min-height:var(--file-h);
+  &:hover{
+    border-color: $primary;
+    transition:$transition;
+  }
+  &.nohover{
+    cursor: default;
+    &:hover{
+      border: $border;
+      cursor: default;
+    }
+  }
+  .file-main{
+    overflow: hidden;
+    flex:1 1 100%;
+    width: 100%;
+    .file-title{
+      line-height: 130%;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $gray-800;
+      overflow: hidden;
+      white-space:nowrap; //強制不斷行 //.text-nowrap
+      text-overflow: ellipsis; //溢出省略
+      width: 100%;
+    }
+    .file-description{
+      font-size: 0.75rem;
+      color: $gray-500;
+      overflow: hidden;
+      white-space:nowrap; //強制不斷行 //.text-nowrap
+      text-overflow: ellipsis; //溢出省略
+    }
+  }
+  .file-action {
+    display: inline-flex;
+    flex:0 0 auto;
+    text-align: center;
+    a{
+      font-size: 1.25rem;
+      margin:0.25rem 0 0.25rem 0.25rem;
+      &:focus:not(:hover){
+        background-color: inherit;
+      }
+      &:not(:hover){
+        border-color:transparent;
+        color: $gray-800;
+      }
+    }
+  }
+  .file-icon{
+    text-align: center;
+    color: $gray-500;
+    margin:0 0.25rem;
+    padding: 0 0.25rem;
+  }
+  .file-img{
+    display: flex;
+    height: 100%;
+    width:var(--file-w);
+    flex: 0 0 var(--file-w);
+    background-color: $gray-300;
+    object-fit:cover;
+    object-position: 50% 50%;
+    align-items: center;
+    justify-content: center;
+    &.mdi{
+      &:before{
+
+        font-size: 3rem;
+      }
+    }
+
+  }
+}
+
+// table
+.file-upload-table{
+    display: inline-block;
+    border-radius: $border-radius;
+    table{
+      margin-top:-1px;
+      tr:last-child td{
+        border-bottom: 0;
+      }
+      td{
+        vertical-align: middle;
+        border-top:none;
+      }
+    }
+    .talbe-sm{
+      td{
+        padding-top:0;
+        padding-bottom: 0;
+      }
+    }
+}
+
+.file-icon{
+  flex:0 0 1.5rem;
+  color:$gray-800;
+  i{
+    display: inline-block;
+    font-size: 1.2rem;
+    transform: rotate(-45deg);
+  }
+  &a:hover{
+    color:$primary;
+  }
+}
+
+
+
+
+//- 以下舊檔備份 改用 .input-file-btn =========================================================
+.input-file-wrap{
+  position: relative;
+  overflow: hidden;
+  input[type="file"]{
+    position: absolute !important;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+    &::-webkit-file-upload-button {
+      cursor: pointer;
+    }
+  }
+}
+.input-group{
+  .input-file-wrap{
+    input[type="file"]{
+      z-index: 3;
+      height: 100%;
+    }
+    .btn{
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+      i,
+      i:before{
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+  }
+}
+// InputFile only show btn ===============================
+@each $color, $value in $theme-colors {
+  .input-file-#{$color}{
+    border-color:$value;
+    width: 4.3rem;
+    &::-webkit-file-upload-button {
+      @include button-variant($value, $value);
+    }
+     &:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+      background-color: shade-color($value,$btn-hover-bg-shade-amount);
+      border-color:shade-color($value, $btn-hover-border-shade-amount);
+    }  
+  }
+}

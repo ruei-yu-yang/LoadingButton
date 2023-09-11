@@ -1,0 +1,70 @@
+$hamburger-w: 1rem !default;
+$hamburger-h: 1.3rem !default;
+
+$hamburger-i-w: $hamburger-w !default;
+$hamburger-i-h: 2px !default;
+$hamburger-i-h-transform: 3 !default;
+
+$dark-icon-color:$gray-700 !default;
+
+.hamburger-icon {
+  display: inline-block;
+  position: relative;
+  width: $hamburger-w;
+  height: $hamburger-h;
+  vertical-align: top;
+  border-radius: 0;
+  cursor: pointer;
+  flex: 0 0 auto;
+  @mixin hamburger-i ($color:var(--text-color)){
+    display: inline-block;
+    position: absolute;
+    left: ($hamburger-w - $hamburger-i-w) * 0.5;
+    height: $hamburger-i-h;
+    width: $hamburger-w;
+    background-color: $color;
+    transition: all 0.2s linear;
+  }
+
+  i {
+    @include hamburger-i();
+    top: calc(#{$hamburger-h} / 2 - #{$hamburger-i-h} / 2);
+
+    &:before {
+      content: "";
+      @include hamburger-i();
+      top: -$hamburger-i-h * $hamburger-i-h-transform;
+    }
+
+    &:after {
+      content: "";
+      @include hamburger-i();
+      top: $hamburger-i-h * $hamburger-i-h-transform;
+    }
+  }
+
+ 
+  &[toggle-class="off"] {
+    i {
+      background-color: transparent;
+      &:before {
+        top: 0;
+        transform: rotate(45deg);
+        transform-origin: center;
+      }
+
+      &:after {
+        top: 0;
+        transform: rotate(-45deg);
+        transform-origin: center;
+      }
+    }
+  }
+}
+
+header .hamburger-icon {
+  height: $header-h-t;
+  i {
+    top: calc(#{$header-h-t} / 2 - #{$hamburger-i-h} / 2);
+  }
+}

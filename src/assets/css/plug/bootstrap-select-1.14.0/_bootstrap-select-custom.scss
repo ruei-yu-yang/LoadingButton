@@ -1,0 +1,400 @@
+
+$bs-font-size-base: $font-size-sm !default; //0.938
+$badge-height:1.25rem !default;
+@import "variables";
+@import "_bootstrap-select";
+
+.bootstrap-select.bs-container,
+.bootstrap-select .dropdown-menu.show{
+    z-index: 9999;
+}
+.bootstrap-select.form-control,
+.bootstrap-select.form-select,
+.bootstrap-select.bs-container{
+    --text-color: #{$gray-700};
+	--text-color-light: #{$gray-600};
+	--text-color-dark: #{$gray-800};
+	--text-th-color: #{$th-font-color};
+	--bg-color:#fff;
+	--bg-color-hover: #{$gray-200};
+	--bg-color-active: #{$gray-300};
+	--border-color: #{$gray-700};
+    width: 100%;
+    
+    //-disabled 
+    > select{
+        appearance: none; 
+    }
+    //-dropdown-toggle btn
+    .dropdown-toggle.btn{
+        @extend .form-control;
+        display: inline-flex;
+        height: auto;
+        // min-height: $line-height-base * 1rem + $input-btn-padding-y * 2;
+        min-height: inherit;
+        // min-height: $input-height;
+        white-space: inherit;
+
+        background-color: $form-select-bg;
+        background-image: escape-svg($form-select-indicator);
+        background-repeat: no-repeat;
+        background-position: $form-select-bg-position;
+        background-size: $form-select-bg-size;
+        // border-color:transparent;
+        // .bootstrap-select.form-control .dropdown-toggle.btn:not(.form-control-lg):not(.select-badge.form-control-lg):not(.form-control-sm){
+        //     min-height: $input-height-sm;
+        // }
+
+        @at-root .bootstrap-select.form-control.form-control-sm .dropdown-toggle.btn{
+            min-height: $input-height-sm !important;
+        }
+        
+        &:after{
+            border:0 transparent;
+        }
+        //-未選擇的樣式
+        &.bs-placeholder{
+            .filter-option-inner-inner{
+                color: $input-placeholder-color;
+                font-size: $bs-font-size-base !important;
+                font-weight: $input-placeholder-font-weight;
+            }
+        }
+        &:focus{
+            color: $input-focus-color;
+            background-color: $input-focus-bg;
+            border-color: $input-focus-border-color;
+            outline:0 ;
+            outline-offset: 0;
+            @if $enable-shadows {
+                @include box-shadow($input-box-shadow, $input-focus-box-shadow);
+            } 
+            @else {
+                box-shadow: $input-focus-box-shadow;
+            }
+        }
+        &:read-only{
+            background-color: #fff;
+        }
+        .filter-option{
+          .filter-option-inner{
+              .filter-option-inner-inner{
+                padding-right: 1.2rem;
+                overflow: hidden;
+              }
+          }
+        }
+        
+    }
+
+    //-dropdown-menu
+    .dropdown-menu{
+        .bs-actionsbox{
+            .btn-group{
+                .btn{
+                    padding:0.1rem 0.5rem;
+                    font-size: 0.85rem;
+                    border-color:$input-border-color;
+                }
+
+            }
+        }
+
+
+        ul.dropdown-menu.inner{
+            width: 100%;
+            display: flex;
+            flex-wrap:wrap;
+            li {
+                width: 100%;
+                > a{
+                    display:flex;
+                    align-items: center;
+                    .text{
+                        font-weight: 600;
+                        small.text-muted{
+                            font-weight: 400;
+                        }
+                    }
+                    //- 已選
+                    &.selected{
+                        .text{
+                            color:$primary;
+                        }
+                    } 
+
+                    &.active,
+                    &:active{
+                        color: $gray-900;
+                        background-color:$primary-100 !important;
+                        small{
+                            color: $gray-600 !important;
+                        }
+                    }
+                    &.disabled{
+                        opacity: 0.5;
+                        text-decoration: line-through;
+                    }
+                }
+            }
+        }
+    }
+
+    //-多選樣式
+    [aria-multiselectable='true']{
+        ul.dropdown-menu.inner{
+            li {
+                > a{
+                    span.check-mark {
+                        display:inline-block;
+                        width:1.5rem;
+                        flex-grow: 0;
+                        flex-shrink: 0;
+                        &:after{
+                            transform:rotate(0);
+                            width: $form-check-input-width;
+                            height: $form-check-input-width;
+                            background-color: $form-check-input-bg;
+                            border: $form-check-input-border;
+                            @include border-radius($form-check-input-border-radius);
+                        }
+                    }
+
+                    //- 已選
+                    &.selected{
+                        span.check-mark{
+                            position:relative;
+                            color:$primary;
+                            right:auto;
+                            left:auto;
+                            top: auto;
+                            &:after{
+                                // top:auto;
+                                background-color: $form-check-input-checked-bg-color;
+                                border-color: $form-check-input-checked-border-color;
+                                background-image: escape-svg($form-check-input-checked-bg-image), var(--#{$variable-prefix}gradient);
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+    }
+    
+    //-col
+    @for $i from 1 through 6 {
+        &.col-#{$i},
+        &.col-z-#{$i}{
+            width: 100%;
+            ul.dropdown-menu.inner li{
+                width: calc(100% / #{$i});
+            }
+        }
+        &.col-vertical-#{$i},
+        &.col-n-#{$i}{
+            div.inner ul{
+                display:block !important; 
+                column-gap:0; 
+                column-count:#{$i}; 
+                // break-inside: avoid-column;
+                break-inside: avoid;
+            }
+        }
+    }
+    
+    @mixin select-indicator-color($color){
+        background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#{shift-color($color, $alert-color-scale)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>"));
+        background-color: shift-color($color, $alert-bg-scale);
+        border-color:shift-color($color, $alert-border-scale);
+        color:shift-color($color, $alert-color-scale);
+        .filter-option-inner-inner{
+            color:shift-color($color, $alert-color-scale);
+        }
+    }
+
+    //-ellipsis
+    &.bs-ellipsis {
+        .dropdown-toggle.btn .filter-option .filter-option-inner .filter-option-inner-inner {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+    .dropdown-toggle .bs-select-clear-selected {
+        margin-right: 1.5rem;
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    //- 折行樣式
+    &.bs-text-wrap{
+        .dropdown-item{
+            white-space: initial;
+        }
+    }
+
+    //- Sub text block
+    &.bs-sub-text-block{
+        .dropdown-menu ul.dropdown-menu.inner  {
+            li > a{
+                align-items: flex-start;
+                small.text-muted{
+                    display: block;
+                    padding-left: 0;
+                    padding-top: 0.25rem;
+                }
+                // &:hover{
+                //     small.text-muted{
+                //         color: $primary !important;
+                //     }
+                // }
+            }
+            // li.selected > a{
+            //     small.text-muted{
+            //         color: $primary !important;
+            //     }
+            // }
+            
+        }
+    }
+    
+    //-表單驗證樣式
+    &.validation-warning .dropdown-toggle.bs-placeholder,
+    &.validation-warning-invalid .dropdown-toggle.btn{
+        @include select-indicator-color($warning);
+    }
+    &.validation-danger .dropdown-toggle.bs-placeholder,
+    &.validation-danger-invalid .dropdown-toggle.btn{
+        @include select-indicator-color($danger);
+    }
+    &.validation-success .dropdown-toggle,
+    &.validation-success-invalid .dropdown-toggle.btn{
+        @include select-indicator-color($success);
+    }
+    // border & rounded
+    &.rounded-end-0{
+        .dropdown-toggle{
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+        }
+    } 
+    &.rounded-start-0{
+        .dropdown-toggle{
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    } 
+    &.bordr-end-0{
+        .dropdown-toggle{
+            border-right: 0 !important;
+        }
+    } 
+    &.bordr-start-0{
+        .dropdown-toggle{
+            border-left: 0 !important;
+        }
+    }
+    //-badge
+    @each $color, $value in $theme-colors {
+        &.bootstrap-select-badge-#{$color}{
+            .dropdown-toggle.btn{
+                padding-bottom: 0;
+                //-未選擇的樣式
+                &.bs-placeholder{
+                    .filter-option-inner-inner{
+                        padding-bottom:0.2rem;
+                    }
+                }
+            }
+            .filter-option{
+                .filter-option-inner{
+                    .filter-option-inner-inner{
+                        font-size: 0;
+                        line-height: 100%;
+                        span{
+                            display: inline-block;
+                            // padding: $badge-padding-y $badge-padding-x;
+                            padding: 0 $badge-padding-x;
+                            // @include font-size($badge-font-size);
+                            // font-weight: $badge-font-weight;
+                            // line-height: 100%;
+                            // color: $badge-color;
+                            text-align: center;
+                            white-space: nowrap;
+                            vertical-align: baseline;
+                            @include border-radius($badge-border-radius);
+                            // @include gradient-bg();
+
+                            margin-bottom: 0.2rem;
+                            margin-right: 0.2rem;
+                            font-weight: $badge-font-weight;
+                            font-size:$badge-font-size;
+
+                            color: var(--#{$prefix}btn-color);
+                            background-color: var(--#{$prefix}btn-bg);
+                            @include button-variant($value, $value);
+                            line-height: $badge-height;
+                            height: $badge-height;
+
+                        }
+                    }
+                }
+            }
+        }
+    } 
+
+    // Lg & Sm
+    &.form-control-lg .dropdown-toggle.btn,
+    &.form-select-lg .dropdown-toggle.btn,
+    .dropdown-toggle.btn.form-control-lg,
+    .dropdown-toggle.btn.form-select-lg{
+        // height: calc($line-height-lg * 1rem + $input-btn-padding-y-lg * 2 - 2px);
+        min-height: $input-height-lg !important;
+        padding: $input-padding-y-lg $input-padding-x-lg;
+        @include font-size($input-font-size-lg);
+        @include border-radius($input-border-radius-lg);
+        
+        //-未選擇的樣式
+        &.bs-placeholder{
+            .filter-option-inner-inner{
+                font-size: $input-font-size-lg !important;
+            }
+        }   
+    }
+
+    &.form-control-xlg .dropdown-toggle.btn,
+    &.form-select-xlg .dropdown-toggle.btn,
+    .dropdown-toggle.btn.form-control-xlg,
+    .dropdown-toggle.btn.form-select-xlg{
+        // height: calc($line-height-xlg * 1rem + $input-btn-padding-y-lg * 2 - 2px);
+        min-height: $input-height-xlg !important;
+        padding: $input-padding-y-xlg $input-padding-x-xlg;
+        @include font-size($input-font-size-xlg);
+        @include border-radius($input-border-radius-lg);
+        
+        //-未選擇的樣式
+        &.bs-placeholder{
+            .filter-option-inner-inner{
+                font-size: $input-font-size-xlg !important;
+            }
+        }   
+    }
+
+    &.form-control-sm .dropdown-toggle.btn,
+    &.form-select-sm .dropdown-toggle.btn,
+    .dropdown-toggle.btn.form-control-sm,
+    .dropdown-toggle.btn.form-select-sm{
+        // height: calc($line-height-sm * 1rem + $input-btn-padding-y-sm * 2 + 4px);
+        min-height: $input-height-sm;
+        padding: $input-padding-y-sm $input-padding-x-sm;
+        @include font-size($input-font-size-sm);
+        @include border-radius($input-border-radius-sm);
+        
+        margin-top: -2px;
+        background-color: transparent;
+    }
+}
+
+
+
+
+

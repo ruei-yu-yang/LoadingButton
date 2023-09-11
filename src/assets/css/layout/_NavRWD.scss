@@ -1,0 +1,188 @@
+//第一層
+$navRWD-text-size: 1rem !default;
+$navRWD-text-color:  var(--text-color)!default;
+
+$navRWD-bg-color: var(--bg-color) !default;
+$navRWD-bg-color-hover: var(--bg-color-hover) !default;
+$navRWD-bg-color-focus: var(--bg-color-active) !default;
+
+$navRWD-item-border: 1px solid var(--text-color-superlight) !default;
+$navRWD-pad-y: 0.6rem !default;
+
+@mixin menu-a() {
+  display: block;
+  padding: $navRWD-pad-y 1.2rem;
+  line-height: $navRWD-text-size * 1.5;
+  font-size: $navRWD-text-size;
+  font-weight: 600;
+  color: $navRWD-text-color;
+  background-color: $navRWD-bg-color;
+  text-decoration: none;
+  &:hover {
+    color: $navRWD-text-color;
+    background-color: $navRWD-bg-color-focus;
+    text-decoration: none;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  header{ 
+    position: sticky;
+    z-index: 5;
+    > .wrap{
+      position: relative;
+      height: initial;
+    }
+  }
+  nav.NavRWD {
+    position: absolute;
+    // top: 0;
+    width: 100%;
+    white-space: inherit;
+    background-color: transparent;
+    //第一層
+    ul {
+      display: block;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      margin: 0;
+      background-color: transparent;
+      z-index: 2;
+      transition: all 0.1s linear;
+      &.tranLeft {
+        left: -100% !important;
+        transition: all 0.1s linear;
+      }
+      li {
+        position: static;
+        display: block;
+        width: 100%;
+        white-space: inherit;
+        &:last-child {
+          border-bottom: 0;
+        }
+        a {
+          @include menu-a();
+          i {
+            font-size: $navRWD-text-size;
+          }
+          i.i-arrow{
+            float: right;
+            transform: rotate(-90deg);
+          }
+          &.active{
+            color: $navRWD-text-color;
+            background-color: $navRWD-bg-color-focus;
+            text-decoration: none;
+          }
+        }
+      }    
+    }
+    //第二層
+    ul li {
+      ul {
+        position: absolute;
+        top: 0;
+        left: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        background-color: transparent;
+        min-height: auto !important;
+        overflow: inherit !important;
+        z-index: 9;
+        &.tranLeft {
+          left: 0 !important;
+          transition: all 0.5s linear;
+        }
+        &:before{
+          // NavDropdownBlock
+          display: none;
+        }
+        li {
+          position: static;
+          float: none;
+          width: 100% !important;
+          margin: 0;
+          a {
+            position: relative;
+            @include menu-a();
+            i.i-arrow{
+              position: initial;
+            }
+          }
+        }
+      }
+      //顯示下一層
+      &:hover {
+        > ul {
+          display: none;
+          position: absolute;
+        }
+      }
+      .active{
+        & + ul{
+          display: inline-block;
+          position: absolute;
+        }
+      }
+    }
+    //RWD - Back Parent Icon
+    .i-back-rwd {
+      cursor: pointer;
+      display: block !important;
+      line-height: 2rem;
+      padding-left: $grid-gutter-width;
+      font-size: 1.5rem;
+      color: $navRWD-text-color;
+      background-color: $navRWD-bg-color;
+      &:hover {
+        background-color:$navRWD-bg-color;
+      }
+    }
+    [class^="nav-align-b"] {
+      top: 0 !important;
+      bottom: inherit !important;
+    }
+    [class^="nav-align-t"] {
+      top: 0 !important;
+      bottom: inherit !important;
+    }
+  &:after{
+    content:"";
+    // display: none;
+    position: absolute;
+    position: fixed;
+    left: 0;
+    top: $header-h-t;
+    width: 100%;
+    height: calc(100vh - #{$header-h-t});
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  }
+
+  nav.NavRWD[toggle-element="off"]{
+    display: none !important;
+    + .menu-bg-mask {
+      display: none !important;
+    }
+  }
+
+  //RWD 放在Top內
+  nav.NavRWD.NavTop {
+    top: $header-h-t;
+    margin-left: -$grid-gutter-width;
+    width: 100%;
+    min-width: inherit;
+    height: inherit;
+    line-height: inherit;
+    ul li ul {
+      top: 0;
+    }
+  }
+
+
+}

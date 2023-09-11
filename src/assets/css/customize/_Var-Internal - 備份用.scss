@@ -1,0 +1,139 @@
+// Body =======================
+$body-bg-color: $gray-050;
+$bg-mask: rgba(0, 0, 0, 0.6);
+
+// Header =======================
+$header-h-t: 3.6rem;
+$header-h-b: 2.2rem;
+$header-h:   $header-h-t + $header-h-b;
+$footer-h:   0rem;
+$article-h:  calc(100vh - #{$header-h} - #{$footer-h});
+
+// Width =======================
+$min-w: 100%; //頁面整體最小寬1280px; 
+$max-w: 100%; //頁面整體最大寬
+
+// transition ===================
+$transition: all 0.3s linear;
+$transition-bezier: all 0.3s cubic-bezier(.2, .85, .32, 1.2);
+
+// NavLeft ===================
+$NavLeft-Nav-w:16rem;
+
+// Panel ===================
+$panel-padding-x: 1rem; // TableSticky 的白色遮罩 也會使用到
+
+
+// Typography ===================
+$font-family-sans-serif:     Roboto, Tahoma, Arial, TrebuchetMS, -apple-system, "Segoe UI",  "Helvetica Neue", "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+
+// border-radius ===================
+$border-radius-sm:        0.25rem;  // 5px
+$border-radius:           0.5rem;   // 8px
+$border-radius-lg:        0.625rem; // 10px
+
+// Tooltip====================
+$tooltip-border-radius:$border-radius-sm;
+
+// Breadcrumbs====================
+$breadcrumbs-text-color:       $gray-500;
+$breadcrumbs-text-weight:      500;
+$breadcrumbs-text-last:        $gray-300;
+$breadcrumbs-text-after-color: $gray-200;
+
+// Border =========================
+$border-color:                $gray-200;
+
+// Form====================
+$font-size-sm:                          .875rem;
+$td-font-weight:                        500;
+$td-font-color:                         $gray-900;
+// $input-btn-focus-width:                 .15rem;
+// $input-btn-focus-color-opacity:         .35;
+// Input - check
+$form-check-inline-margin-end:          0.875rem !default;
+$form-check-input-border:               1px solid $gray-400;
+$form-check-input-width:                1.25rem;
+$form-check-input-border-radius:        .375rem;
+$form-check-input-disabled-color:       $gray-050; //-add
+$form-check-input-border-disabled-color:$gray-200; //-add
+$form-check-label-disabled-color:       $gray-200; //-add
+$form-check-label-hover-color:          $td-font-color; //-add
+$form-check-input-label-padding:        0.25rem;
+// Input - switch
+$form-switch-input-width:               2.125rem ;//-add
+$form-switch-checked-bg-image:          url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2.5' fill='#fff'/></svg>");
+
+// Button & Input =========================
+$input-btn-padding-y:         .4rem;
+$input-btn-padding-x:         1rem;
+$input-btn-font-size:         0.875rem;
+
+$input-btn-padding-y-sm:      0.2rem;
+$input-btn-padding-x-sm:      0.8rem;
+$input-btn-font-size-sm:      0.75rem;
+
+$input-btn-padding-y-lg:      .3rem;
+$input-btn-padding-x-lg:      1.75rem;
+$input-btn-font-size-lg:      1rem;
+
+$input-btn-padding-y-xlg:      .3rem;
+$input-btn-padding-x-xlg:      1.8rem;
+$input-btn-font-size-xlg:      2rem;
+
+$input-height-sm:              1.75rem;
+$input-height:                 2.375rem;
+$input-height-lg:              3rem;
+$input-height-xlg:             3.625rem;
+
+// Button custom
+$btncustom-padding-x:         1.25rem;
+$btncustom-padding-x-sm:      0.93rem;
+$btncustom-padding-x-lg:      1.56rem;
+$btncustom-padding-x-xlg:     2rem;
+
+
+
+// Dropdowns =========================
+$dropdown-menu-padding-y:          0.625rem; 
+$dropdown-menu-list-padding-x:     1.5rem ;
+$dropdown-menu-text-size:          0.875rem;
+$dropdown-menu-text-line-height:   1.375rem ;
+$dropdown-menu-text-color-default: $gray-900;
+$dropdown-menu-bg-color-active:    $primary-050;
+
+//Table ====================
+$table-custom-bg-color-hover: $primary-050;
+// $table-striped-bg-factor:     .05; //.05
+// $table-striped-bg:            $gray-050;
+// $table-active-bg-factor:      .1;  //.1
+// $table-active-bg:             rgba($gray-900, $table-active-bg-factor);
+// $table-hover-bg-factor:       .075;//.075
+// $table-hover-bg:              $gray-075;
+// $table-border-factor:         .1;  //.1
+
+
+
+
+//Table ========================
+$table-th-bg: $gray-100;
+$nav-link-padding-y:          .15rem;
+$nav-link-padding-x:           1rem;
+
+// Close ========================
+$btn-close-width:            0.75em;
+$btn-close-color:            $gray-600;
+
+// ststus-light++++++++++++
+$dropdown-menu-bg-color-active:      $primary-050;
+$table-custom-bg-color-hover:        $primary-050;
+$list-group-gutter-active-bg:        $primary-050;
+$list-group-custom-bg-color-active:  $primary-050;
+$dropdown-menu-bg-color-hover:     $gray-050;
+$list-group-gutter-hover-bg:       $gray-050;
+// $primary-light-bg:$primary-050; // Internal
+// $primary-light-bg:shift-color($primary, -80%); // EIDDC 
+
+
+

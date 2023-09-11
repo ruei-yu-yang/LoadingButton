@@ -1,0 +1,124 @@
+$btncustom-padding-x:         0.85rem !default;
+$btncustom-padding-y:         $btn-padding-y !default;
+$btncustom-padding-x-sm:      0.7rem !default;
+$btncustom-padding-y-sm:      $btn-padding-y-sm !default;
+$btncustom-padding-x-lg:      1.4rem !default;
+$btncustom-padding-y-lg:      $btn-padding-y-lg !default;
+$btncustom-padding-x-xlg:     1.8rem !default;
+$btncustom-padding-y-xlg:     $btn-padding-y-xlg !default;
+
+.btn-custom{
+  // @extend .btn;
+  border-radius: $input-height * 0.5;
+  padding: $btncustom-padding-y $btncustom-padding-x ;
+
+  &.btn-sm{
+    border-radius: $input-height-sm * 0.5;
+    padding:$btncustom-padding-y-sm $btncustom-padding-x-sm;
+  }
+  &.btn-lg{
+    border-radius: $input-height-lg * 0.5;
+    padding:$btncustom-padding-y-lg $btncustom-padding-x-lg;
+  }
+  &.btn-xlg{
+    border-radius: $input-height-xlg * 0.5;
+    padding:$btncustom-padding-y-xlg $btncustom-padding-x-xlg ;
+  }
+
+
+
+  // Outline
+  @each $color, $value in $theme-colors {  
+    &.btn-outline-#{$color} {
+      border-width: 2px;
+      background-color: transparent;
+      &:hover{
+        background-color: transparent;
+        color: $value;
+      }
+      &.border-0{
+        &:hover{
+          background-color: $gray-075;
+          color: $value;
+        }
+      }
+    }
+  }
+
+
+  // Disabled
+  @each $color, $value in $theme-colors-075 {  
+    &.disabled.btn-#{$color},
+    &.disabled.btn-#{$color}:hover {
+      color: #fff;
+      background-color: $value;
+      border-color: $value;
+      opacity: 1;
+    }
+    &.disabled.btn-outline-#{$color},
+    &.disabled.btn-outline-#{$color}:hover {
+      color: $value;
+      background-color: transparent;
+      border-color: $value;
+      opacity: 1;
+    }
+
+  }
+
+  // Hover
+  //- 僅設定 primary、success、info、warning、danger (shade-color 15% or level 700)
+  @each $color, $value in $theme-colors-700 {  
+    &.btn-#{$color} {
+      &:hover{
+        background-color:$value;
+      }
+    }
+    &.btn-outline-#{$color} {
+      &:hover{
+        color: $value;
+        border-color: $value;
+      }
+    }
+  }
+
+}
+
+.btn-auxiliary{
+  // @extend .btn;
+  color: $gray-500;
+  border:1px solid $gray-400;
+  &:hover{
+    color: $gray-500;
+    border:1px solid $gray-500;
+  }
+  &.disabled{
+    color: $gray-200;
+    border:1px solid $gray-200;
+    background-color: $gray-050;
+    opacity: 1;
+  }
+  padding: $btncustom-padding-y 0.75rem ;
+  &.btn-sm{
+    padding:$btncustom-padding-y-sm 00.5rem;
+  }
+  &.btn-lg{
+    padding:$btncustom-padding-y-lg 1rem;
+  }
+  &.btn-xlg{
+    padding:$btncustom-padding-y-xlg 1.4rem ;
+  }
+}
+
+// Btn Group margin
+.g-me-btn{
+  > * {
+    margin-right:0.875rem;
+  }
+  > :last-child {
+    margin-right: 0;
+  }
+}
+// //
+// [button-size="sm"] .btn-custom{
+//   @extend .btn-sm;
+// }

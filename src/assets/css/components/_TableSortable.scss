@@ -1,0 +1,11 @@
+//table-sortable=======================================
+.table-sortable {
+  position: relative;
+  overflow: hidden;
+  tbody {
+    tr {
+      cursor: move;
+      width: 100%;
+    }
+  }
+}

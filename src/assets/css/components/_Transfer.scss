@@ -1,0 +1,36 @@
+.transfer-list{
+	margin-top: 0 !important;
+	@extend .table-label;
+	.checkbox-w{
+		width: 2rem;
+		min-width: 2rem;
+		padding: 0;
+		label{
+			padding:0;
+		}
+	}
+}
+
+// .transfer-list{
+// 	margin-top: 0 !important;
+// 	td{
+// 		padding: 0;
+// 	}
+// 	label{
+// 		display: block;
+// 		width: 100%;
+// 		padding:$table-cell-padding-y $table-cell-padding-x;
+// 		cursor: pointer;
+// 	}
+// 	input[type="checkbox"]{
+// 		cursor: pointer;
+// 	}
+// 	.checkbox-w{
+// 		width: 2rem;
+// 		min-width: 2rem;
+// 		padding: 0;
+// 		label{
+// 			padding:0;
+// 		}
+// 	}
+// }

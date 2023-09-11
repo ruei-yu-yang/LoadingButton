@@ -1,0 +1,127 @@
+//- mixins/backdrop.scss
+
+.cdk-overlay-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2000;
+  pointer-events: none;
+  .cdk-overlay-dark-backdrop {
+    --#{$prefix}backdrop-zindex: #{$zindex-modal-backdrop};
+    --#{$prefix}backdrop-bg: #{$modal-backdrop-bg};
+    --#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity};
+    @include overlay-backdrop(var(--#{$prefix}backdrop-zindex), var(--#{$prefix}backdrop-bg), var(--#{$prefix}backdrop-opacity));
+    opacity: 0;
+    &.cdk-overlay-backdrop-showing{
+      opacity: var(--#{$prefix}backdrop-opacity);
+      pointer-events: auto;
+    }
+  }
+  .cdk-global-overlay-wrapper{
+    //-.modal
+    --#{$prefix}modal-zindex: #{$zindex-modal};
+    --#{$prefix}modal-width: #{$modal-md};
+    --#{$prefix}modal-padding: #{$modal-inner-padding};
+    --#{$prefix}modal-margin: #{$modal-dialog-margin};
+    --#{$prefix}modal-color: #{$modal-content-color};
+    --#{$prefix}modal-bg: #{$modal-content-bg};
+    --#{$prefix}modal-border-color: #{$modal-content-border-color};
+    --#{$prefix}modal-border-width: #{$modal-content-border-width};
+    --#{$prefix}modal-border-radius: #{$modal-content-border-radius};
+    --#{$prefix}modal-box-shadow: #{$modal-content-box-shadow-xs};
+    --#{$prefix}modal-inner-border-radius: #{$modal-content-inner-border-radius};
+    --#{$prefix}modal-header-padding-x: #{$modal-header-padding-x};
+    --#{$prefix}modal-header-padding-y: #{$modal-header-padding-y};
+    --#{$prefix}modal-header-padding: #{$modal-header-padding}; // Todo in v6: Split this padding into x and y
+    --#{$prefix}modal-header-border-color: #{$modal-header-border-color};
+    --#{$prefix}modal-header-border-width: #{$modal-header-border-width};
+    --#{$prefix}modal-title-line-height: #{$modal-title-line-height};
+    --#{$prefix}modal-footer-gap: #{$modal-footer-margin-between};
+    --#{$prefix}modal-footer-bg: #{$modal-footer-bg};
+    --#{$prefix}modal-footer-border-color: #{$modal-footer-border-color};
+    --#{$prefix}modal-footer-border-width: #{$modal-footer-border-width};
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: var(--#{$prefix}modal-zindex);
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    outline: 0;
+    .cdk-overlay-pane{
+      //-.modal-dialog (width)
+      position: relative;
+      width: auto;
+      margin: var(--#{$prefix}modal-margin) auto;
+      pointer-events: none;
+      .cdk-dialog-container{
+        //-.modal-content
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%; 
+        color: var(--#{$prefix}modal-color);
+        pointer-events: auto;
+        background-color: var(--#{$prefix}modal-bg);
+        background-clip: padding-box;
+        border: var(--#{$prefix}modal-border-width) solid var(--#{$prefix}modal-border-color);
+        @include border-radius(var(--#{$prefix}modal-border-radius));
+        @include box-shadow(var(--#{$prefix}modal-box-shadow));
+        // Remove focus outline from opened modal
+        outline: 0;
+      }
+      //-卷軸
+      &.modal-dialog-scrollable {
+        height: inherit;
+        max-height: calc(100% - var(--#{$prefix}modal-margin) * 2);
+        .cdk-dialog-container {
+          max-height: 100%;
+          overflow: hidden;
+        }
+        .modal-body {
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-up(sm) {
+  .cdk-overlay-container{
+    .cdk-global-overlay-wrapper {
+      --#{$prefix}modal-margin: #{$modal-dialog-margin-y-sm-up};
+      --#{$prefix}modal-box-shadow: #{$modal-content-box-shadow-sm-up};
+    }
+    .cdk-overlay-pane {
+      max-width: var(--#{$prefix}modal-width);
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .modal-sm {
+      --#{$prefix}modal-width: #{$modal-sm};
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .cdk-overlay-container{
+    .modal-lg,
+    .modal-xl {
+      --#{$prefix}modal-width: #{$modal-lg};
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .cdk-overlay-container{
+    .modal-xl {
+      --#{$prefix}modal-width: #{$modal-xl};
+    }
+  }
+}

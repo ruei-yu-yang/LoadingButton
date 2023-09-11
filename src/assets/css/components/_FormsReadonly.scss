@@ -1,0 +1,48 @@
+@mixin FormReadonly {
+  .form-control,
+  .form-select {
+      pointer-events: none;
+      border-color: transparent;
+      background-color: transparent;
+      background-image: none !important;
+      appearance: none;
+      resize: none;
+      color: $gray-800;
+      padding: 2px;
+      &::-webkit-inner-spin-button,
+      &::-webkit-calendar-picker-indicator {
+          display: none;
+          -webkit-appearance: none;
+      }
+      &:focus {
+          box-shadow: none;
+      }
+      &::placeholder {
+          opacity: 0;
+          color: transparent;
+      }
+  }
+  .btn, .input-file-custom {
+      display: none;
+  }
+  .validation-warning:invalid.form-select {
+      background-image: none;
+  }
+  textarea.AutoHeight.overflow-y-auto {
+      overflow: visible !important;
+  }
+  [validation-warning],
+  [validation-warning] span.input-group-text {
+      color: $gray-800 !important;
+      background-color: transparent !important;
+      border-color: transparent !important;
+  }
+  .input-group .input-group-text {
+    border-color: transparent;
+    background-color: transparent;
+  }
+}
+
+[form-control-status="readonly"] {
+  @include FormReadonly
+}

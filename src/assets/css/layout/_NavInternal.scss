@@ -1,0 +1,110 @@
+// Nav-Header
+
+$NavInternal-bg-color: var(--bg-color) !default;
+
+$NavInternal-color-hover: var(--nav-color-hover) !default;
+$NavInternal-bg-color-hover: var(--nav-bg-color-hover) !default;
+
+$NavInternal-color-active: var(--nav-color-active) !default;
+$NavInternal-bg-color-active: var(--nav-bg-color-active) !default;
+
+//一階一階展開的選單
+nav.NavInternal {
+  //第一層
+  // @extend %menuBar;
+  ul li {
+    padding: 0.3rem;
+    > a{
+      line-height: calc(#{$header-h-b} - 0.6rem);
+      border-radius: $border-radius;
+      padding: 0 0.75rem;
+    }
+    > a.active{
+      color: $NavInternal-color-active;
+      background-color: $NavInternal-bg-color-active;
+      
+    }
+    &:hover {
+      > a {
+        // color: $NavInternal-color-active;
+        // background-color: $NavInternal-bg-color-active;
+        color: $NavInternal-color-hover;
+        background-color: $NavInternal-bg-color-hover;
+      }
+    }
+  }
+  //第二層
+  $pad-w:0.75rem;
+  ul li {  
+    ul {
+      border-radius: $border-radius;
+      box-shadow: $box-shadow-xlg;
+      padding: $pad-w 0;
+      margin:-0.25rem 0.25rem 0 0.25rem;
+      background-color: $NavInternal-bg-color;
+      &:before{
+        //- 用來處理 Hover 空白跳開的問題
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: - 0.25rem;
+        bottom: 0;
+        left: - $pad-w;
+        right: 0;
+      }
+      li {
+        background-color: transparent;
+        padding:0 $pad-w;
+        &:nth-of-type(1) {
+          border-radius: $border-radius-lg $border-radius-lg 0 0;
+        }
+        &:last-child {
+          border-radius: 0 0 $border-radius-lg $border-radius-lg ;
+        }
+        > a {
+          padding-left:0.75rem;
+          background-color: transparent;
+          border-radius: $border-radius;
+        }
+        &:hover {
+          li{
+            background-color: transparent;
+          }
+          > a {
+            color: $NavInternal-color-hover;
+            background-color: $NavInternal-bg-color-hover;
+          }
+        }
+        //第三層之後
+        ul{
+          margin-top: 0;
+          transform: translate(0,-0.75rem);
+          li{
+            background-color: transparent;
+          }
+          a{
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  $NavDropdown-h: -$NavDropdown-dropdown-sec-h;
+  @function align($n) {
+    @return $n * $NavDropdown-h;
+  }
+  $i: 0;
+  @while $i <= 30 {
+    .nav-align-t#{$i} {
+      top: calc(#{align($i)}) !important;
+    }
+    .nav-align-b#{$i} {
+      top: inherit !important;
+      bottom: calc(#{align($i)}) !important;
+    }
+    $i: $i + 1;
+  }
+
+
+}

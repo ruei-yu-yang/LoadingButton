@@ -1,0 +1,13 @@
+$footer-text-size: 0.75rem;
+$footer-bg-dark: $dark;
+footer {
+  position: relative;
+  padding:0.25rem 0;
+  font-size: $footer-text-size;
+  color: var(--text-color);
+  text-align: center;
+  clear: both;
+  a {
+    color: var(--text-color);
+  }
+}

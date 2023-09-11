@@ -1,0 +1,72 @@
+.table-input-filter {
+  .form-control,
+  .form-select {
+    border-color: var(--form-filter-border-color);
+    &:invalid{
+      color:var(--form-filter-border-color);
+      background-color: rgba(255,255,255,0.1);
+      &::placeholder {
+        color:var(--form-filter-placeholder-color);
+      }
+    }
+    &.form-select{
+      background-image:var(--form-select-img);
+    }
+  }
+  .input-group-text {
+    color: var(--form-filter-border-color);
+    background-color: rgba(255,255,255,0.1);
+    border-top-color: var(--form-filter-border-color);
+    border-bottom-color: var(--form-filter-border-color);
+  }
+  .bootstrap-select.form-control {
+    background-color: transparent;
+    .dropdown-toggle.btn{
+      background-image:var(--form-select-img);
+      &.bs-placeholder{
+        background-color: rgba(255,255,255,0.1);
+        .filter-option-inner-inner{
+          color: var(--form-filter-placeholder-color);
+        }
+      }
+    }
+  }
+}
+
+//- bg color
+@each $color, $value in $theme-colors {
+  * > table > * tr.bg-#{$color},
+  * > .table-custom > * tr.bg-#{$color}{
+    background-color:$value;
+    th, td{
+      background-color:$value;
+    }
+  }
+}
+
+
+
+// .table-input-filter 
+// @each $color, $value in $theme-colors {
+//   .bg-#{$color} {
+//     background-color: $value;
+//     &.table-input-filter {
+//       .form-control,
+//       .form-select {
+//         border-color: var(--text-color-superlight);
+//         &:invalid {
+//           color:var(--text-color-superlight);
+//           background-color: var(--bg-color-mask);
+//           &::placeholder {
+//             color: var(--text-color);
+//           }
+//         }
+//       }
+//       .input-group-text {
+//         color: var(--text-color-superlight);
+//         background-color: var(--bg-color-mask);
+//         border-color: transparent;
+//       }
+//     }
+//   }
+// }

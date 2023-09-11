@@ -1,0 +1,85 @@
+@include media-breakpoint-down(md) {
+  .colspan-rwd {
+    width: 100% !important;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .table-row.table-rwd {
+    border: none;
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        > th {
+          position: relative;
+          display: block;
+          text-align: left;
+          width: 100%;
+          border: none;
+          padding: 0.25rem 0 0 0;
+          font-size: 0.75rem;
+          color: $gray-500;
+          background-color: transparent;
+          &.required-title:before {
+            content: attr(data-required);
+            float: right;
+          }
+        }
+        > td {
+          position: relative;
+          display: block;
+          width: 100%;
+          padding: 0 0 0.75rem 0;
+          margin-bottom: 0.25rem;
+          font-size: 1rem;
+          border: none;
+          border-bottom: 1px dashed $gray-300;
+          .rwd-small {
+            font-size: 0.75rem;
+          }
+          .colspan {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .table-rwd-th {
+    > thead,
+    > tbody,
+    > tfoot {
+      > tr {
+        border-top: $border;
+        > th {
+          display: none;
+        }
+        > td {
+          display: flex;
+          flex-direction: column;
+          border: none;
+          font-size: 1rem;
+          padding: 0.5rem;
+          text-align: left !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          &:before {
+            content: attr(data-th);
+            width: 100%;
+            padding-right: 1rem;
+            font-size: 0.75rem;
+            color: $gray-500;
+            word-wrap: break-word;
+          }
+        }
+      } 
+    }
+    &.table-fix-outline > thead > tr > td.fixed-l,
+    &.table-fix-outline > tbody > tr > td.fixed-l {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+
+$flag-size: ($btn-font-size * $btn-line-height + $btn-padding-y * 2 + 0.15rem) !default;
+$flag-size-sm: ($btn-font-size-sm * $btn-line-height + $btn-padding-y-sm * 2 + 0.15rem) !default;
+$flag-size-lg: ($btn-font-size-lg * $btn-line-height + $btn-padding-y-lg * 2 + 0.15rem) !default;
+
+$flag-font-size: 1.1rem !default;
+$flag-font-size-sm: 0.9rem !default;
+$flag-font-size-lg: 1.2rem !default;
+
+@mixin flagIcon($flag-size,$flag-font-size){
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    padding-left: 0;
+    color: $gray-500;
+    font-weight: 600;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    // overflow: hidden;
+    li {
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        &:first-child{
+            margin-left:0;
+        }
+    }
+    i{
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        width: $flag-size;
+        height: $flag-size;
+        line-height: $flag-size;
+        border-radius: 50%;
+        font-size:$flag-font-size;
+        color: #fff;
+        background-color: $gray-500;
+        text-align: center;
+        z-index: 1;
+        small{
+            display: inline-block;
+            margin:0 auto;
+            perspective-origin: 0 0;
+            transform: scale(0.8, 0.8);
+            &.word-3{
+                transform: scale(0.7, 0.7);
+            }
+            &.word-4{
+                transform: scale(0.65, 0.65);
+            }
+        }
+        &.flag-halo:after{
+            position: absolute;
+            content:"";
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            transform: scale(1.7);
+            border-radius:50%;
+            opacity: 0.35;
+            animation-name: example;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in; 
+        }
+        @keyframes example {
+            0% {
+                opacity: 0.35;
+                transform: scale(1);
+
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.7);
+            }
+          }
+    }  
+    p{
+        display: inline-block;
+        margin-left: 0.25rem;
+        margin-bottom: 0;
+        line-height: $flag-size;
+    }
+}
+
+
+.flag-wrap {
+    @include flagIcon($flag-size,$flag-font-size);
+}
+.flag-wrap-sm{
+    @include flagIcon($flag-size-sm,$flag-font-size-sm);
+}
+.flag-wrap-lg {
+    @include flagIcon($flag-size-lg,$flag-font-size-lg);
+}

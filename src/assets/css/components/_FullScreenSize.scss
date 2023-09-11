@@ -1,0 +1,93 @@
+.resize-full {
+  position: relative;
+  transition: all 0.2s;
+  .resize-control {
+      z-index: 2;
+      transition: none;
+      opacity: 0.8;
+      @extend .mdi;
+      @extend .mdi-arrow-expand-all;
+      &:before {
+          display: block;
+      }
+      &:hover {
+          opacity: 1;
+      }
+  }
+  &.active {
+      position: fixed !important;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100% !important;
+      z-index: 1035;
+      background: #fff;
+      height: 100%;
+      overflow-y: auto;
+      margin: 0 !important;
+      .resize-control {
+        @extend .mdi;
+        @extend .mdi-arrow-collapse-all;
+      }
+  }
+}
+//230613 新增局部放大(非滿版) 尺寸位置自定義
+.resize-partial {
+  position: relative;
+
+  textarea.form-control {
+    height: 3rem;
+    resize: none;
+  }
+  .resize-partial-control {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    @extend .mdi;
+    @extend .mdi-arrow-expand-all;
+    &:before {
+      display: block;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &:hover {
+    .resize-partial-control {
+      opacity: 0.7;
+      pointer-events: all;
+    }
+  }
+  &.active {
+    padding: var(--resize-padding);
+    position: fixed !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1035;
+    background: #fff;
+    overflow-y: auto;
+    width: var(--resize-width) !important;
+    height: var(--resize-height) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--resize-margin) !important;
+    box-shadow: 0 0 100px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    .resize-partial-control {
+      opacity: 0.7;
+      pointer-events: all;
+      @extend .mdi;
+      @extend .mdi-arrow-collapse-all;
+    }
+    textarea.form-control {
+      height: 100% !important;
+    }
+  }
+}

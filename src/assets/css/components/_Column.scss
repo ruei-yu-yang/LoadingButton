@@ -1,0 +1,153 @@
+@use "sass:math";
+
+//元件布局控制
+.layout-control {
+  width: 100%;
+  // horizontal
+  &[layout-direction="horizontal"] {
+    // grid layout
+    &[layout-column] {
+      display: grid;
+      gap: 2px;
+      grid-auto-flow: row;
+    }
+    //gap
+    &[gap="0"]{
+      gap: 0;
+    }
+    &[gapx="0"]{
+      column-gap: 0;
+    }
+    &[gapy="0"]{
+      row-gap: 0;
+    }
+    @each $size, $length in $spacers {
+      @if $size !=0 {
+        &[gap="#{$size}"] {
+          gap: $length;
+        }
+        &[gapx="#{$size}"] {
+          column-gap: $length;
+        }
+        &[gapy="#{$size}"] {
+          row-gap: $length;
+        }
+      }
+    }
+    //layout-column
+    // @if not (oldIE) {
+    @for $i from 1 through 12 {
+      &[layout-column="#{$i}"] {
+        // grid-template-columns: repeat(#{$i}, 1fr);
+        // grid-template-columns: repeat(#{$i}, minmax( #{100% / $i} ,1fr));
+        
+        grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 0.25rem) ,1fr));
+        
+        &[gap="0"]{
+          grid-template-columns: repeat(#{$i}, minmax( #{math.div(100%, $i)} ,1fr));
+        }
+        &[gap="1"]{
+          grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 0.25rem) ,1fr));
+        }
+        &[gap="2"]{
+          grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 0.5rem) ,1fr));
+        }
+        &[gap="3"]{
+          grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 1rem) ,1fr));
+        }
+        &[gap="4"]{
+          grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 1.5rem) ,1fr));
+        }
+        &[gap="5"]{
+          grid-template-columns: repeat(#{$i}, minmax( calc(#{math.div(100%, $i)} - 3rem) ,1fr));
+        }
+
+        @include media-breakpoint-down(lg) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include media-breakpoint-down(md) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include media-breakpoint-down(sm) {
+          grid-template-columns: 1fr;
+        }
+        .column-span-all {
+          grid-column: span #{$i};
+        }
+      }
+      //column span
+      .column-span-#{$i} {
+        grid-column: span #{$i};
+      }
+      [class^="column-span-"]{
+        @include media-breakpoint-down(lg) {
+          grid-column: span 3;
+        }
+        @include media-breakpoint-down(md) {
+          grid-column: span 2;
+        }
+        @include media-breakpoint-down(sm) {
+          grid-column: span 1;
+        }
+      }
+    }
+  }
+
+  // vertical
+  &[layout-direction="vertical"] {
+    // Multiple Columns
+    &[layout-column]{
+      column-gap: 2px;
+      > *{
+        break-inside: avoid-column; 
+        // margin-top:2px;
+        // &:first-child{
+        //   margin-top:0;
+        // }
+      }
+    }
+    &[gap="0"]{
+      gap: 0;
+    }
+
+    @each $size, $length in $spacers {
+      @if $size !=0 {
+        &[gap="#{$size}"] {
+          gap: $length;
+          > *{
+            margin-top: $length;
+            &:first-child{
+              margin-top:0;
+            }
+          }
+        }
+        &[gapx="#{$size}"] {
+          column-gap: $length;
+        }
+        &[gapy="#{$size}"] {
+          > *{
+            margin-top: $length;
+            &:first-child{
+              margin-top:0;
+            }
+          }
+        }
+      }
+    }
+    @for $i from 1 through 12 {
+      &[layout-column="#{$i}"] {
+        column-count:#{$i};
+        @include media-breakpoint-down(lg) {
+          column-count:3;
+        }
+        @include media-breakpoint-down(md) {
+          column-count:2
+        }
+        @include media-breakpoint-down(sm) {
+          column-count:1;
+        }
+      }
+    }
+  }
+}
+

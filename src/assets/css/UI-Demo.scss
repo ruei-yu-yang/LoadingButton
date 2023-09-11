@@ -1,0 +1,27 @@
+//- 以下為 Template Demo V5 & Internal Guideline 切換用 CSS
+
+[ui-data="EIDDC"]{
+  display: inline-block !important;
+}
+[ui-data="AOCC"]{
+  display: none !important;
+}
+[ui-system="AOCC"]{
+  [ui-data="EIDDC"]{
+    display: none !important;
+  }
+  [ui-data="AOCC"]{
+    display: inline-block !important;
+    &.flex-start,
+    &.d-flex-inline{
+      display: inline-flex !important;
+    }
+    &.d-flex{
+      display: flex !important;
+    }
+    &.d-block{
+      display: block !important;
+    }
+    
+  }
+}

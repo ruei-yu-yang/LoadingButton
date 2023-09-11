@@ -1,0 +1,60 @@
+//status
+.table-custom {
+  &.table-hover {
+    @each $color, $value in $theme-colors {
+      >tbody,
+      >thead{
+        > tr:hover{
+          &.table-#{$color} td,
+          td.table-#{$color}{
+            box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+          }
+        }
+      }
+    }
+  }
+
+  // @each $color, $value in $table-variants {
+  @each $color, $value in $theme-colors {
+    .table-#{$color} th,
+    th.table-#{$color}{
+      background-color: var(--#{$variable-prefix}table-striped-bg); 
+    }
+  }
+  .table-dark,
+  .table-dark th,
+  .table-dark td{
+    color: #fff;
+    border-top-color:transparent !important;
+    border-bottom-color:transparent !important;
+  }
+  .table-light,
+  .table-light th,
+  .table-light td{
+    color: $th-font-color;
+  }
+}
+.table-opacity{
+  opacity: 0.6 !important;
+  border-style: dotted !important;
+  td,th{
+    opacity: 0.6 !important;
+    border-top: dotted 1px $table-td-border-color !important;
+    border-bottom: dotted 1px $table-td-border-color !important;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  table.border-#{$color} {
+    >tbody,
+      >thead{
+        > tr{
+          td,th{
+            border-color:$value !important;
+
+          }
+        }
+      }
+    
+  }
+}

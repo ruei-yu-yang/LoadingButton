@@ -1,0 +1,324 @@
+$alert-border-radius:$border-radius-lg;
+$alert-custom-padding:1rem 0 1rem 1.25rem;
+$alert-min-width:30vw;
+$alert-max-width:50vw;
+$alert-gutter:2rem;
+
+// alert
+.alert-wrap{
+	position: fixed;
+	display: block;
+	top: -2rem;
+	left:0;
+	width: 100%;
+	height: 1px;
+	text-align: center;
+	opacity: 0;
+	z-index:  -1;
+	transition: all 0.5s;
+	&.show{
+		opacity: 1;
+		top: 0;
+		pointer-events: initial;
+		transition: all 0.5s;
+		z-index: 1075; //$zindex-modal (1055) + 20; //$zindex-popover
+	}
+	> .alert{
+		width: $alert-min-width;
+		min-width: $alert-min-width;
+		max-width: $alert-max-width;
+		margin: $alert-gutter auto;
+		box-shadow: $box-shadow-lg;
+	}
+	//-top
+	&[alert-position="top-start"]{
+		> .alert{
+			margin: $alert-gutter auto 0 $alert-gutter;
+		}
+	}
+	// &[alert-position="top-center"]{
+	// 	> .alert{
+	// 		margin: $alert-gutter auto;
+	// 	}
+	// }
+	&[alert-position="top-end"]{
+		> .alert{
+			margin: $alert-gutter $alert-gutter 0 auto;
+		}
+	}
+	//-v center
+	&[alert-position ^="center-"]{
+		&.show{
+			top: calc(50vh - 10rem);
+		}
+	}
+	&[alert-position="center-start"]{	
+		> .alert{
+			margin: $alert-gutter auto 0 $alert-gutter;
+		}
+	}
+	&[alert-position="center-center"]{
+		> .alert{
+			margin: $alert-gutter auto;
+		}
+	}
+	&[alert-position="center-end"]{
+		> .alert{
+			margin: $alert-gutter $alert-gutter 0 auto;
+		}
+	}
+
+	//-bottom
+	&[alert-position ^="bottom-"]{
+		top: auto;
+		bottom:-2rem;
+		&.show{
+			top: auto;
+			bottom:0;
+		}
+		> .alert{
+			position: absolute;
+			bottom: 0;
+		}
+	}
+	&[alert-position="bottom-start"]{
+		> .alert{
+			margin: 0 auto $alert-gutter $alert-gutter;
+		}
+	}
+	&[alert-position="bottom-center"]{
+		> .alert{
+			margin: 0 auto $alert-gutter auto;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+	&[alert-position="bottom-end"]{
+		> .alert{
+			right: 0;
+			margin: 0 $alert-gutter $alert-gutter auto;
+		}
+	}
+}
+
+.alert{
+	$header-h:1.5rem;
+	border-radius: $alert-border-radius;
+	.alert-header{
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+		padding:0.25rem 0;
+		min-height: $header-h;
+		.alert-title{
+			display: flex;
+			margin: 0;
+			font-size: 1.2rem;
+			line-height: $header-h;
+			text-align: left;
+			i{
+				display: inline-block;
+				margin-right: 0.5rem;
+				margin-bottom: -2px;
+				width: 1.5rem;
+				line-height: $header-h;
+				font-size: 1.5rem;
+				flex:0 0 auto;
+			}
+		}
+		.btn-close{
+			flex:0 0 auto;
+			height: 1rem;
+		}
+	}
+	.alert-body{
+		padding-left: 2rem;
+		text-align: left;
+		@include ScrollBar(6px,3px,$gray-400,$gray-100);
+	}
+	&.alert-danger:not(.alert-custom),
+	&.alert-danger[alert-style="bgcolor"]{
+		.btn-close{
+			background-image: escape-svg($btn-close-bg-danger);
+		}
+	}
+	&.alert-success:not(.alert-custom),
+	&.alert-success[alert-style="bgcolor"]{
+		.btn-close{
+			background-image: escape-svg($btn-close-bg-success);
+		}
+	}
+	&.alert-warning:not(.alert-custom),
+	&.alert-warning[alert-style="bgcolor"]{
+		.btn-close{
+			background-image: escape-svg($btn-close-bg-warning);
+		}
+	}
+	&.alert-primary:not(.alert-custom),
+	&.alert-primary[alert-style="bgcolor"]{
+		.btn-close{
+			background-image: escape-svg($btn-close-bg-primary);
+		}
+	}
+}
+
+.alert-custom{
+	$header-h:1.5rem;
+	box-shadow: $box-shadow-lg;
+	border-radius: $border-radius-lg;
+	padding:$alert-custom-padding;
+	background-color: #fff;
+	border-color: transparent;
+	display: flex;
+	align-items: center;
+	&.alert-danger{
+		background-color: #fff;
+		.alert-ico{
+			background-color: $danger-100;
+			color: $danger-500;
+		}
+	}
+	&.alert-success{
+		background-color: #fff;
+		.alert-ico{
+			background-color: $success-100;
+			color: $success-500;
+		}
+	}
+	&.alert-warning{
+		background-color: #fff;
+		.alert-ico{
+			background-color: $warning-100;
+			color: $warning-500;
+		}
+	}
+	&.alert-primary{
+		background-color: #fff;
+		.alert-ico{
+			background-color: $primary-100;
+			color: $primary-500;
+		}
+	}
+	
+	.alert-ico{
+		$alert-ico:2.5rem;
+		flex: 0 0 $alert-ico;
+		width: $alert-ico;
+		height: $alert-ico;
+		line-height: $alert-ico;
+		margin-right: 1rem;
+		text-align: center;
+		border-radius:50%;
+		background-color: $gray-100;
+		color: $gray-500;
+		&:before{
+			font-size: 1.25rem;
+		}
+	}
+
+	.alert-title{
+		font-size: 1rem;
+		font-weight: 600;
+		color: $gray-900;
+		text-align: left;
+	}
+	.alert-body{
+		padding:0;
+		text-align: left;
+		font-size: 0.75rem;
+		color: $gray-500;
+	}
+	.alert-close{
+		position: relative;
+		right: auto;
+		top: auto;
+		flex: 0 0 3.5rem;
+		text-align: center;
+		.btn-close{
+			position: relative;
+			// transform: scale(0.75, 0.75);
+			// opacity: 0.5;
+		}
+	}
+	
+	
+	// .alert-header{
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// 	align-items: flex-start;
+	// 	width: 100%;
+	// 	padding:0.25rem 0;
+	// 	min-height: $header-h;
+	// 	.alert-title{
+	// 		display: flex;
+	// 		margin: 0;
+	// 		font-size: 0.875rem;
+	// 		line-height: $header-h;
+	// 		text-align: left;
+	// 		i{
+	// 			display: inline-block;
+	// 			margin-right: 0.5rem;
+	// 			margin-bottom: -2px;
+	// 			width: 1.5rem;
+	// 			line-height: $header-h;
+	// 			font-size: 1.5rem;
+	// 			flex:0 0 auto;
+	// 		}
+	// 	}
+	// 	.btn-close{
+	// 		flex:0 0 auto;
+	// 		height: 1rem;
+	// 	}
+	// }
+	
+}
+
+.alert-custom[alert-style="bgcolor"]{
+	box-shadow: none;
+	&.alert-danger{
+		background-color: $danger-050;
+		border:1px solid $danger-200;
+		.alert-ico{
+			background-color: $danger-100;
+			color: $danger-500;
+		}
+	}
+	&.alert-success{
+		background-color: $success-050;
+		border:1px solid $success-200;
+		.alert-ico{
+			background-color: $success-100;
+			color: $success-500;
+		}
+	}
+	&.alert-warning{
+		background-color: $warning-050;
+		border:1px solid $warning-200;
+		.alert-ico{
+			background-color: $warning-100;
+			color: $warning-500;
+		}
+	}
+	&.alert-primary{
+		background-color: $primary-050;
+		border:1px solid $primary-200;
+		.alert-ico{
+			background-color: $primary-100;
+			color: $primary-500;
+		}
+	}
+	
+	.alert-title{
+		color: $gray-900;
+	}
+	.alert-body{
+		color: $gray-600;
+	}
+	&.p-2,.p-sm{
+		padding: 0.5rem;
+		.alert-close{
+			flex:0 0 1.5rem;
+		}
+	}
+}

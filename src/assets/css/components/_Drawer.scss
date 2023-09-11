@@ -1,0 +1,192 @@
+// Drawer 共用
+.Drawer {
+  position: relative;
+  position: fixed;
+  transition: all 0.2s linear;
+  display: flex;
+  z-index: 4;
+  &.Drawer-hover:hover,
+  &.show {
+    transition: all 0.2s linear;
+    transform: translate(0, 0);
+    .Drawer-handle {
+      opacity: 1;
+      i.toggle-drawer:before {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.show {
+    position: relative;
+  }
+
+  .Drawer-handle {
+    background-color: $gray-600;
+    color: #fff;
+    opacity: 0.4;
+    font-size: 1rem;
+    text-align: center;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .Drawer-content {
+    background-color: $gray-800;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+$Drawer-handle-width: 1.5rem !default;
+$Drawer-handle-height: 1.5rem !default;
+
+// Drawer X
+.Drawer-left,
+.Drawer-right {
+  top: 0;
+  height: 100vh;
+  max-width: 95vw;
+  align-items: center;
+
+  .Drawer-handle {
+    width: $Drawer-handle-width;
+    line-height: 2;
+  }
+
+  .Drawer-content {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}
+// Drawer left
+.Drawer-left {
+  left: $Drawer-handle-width;
+  flex-direction: row-reverse;
+  transform: translate(-100%, 0);
+
+  &.Drawer-hover:hover,
+  &.show {
+    left: 0;
+  }
+
+  .Drawer-handle {
+    border-radius: 0 $border-radius-lg $border-radius-lg 0;
+  }
+}
+// Drawer right
+.Drawer-right {
+  right: $Drawer-handle-width;
+  flex-direction: row;
+  transform: translate(100%, 0);
+
+  &.Drawer-hover:hover,
+  &.show {
+    right: 0;
+  }
+
+  .Drawer-handle {
+    border-radius: $border-radius-lg 0 0 $border-radius-lg;
+  }
+}
+// Drawer Y
+.Drawer-top,
+.Drawer-bottom {
+  left: 0;
+  width: 100vw;
+  max-height: 95vh;
+  align-items: center;
+
+  .Drawer-handle {
+    width: $Drawer-handle-width;
+    line-height: 1.5;
+    width: 2rem;
+  }
+
+  .Drawer-content {
+    width: 100vw;
+    max-width: 100vw;
+    overflow: auto;
+  }
+}
+// Drawer top
+.Drawer-top {
+  top: $Drawer-handle-height;
+  flex-direction: column-reverse;
+  transform: translate(0, -100%);
+
+  &.Drawer-hover:hover,
+  &.show {
+    top: 0;
+  }
+
+  .Drawer-handle {
+    border-radius: 0 0 $border-radius-lg $border-radius-lg;
+  }
+}
+
+// Drawer bottom
+.Drawer-bottom {
+  bottom: $Drawer-handle-height;
+  flex-direction: column;
+  transform: translate(0, 100%);
+
+  &.Drawer-hover:hover,
+  &.show {
+    bottom: 0;
+  }
+
+  .Drawer-handle {
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+  }
+}
+
+//Wrap
+.Drawer-wrap {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  transition: all 0.2s linear;
+
+  &.show {
+    position: fixed;
+    z-index: 1;
+
+    .Drawer-mask {
+      background-color: $bg-mask;
+      transition: all 0.2s linear;
+    }
+
+    .Drawer {
+      position: fixed;
+      transition: all 0.2s linear;
+      transform: translate(0, 0);
+    }
+  }
+
+  .Drawer-mask {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .Drawer-left {
+    left: 0;
+  }
+
+  .Drawer-right {
+    right: 0;
+  }
+
+  .Drawer-top {
+    top: 0;
+  }
+
+  .Drawer-bottom {
+    bottom: 0;
+  }
+}

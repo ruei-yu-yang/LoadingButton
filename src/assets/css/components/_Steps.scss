@@ -1,0 +1,827 @@
+//.steps-bar
+$steps-bar-text-size: 1.1rem !default;
+$steps-bar-line-height: 1.5rem !default;
+$steps-bar-padding-y: 0.25rem !default;
+$steps-bar-h: $steps-bar-line-height + $steps-bar-padding-y * 2 !default;
+$steps-bar-bg-color-default: darken($body-bg-color, 10) !default;
+$steps-bar-bg-color-finished: $primary !default;
+$steps-bar-bg-color-active: $primary !default;
+$steps-bar-text-align: left !default;
+$steps-bar-text-color-default: darken($primary, 20) !default;
+
+.steps-bar {
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: $steps-bar-text-size;
+  border-radius: $border-radius-lg;
+  text-align: center;
+  li {
+    display: flex;
+    width: 100%;
+    font-weight: 600;
+    a {
+      position: relative;
+      display: inline-block;
+      flex: 1 1;
+      vertical-align: middle;
+      padding: $steps-bar-padding-y $steps-bar-line-height $steps-bar-padding-y
+        $steps-bar-line-height;
+      margin: 0;
+      margin-right: $steps-bar-line-height - 0.2rem;
+      line-height: $steps-bar-line-height;
+      background: $steps-bar-bg-color-default;
+      color: $steps-bar-text-color-default;
+      text-align: $steps-bar-text-align;
+      white-space: nowrap;
+      text-decoration: none;
+      border-radius: 0;
+      $border-size: $steps-bar-h * 0.5;
+      &:before {
+        content: "";
+        position: absolute;
+        border-width: $border-size 0 $border-size $border-size;
+        border-style: solid;
+        border-color: $steps-bar-bg-color-default $steps-bar-bg-color-default
+          $steps-bar-bg-color-default transparent;
+        left: -$border-size;
+        margin-top: -0.25rem;
+      }
+      &:after {
+        content: "";
+        border-top: $border-size solid transparent;
+        border-bottom: $border-size solid transparent;
+        border-left: $border-size solid $steps-bar-bg-color-default;
+        position: absolute;
+        right: -$border-size;
+        top: 0;
+      }
+    }
+    &:first-child a {
+      border-radius: $border-radius-lg 0 0 $border-radius-lg;
+      &:before {
+        display: none;
+      }
+    }
+    &:last-child a {
+      border-radius: 0 $border-radius-lg $border-radius-lg 0;
+      margin-right: 0;
+      &:after {
+        display: none;
+      }
+    }
+    &.disabled a {
+      pointer-events: none;
+    }
+    &.finished a ,
+    a.active{
+      background-color: $steps-bar-bg-color-finished;
+      color: #fff;
+      a {
+        color: #fff;
+        cursor: default;
+      }
+      &:after {
+        border-left-color: $steps-bar-bg-color-finished;
+      }
+      &:before {
+        border-color: $steps-bar-bg-color-finished $steps-bar-bg-color-finished
+          $steps-bar-bg-color-finished transparent;
+      }
+    }
+  }  
+}
+
+//.steps-circle
+$steps-circle-size: 2.5rem !default;
+$steps-circle-list-pad: 1rem !default;
+$steps-circle-bg-color-default: #fff !default;
+$steps-circle-bg-color-finished: $primary !default;
+$steps-circle-bg-color-active: $primary !default;
+$steps-circle-text-color: $gray-600 !default;
+$steps-circle-border-color-default: $gray-400 !default;
+ul.steps-circle {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  counter-reset: item;
+  li {
+    position: relative;
+    width: 100%;
+    font-weight: 600;
+    z-index: 1;
+    a{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 $steps-circle-list-pad;
+      text-decoration: none;
+      color: $steps-circle-text-color;
+      z-index: 1;
+      &:before {
+        counter-increment: item;
+        content: counter(item);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $steps-circle-size;
+        height: $steps-circle-size;
+        border-radius: 50%;
+        background: $steps-circle-bg-color-default;
+        color: $steps-circle-text-color;
+        border: 1px solid currentColor;
+        margin: 0 auto 0.25rem;
+        font-size: 1rem;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        top: $steps-circle-size * 0.5;
+        left: calc(50% + #{$steps-circle-size} / 2 + #{$steps-circle-list-pad} / 2);
+        width: calc(100% - #{$steps-circle-size} - #{$steps-circle-list-pad} );
+        height: 0;
+        border-bottom:1px dashed $steps-circle-border-color-default;
+        z-index: -1;
+      }
+    }
+    &:last-child a{
+      &:after{
+        display: none;
+      }
+    }
+    &.disabled a {
+      pointer-events: none;
+    }
+    &.finished a {
+      color: $steps-circle-bg-color-finished;
+      &:before {
+        content: "\F012C";
+        @include IconMdi($font-size: 1.5rem, $line-height:$steps-circle-size);
+        // line-height: $steps-circle-size;
+        border-color: $steps-circle-bg-color-finished;
+        color: $steps-circle-bg-color-finished;
+      }
+      &:after {
+        border-bottom:1px solid $steps-circle-bg-color-finished;
+      }
+    }
+    a.active {
+      color: $steps-circle-bg-color-active;
+      &:before {
+        background-color: $steps-circle-bg-color-active;
+        border-color: $steps-circle-bg-color-active;
+        color: #fff;
+      }
+      &:after {
+        border-bottom-color:$steps-circle-bg-color-active;
+      }
+    }
+  }
+}
+
+//.steps-circle-s
+$steps-circle-s-size: 1.5rem !default;
+$steps-circle-s-list-pad: 0 !default;
+$steps-circle-s-bg-color-default: #fff !default;
+$steps-circle-s-bg-color-finished: $primary !default;
+$steps-circle-s-bg-color-active: $primary !default;
+$steps-circle-s-text-color: $gray-600 !default;
+$steps-circle-s-border-color-default: $gray-400 !default;
+ul.steps-circle-s {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  counter-reset: item;
+  li {
+    position: relative;
+    font-weight: 600;
+    z-index: 1;
+    a{
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 $steps-circle-s-list-pad;
+      text-decoration: none;
+      color: $steps-circle-s-text-color;    
+      white-space: nowrap;
+      z-index: 1;
+      &:before {
+        counter-increment: item;
+        content: counter(item);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $steps-circle-s-size;
+        height: $steps-circle-s-size;
+        border-radius: 50%;
+        background: $steps-circle-s-bg-color-default;
+        color: $steps-circle-s-text-color;
+        border: 1px solid currentColor;
+        margin: 0 0.5rem 0 0;
+        font-size: 0.9rem;
+      }
+      &:after {
+        content: "";
+        margin: 0 0.5rem;
+        width: 2rem;
+        height: 0;
+        border-bottom:1px dashed $steps-circle-s-border-color-default;
+        z-index: -1;  
+      }
+    }
+    &:last-child a{
+      &:after{
+        display: none;
+      }
+    }
+    &.disabled a {
+      pointer-events: none;
+    }
+    &.finished a {
+      color: $steps-circle-s-bg-color-finished;
+      &:before {
+        content: "\F012C";
+        @include IconMdi($font-size: 0.9rem, $line-height:$steps-circle-s-size);
+        // line-height: $steps-circle-s-size;
+        border-color: $steps-circle-s-bg-color-finished;
+        color: $steps-circle-s-bg-color-finished;
+      }
+      &:after {
+        border-bottom:1px solid $steps-circle-s-bg-color-finished;
+      }
+    }
+    a.active {
+      color: $steps-circle-s-bg-color-active;
+      &:before {
+        background-color: $steps-circle-s-bg-color-active;
+        border-color: $steps-circle-s-bg-color-active;
+        color: #fff;
+      }
+      &:after {
+        border-bottom-color:$steps-circle-s-bg-color-active;
+      }
+    }
+  }
+
+}
+
+
+//.steps-circle-xs
+$steps-circle-xs-size: 11px !default;
+$steps-circle-xs-list-pad: 0 !default;
+$steps-circle-xs-bg-color-default: $gray-600 !default;
+$steps-circle-xs-bg-color-finished: $primary !default;
+$steps-circle-xs-bg-color-active: $primary !default;
+$steps-circle-xs-text-color: $gray-600 !default;
+$steps-circle-xs-border-color-default: $gray-400 !default;
+ul.steps-circle-xs {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  li {
+    position: relative;
+    font-weight: 600;
+    line-height: 100%;
+    z-index: 1;
+    a{
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 $steps-circle-xs-list-pad;
+      text-decoration: none;
+      color: $steps-circle-xs-text-color;    
+      white-space: nowrap;
+      z-index: 1;
+      &:before {
+        content: "";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: $steps-circle-xs-size;
+        height: $steps-circle-xs-size;
+        border-radius: 50%;
+        background: $steps-circle-xs-bg-color-default;
+        color: $steps-circle-xs-text-color;
+        border: 1px solid currentColor;
+        margin: 0 0.5rem 0 0;
+      }
+      &:after {
+        content: "";
+        margin: 0 0.5rem;
+        width: 2rem;
+        height: 0;
+        border-bottom:1px dashed $steps-circle-xs-border-color-default;
+        z-index: -1;  
+      }
+    }
+    small{
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+    &:last-child a{
+      &:after{
+        display: none;
+      }
+    }
+    &.disabled a {
+      pointer-events: none;
+    }
+    &.finished a {
+      color: $steps-circle-xs-bg-color-finished;
+      &:before {
+        border-color: $steps-circle-xs-bg-color-finished;
+        background-color: $steps-circle-xs-bg-color-finished;
+      }
+      &:after {
+        border-bottom:1px solid $steps-circle-xs-bg-color-finished;
+      }
+    }
+
+    a.active {
+      color: $steps-circle-xs-bg-color-active;
+      &:before {
+        background-color: $steps-circle-xs-bg-color-active;
+        border-color: $steps-circle-xs-bg-color-active;
+      }
+      &:after {
+        border-bottom-color: $steps-circle-xs-bg-color-active;
+      }
+    }
+  }
+
+}
+
+//.steps-circle-arrow
+$steps-circle-arrow-size: 11px !default;
+$steps-circle-arrow-list-pad: 0.25rem !default;
+$steps-circle-arrow-bg-color-default: $gray-600 !default;
+$steps-circle-arrow-bg-color-finished: $primary !default;
+$steps-circle-arrow-bg-color-active: $primary !default;
+$steps-circle-arrow-text-color: $gray-600 !default;
+$steps-circle-arrow-border-color-default: $gray-400 !default;
+ul.steps-circle-arrow {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  li {
+    position: relative;
+    font-weight: 600;
+    line-height: 100%;
+    z-index: 1;
+    a{
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 $steps-circle-arrow-list-pad 0 0;
+      text-decoration: none;
+      color: $steps-circle-arrow-text-color;    
+      white-space: nowrap;
+      z-index: 1;
+      @extend .mdi;
+      @extend .mdi-chevron-right;
+      &:before {
+        margin-right:$steps-circle-arrow-list-pad;
+      }
+    }
+    small{
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+    &:first-child a{
+      &:before{
+        display: none;
+      }
+    }
+    &.disabled a {
+      pointer-events: none;
+    }
+    &.finished a {
+      color: $steps-circle-arrow-bg-color-finished;
+    }
+    a.active {
+      color: $steps-circle-arrow-bg-color-active;
+    }
+  }
+
+}
+
+@include media-breakpoint-down(lg) {
+  //.steps-rwd
+  ul.steps-rwd {
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+    align-items: flex-start;
+    li {
+      a{
+        position: relative;
+        align-items: flex-start;
+        flex-direction: row;
+        padding:0 0 0 $steps-circle-s-size * 1.25;
+        min-height: $steps-circle-s-size * 2;
+        font-size: 0.9rem;
+        color: $steps-circle-s-text-color; 
+        background-color: transparent;   
+        white-space: nowrap;
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: $steps-circle-s-size;
+          height: $steps-circle-s-size;
+          margin-top: 0;
+          margin-right: 0;
+          font-size: 0.9rem;
+          border-width: 1px;
+          border-radius:50%;
+          border: 1px solid currentColor;
+          background: $steps-circle-s-bg-color-default;
+          z-index: 1; 
+        }
+        &:after {
+          position: absolute;
+          left: $steps-circle-s-size * 0.5;
+          top: 0;
+          right: 0;
+          margin: 0;
+          width: 0;
+          height: 100%;
+          border-top: none;
+          border-bottom: none;
+          border-left:1px dashed $steps-circle-s-border-color-default;
+          z-index: 0;  
+        }
+      }
+      &.finished a {
+        color: $steps-circle-s-bg-color-finished;
+        background-color: transparent;
+        &:before {
+          line-height: $steps-circle-s-size;
+          border-color: $steps-circle-s-bg-color-finished;
+          font-size: 0.9rem;
+        }
+        &:after {
+          border-left:1px solid $steps-circle-s-bg-color-finished;
+        }
+      }
+      a.active {
+        color: $steps-circle-s-bg-color-active;
+        background-color: transparent;
+        &:before {
+          background-color: $steps-circle-s-bg-color-active;
+          border-color: $steps-circle-s-bg-color-active;
+          font-size: 0.9rem;
+        }
+        &:after {
+          border-left-color:$steps-circle-s-bg-color-active;
+        }
+      }
+    }
+    &.steps-circle-xs,
+    &.steps-circle-arrow,
+    &.steps-bar{
+      li{
+        a{
+          padding:0 0 0 $steps-circle-xs-size * 1.5;
+          min-height: $steps-circle-xs-size * 3;
+          line-height: 100%;
+          font-size: 0.75rem;
+          &:before {
+            width: $steps-circle-xs-size;
+            height: $steps-circle-xs-size ;
+            background: $steps-circle-xs-bg-color-default;
+          }
+          &:after {
+            left: $steps-circle-s-size * 0.25;
+          }
+        }
+        &:first-child a {
+          &:before {
+            display: inline-block;
+          }
+        }
+        &.finished a {
+          &:before {
+            line-height: $steps-circle-xs-size * 0.5;
+            background: $steps-circle-xs-bg-color-finished;
+          }
+        }
+        a.active {
+          color: $steps-circle-xs-bg-color-active;
+          &:before {
+            background-color: $steps-circle-xs-bg-color-active;
+            border-color: $steps-circle-xs-bg-color-active;
+          }
+          &:after {
+            border-bottom-color: $steps-circle-xs-bg-color-active;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//.step-circle-v
+$steps-circleV-size: 2.5rem !default;
+$steps-circleV-bg-color-default: #fff !default;
+$steps-circleV-bg-color-finished: $primary !default;
+$steps-circleV-text-color-default: $gray-600 !default;
+$steps-circleV-text-color-finished: $gray-900 !default;
+$steps-circleV-border-t: $gray-200 !default;
+$steps-circleV-border-color-default: $gray-400 !default;
+$steps-circleV-border-size: 0.5rem !default;
+$steps-circleV-box-shadow: #fff !default;
+
+.step-circle-v {
+  position: relative;
+  counter-reset: item;
+  padding-left: $steps-circleV-size * 0.5;
+  > li {
+    position: relative;
+    width: 100%;
+    padding-left: $steps-circleV-size;
+    min-height: $steps-circleV-size * 2;
+    border-left: 1px dashed $steps-circleV-border-color-default;
+    &:before {
+      counter-increment: item;
+      content: counter(item);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: -($steps-circleV-size * 0.5);
+      width: $steps-circleV-size;
+      height: $steps-circleV-size;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50%;
+      box-shadow: 0 0 0 $steps-circleV-border-size $steps-circleV-box-shadow;
+      background: $steps-circleV-bg-color-default;
+      border: 1px solid $steps-circleV-border-color-default;
+      color: $steps-circleV-text-color-default;
+    }
+    &:first-child {
+      border-top-color: transparent;
+    }
+    &:last-child {
+      border-left-color: transparent;
+    }
+    &.finished {
+      border-left: 1px solid $steps-circleV-bg-color-finished;
+      &:before {
+        background: $steps-circleV-bg-color-finished;
+        border-color: $steps-circleV-bg-color-finished;
+        color: #fff;
+      }
+      .hgroup {
+        .title {
+          color: $steps-circleV-text-color-finished;
+          font-weight: 600;
+        }
+      }
+    }
+  
+    .hgroup {
+      overflow: hidden;
+      width: 100%;
+      padding-top: $steps-circleV-size * 0.25;
+      .title {
+        display: inline-block;
+        position: relative;
+        margin-bottom: 0.25rem;
+        padding-right: 1rem;
+        font-weight: 400;
+        color: $steps-circleV-text-color-default;
+        &:before {
+          position: absolute;
+          top: $steps-circleV-size * 0.25;
+          left: 100%;
+          display: block;
+          width: 999999px;
+          height: 1px;
+          background: $steps-circleV-border-t;
+          content: "";
+          z-index: 0;
+        }
+      }
+      .btn {
+        z-index: 1;
+      }
+    }
+  }
+}
+
+$steps-circleV-xs-size: 1rem !default;
+$steps-circleV-xs-bg-color-default: $gray-800 !default;
+$steps-circleV-xs-bg-color-finished: $primary !default;
+$steps-circleV-xs-border-size: 0.5rem !default;
+$steps-circleV-xs-box-shadow: #fff !default;
+$steps-circleV-xs-titleTop: 0.25rem !default;
+
+//-kate
+
+.step-circle-v-s-pure,
+.step-circle-v-xs {
+  position: relative;
+  padding-left: $steps-circleV-xs-size * 0.5;
+  > li {
+    position: relative;
+    width: 100%;
+    padding-left: $steps-circleV-xs-size;
+    min-height: $steps-circleV-xs-size * 3;
+    border-left: 1px solid $steps-circleV-xs-bg-color-default;
+    &:before {
+      content: "";
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: -($steps-circleV-xs-size * 0.5);
+      top: $steps-circleV-xs-titleTop;
+      width: $steps-circleV-xs-size;
+      height: $steps-circleV-xs-size;
+      border-radius: 50%;
+      box-shadow: 0 0 0 $steps-circleV-xs-border-size $steps-circleV-xs-box-shadow;
+      background: $steps-circleV-xs-bg-color-default;
+    }
+    &:first-child {
+      border-top-color: transparent;
+    }
+    &:last-child {
+      border-left-color: transparent;
+    }
+    &.finished {
+      border-left: 1px solid $steps-circleV-xs-bg-color-finished;
+      &:before {
+        background: $steps-circleV-xs-bg-color-finished;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+//.step-circle-v-s
+$step-circle-v-list-height: 1rem !default;
+$step-circle-v-list-margin: 1rem !default;
+$step-circle-v-list-padding-y: 0.75rem !default;
+$step-circle-v-list-bg-color-active: shift-color($primary, $table-bg-scale) !default;
+$step-circle-v-list-text-color-default: $gray-600 !default;
+$step-circle-v-list-text-color-active: $primary !default;
+$step-circle-v-list-text-color-failed: $danger !default;
+$step-circle-v-list-text-color-temporary: $success !default;
+.step-circle-v-s,
+.step-circle-v-list {
+  // 樣式同 _ListGroup .list-group-custom
+  position: relative;
+  padding: 0;
+  margin: 0 (-$step-circle-v-list-margin);
+  > li {
+    position: relative;
+    width: 100%;
+    a{
+      display: flex;
+      align-items: center;
+      padding: $step-circle-v-list-padding-y $step-circle-v-list-margin;
+      line-height: $step-circle-v-list-height;
+      color: $step-circle-v-list-text-color-default;
+      font-weight: 600;
+      &:hover{
+        color: $step-circle-v-list-text-color-active;
+        background-color: lighten($step-circle-v-list-bg-color-active,5);
+      }
+      &.active{
+        color: $step-circle-v-list-text-color-active;
+        background-color: $step-circle-v-list-bg-color-active;
+      }
+      &:before {
+        content: "\F0130";
+        @include IconMdi(1.2rem);
+        margin-right: 0.25rem;
+      }
+    }
+    &.finished a{
+        color: $step-circle-v-list-text-color-active;
+      &:before {
+        color: $step-circle-v-list-text-color-active;
+        content: "\F05E0";
+      }
+    }
+    &.failed a{
+      color: $step-circle-v-list-text-color-failed;
+      &:before {
+        color: $step-circle-v-list-text-color-failed;
+        content: "\F0028";
+      }
+    }
+    &.temporary a{
+      color: $step-circle-v-list-text-color-temporary;
+      &:before {
+        color: $step-circle-v-list-text-color-temporary;
+        content: "\F06FF";
+      }
+    }
+  }
+}
+
+
+
+
+//.step-table
+$steps-table-circle: 1.6rem !default;
+$steps-table-padding-y: 0.3rem !default;
+$steps-table-padding-x: 0.6rem !default;
+$steps-table-i-color: #fff !default;
+$steps-table-text-color: $gray-600 !default;
+$steps-table-bg-color-default: $gray-300 !default;
+$steps-table-bg-color-finished: $primary !default;
+$steps-table-bg-color-active: $primary !default;
+$steps-table-border-color: $gray-300 !default;
+.step-table {
+  counter-reset: item;
+  tr {
+    > th,
+    > td {
+      padding: $steps-table-padding-y $steps-table-padding-x;
+      background-color: transparent;
+      vertical-align: top;
+      border:none;
+    }
+    > th:first-child {
+      position: relative;
+      text-align: center;
+      vertical-align: top;
+      i {
+        display: inline-block;
+        width: $steps-table-circle;
+        height: $steps-table-circle;
+        line-height: $steps-table-circle;
+        color: $steps-table-i-color;
+        background-color: $steps-table-bg-color-default;
+        border-radius: 50%;
+        &:before {
+          counter-increment: item;
+          content: counter(item);
+        }
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -$steps-table-padding-y;
+        left: $steps-table-circle * 0.5 + $steps-table-padding-x;
+        height: calc(100% - #{$steps-table-circle});
+        width: 1px;
+        border-left: 1px solid $steps-table-border-color;
+      }
+    }
+    &.finished {
+      > th:first-child {
+        i {
+          background-color: $steps-table-bg-color-finished;
+          &:before {
+            content: "\F012C";
+            @include IconMdi();
+          }
+        }
+        &:after {
+          border-left: 1px solid $steps-table-bg-color-finished;
+        }
+      }
+    }
+    &.reject {
+      color: $danger;
+      > th:first-child {
+        i {
+          background-color: $danger;
+          &:before {
+            content: "\F0156";
+            @include IconMdi();
+          }
+        }
+      }
+    }
+    &:last-child {
+      > th:after {
+        border-left: none !important;
+      }
+    }
+
+  }
+}
+
